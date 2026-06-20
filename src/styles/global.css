@@ -433,3 +433,130 @@ textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
 .mt-3 { margin-top: 3rem; }
 .mb-2 { margin-bottom: 2rem; }
 #exportCanvas { display: none; }
+
+/* ── QR COLORS ── */
+.qr-colors {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.qr-color-options {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.qr-color-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.qr-color-btn:hover {
+  transform: scale(1.15);
+}
+.qr-color-btn.active {
+  border-color: var(--surf);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.color-picker-wrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--bd2);
+  cursor: pointer;
+  background: conic-gradient(red, yellow, green, cyan, blue, magenta, red);
+  transition: transform 0.15s ease;
+}
+.color-picker-wrapper:hover {
+  transform: scale(1.15);
+}
+.color-picker-wrapper input[type="color"] {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+/* ── AD CONTAINER ── */
+.ad-container {
+  margin: 3.5rem auto 1.5rem;
+  text-align: center;
+  max-width: var(--max);
+}
+.ad-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 8px;
+}
+.ad-box {
+  background: var(--surf);
+  border: 1.5px dashed var(--bd2);
+  border-radius: var(--r);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.ad-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink3);
+}
+.ad-placeholder svg {
+  width: 28px;
+  height: 28px;
+}
+.ad-placeholder span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ── UX POLISH & MICRO-ANIMATIONS ── */
+.tab {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tab:hover:not(.active) {
+  color: var(--ink);
+  background: var(--bgl);
+}
+.btn-gen, .copy-btn, .act-btn, .mini-copy, .btn-dl {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.act-btn:active, .copy-btn:active, .mini-copy:active, .btn-dl:active {
+  transform: scale(0.96);
+}
+select, input[type=tel], input[type=text], textarea {
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bubble {
+  animation: popIn 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.mout-item {
+  animation: slideIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideIn {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

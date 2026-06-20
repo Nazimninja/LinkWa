@@ -211,6 +211,19 @@ import Base from '../layouts/Base.astro';
             <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.07 21.5l4.432-1.343A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 12 2zm0 18.182a8.173 8.173 0 01-4.168-1.143l-.3-.178-3.1.939.892-3.232-.196-.315A8.18 8.18 0 013.818 12c0-4.513 3.669-8.182 8.182-8.182 4.512 0 8.181 3.669 8.181 8.182 0 4.513-3.669 8.182-8.182 8.182z"/></svg>
           </div>
         </div>
+        <div class="qr-colors" style="display: none;">
+          <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Color</label>
+          <div class="qr-color-options">
+            <button class="qr-color-btn active" style="background:#080f0d;" onclick="changeQRColor('#080f0d', this)" title="Sleek Dark"></button>
+            <button class="qr-color-btn" style="background:#25D366;" onclick="changeQRColor('#25D366', this)" title="WhatsApp Green"></button>
+            <button class="qr-color-btn" style="background:#0284c7;" onclick="changeQRColor('#0284c7', this)" title="Royal Blue"></button>
+            <button class="qr-color-btn" style="background:#dc2626;" onclick="changeQRColor('#dc2626', this)" title="Crimson Red"></button>
+            <button class="qr-color-btn" style="background:#7c3aed;" onclick="changeQRColor('#7c3aed', this)" title="Purple"></button>
+            <div class="color-picker-wrapper">
+              <input type="color" id="qrColorPicker" value="#080f0d" oninput="changeQRColor(this.value, this)" title="Custom Color" />
+            </div>
+          </div>
+        </div>
         <button class="btn-dl" id="dlBtn" onclick="downloadQR()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           Download QR code
@@ -253,6 +266,30 @@ import Base from '../layouts/Base.astro';
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- AD UNIT: HOMEPAGE MIDDLE -->
+<div class="ad-container container">
+  <div class="ad-label">Advertisement</div>
+  <div class="ad-box">
+    <!-- Google AdSense - LinkWA Homepage Middle Banner -->
+    <!-- Uncomment this code and fill in your ad details when ready -->
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="YYYYYYYYYY"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    -->
+    <div class="ad-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      <span>Google Ads will appear here (Configured in Base.astro)</span>
     </div>
   </div>
 </div>
@@ -361,7 +398,7 @@ import Base from '../layouts/Base.astro';
 
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script is:inline>
-let tab = 'basic', curUrl = '';
+let tab = 'basic', curUrl = '', qrColor = '#080f0d';
 
 function switchTab(t, btn) {
   tab = t;
@@ -445,8 +482,25 @@ function genMulti() {
     html += '<div class="mout-item"><div class="mout-lbl">'+lbl+'</div><div class="mout-url">'+url+'</div><button class="mini-copy" onclick="navigator.clipboard.writeText(\''+url+'\').then(()=>toast(\'Copied!\'))">Copy</button></div>';
   });
   document.getElementById('multiOut').innerHTML = html;
-  if (first) renderQR(first);
+  if (first) {
+    curUrl = first;
+    renderQR(first);
+  }
   toast(html ? 'Links generated!' : 'Enter at least one number');
+}
+
+function changeQRColor(color, btn) {
+  qrColor = color;
+  if (btn && btn.id !== 'qrColorPicker') {
+    document.getElementById('qrColorPicker').value = color;
+  }
+  document.querySelectorAll('.qr-color-btn').forEach(b => b.classList.remove('active'));
+  if (btn && btn.classList.contains('qr-color-btn')) {
+    btn.classList.add('active');
+  }
+  if (curUrl) {
+    renderQR(curUrl);
+  }
 }
 
 function renderQR(url) {
@@ -458,9 +512,11 @@ function renderQR(url) {
   target.style.display = 'block';
   if (ph) ph.style.display = 'none';
   frame.classList.add('ready');
-  new QRCode(target, { text: url, width: 152, height: 152, colorDark: '#080f0d', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+  new QRCode(target, { text: url, width: 152, height: 152, colorDark: qrColor, colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
   logo.classList.add('show');
+  logo.style.backgroundColor = qrColor;
   document.getElementById('dlBtn').style.display = 'flex';
+  document.querySelector('.qr-colors').style.display = 'block';
 }
 
 function downloadQR() {
@@ -471,7 +527,7 @@ function downloadQR() {
   c.width=S; c.height=S+HEADER+FOOTER;
   const ctx = c.getContext('2d');
   ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,c.width,c.height);
-  ctx.fillStyle='#25D366'; ctx.fillRect(0,0,S,HEADER);
+  ctx.fillStyle=qrColor; ctx.fillRect(0,0,S,HEADER);
   ctx.fillStyle='#ffffff'; ctx.font='600 16px -apple-system,BlinkMacSystemFont,sans-serif';
   ctx.textAlign='center'; ctx.textBaseline='middle';
   ctx.fillText('Scan to chat on WhatsApp', S/2, HEADER/2);
@@ -482,7 +538,7 @@ function downloadQR() {
       ctx.drawImage(img,PAD,HEADER+PAD/2,QS,QS);
       const cx=S/2, cy=HEADER+PAD/2+QS/2, R=26;
       ctx.fillStyle='#ffffff'; ctx.beginPath(); ctx.arc(cx,cy,R+5,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#25D366'; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=qrColor; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
       ctx.fillStyle='#ffffff'; ctx.font='700 15px -apple-system,sans-serif';
       ctx.textAlign='center'; ctx.textBaseline='middle';
       ctx.fillText('WA',cx,cy);
