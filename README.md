@@ -176,3 +176,30 @@ Replace `ca-pub-XXXXXXXXXX` with your Publisher ID.
 - Automatic code splitting — only loads JS needed for that page
 - Built-in sitemap support
 - Zero runtime overhead
+
+---
+
+## Competitive Strategy: Beating `create.wa.link` (Walink)
+
+To achieve #1 rankings on Google and capture maximum organic traffic, **LinkWA (`linkwa.in`)** targets the major friction points of the leading competitor, `create.wa.link`.
+
+### Competitor Audit: `create.wa.link`
+*   **Positives**:
+    *   Fast, no-login link generation.
+    *   Live chat preview.
+    *   Multilingual subdomains (ES/PT) capturing high-volume Latin American traffic.
+*   **Negatives & Paywalls (Our Opportunities)**:
+    *   **Paid custom links ($6/year)**: Charging for custom readable links like `wa.link/MyBrand`.
+    *   **No editability on free links**: Free links cannot be updated if the phone number or message changes.
+    *   **Generic QR codes**: Free QR codes are basic black-and-white. Logo branding and frames are paid.
+    *   **Paid click analytics**: Access to daily traffic reports requires a paid plan.
+    *   **Paid multi-agent routing**: Distributing clicks among multiple numbers is locked.
+    *   **Heavy Ad Clutter**: Aggressive banner ads that degrade the user experience of the generator.
+
+### How `linkwa.in` Beats Them (100% Free Strategy)
+We offer their premium features **completely free**, monetized with clean, non-intrusive Google AdSense placements:
+1.  **Free Custom Short Links (`linkwa.in/yourname`)**: Built using Cloudflare KV + Pages Functions, giving businesses branded redirect links for $0 (creating a massive backlink network for our SEO).
+2.  **Free Multi-Number Routing**: Support for multiple sales/support numbers under one generation dashboard.
+3.  **Free UTM Tracking**: Advanced campaign parameter building for digital marketers.
+4.  **Free QR Code Customization**: Multi-template custom-colored QR codes with center branding ready to print.
+5.  **Premium UX**: Zero ad-clutter around the main tool card, with clean, modern HSL transitions and focus rings.

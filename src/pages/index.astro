@@ -98,9 +98,27 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="field">
           <label class="lbl">Pre-filled message <span class="opt">(optional)</span></label>
+          <div class="emoji-toolbar">
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'msg')">👋</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'msg')">😊</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'msg')">💬</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'msg')">🛍️</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'msg')">📞</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'msg')">✨</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'msg')">✅</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'msg')">👍</button>
+          </div>
           <textarea id="msg" placeholder="Hi! I saw your post and I'm interested in..." oninput="live();cnt(this,'mc')"></textarea>
           <div class="char-count" id="mc">0 / 500</div>
           <div class="hint">Customer sees this when they open your link — makes it effortless to reach you</div>
+        </div>
+        <div class="field">
+          <label class="lbl">Custom Short Link <span class="opt">(optional)</span></label>
+          <div class="short-slug-row">
+            <span class="slug-prefix">linkwa.in/</span>
+            <input type="text" id="slug" placeholder="mybrand" oninput="live()" />
+          </div>
+          <div class="hint">Create a branded redirect link (e.g. linkwa.in/mybrand) completely free</div>
         </div>
       </div>
 
@@ -121,7 +139,25 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="field">
           <label class="lbl">Pre-filled message <span class="opt">(optional)</span></label>
+          <div class="emoji-toolbar">
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'umsg')">👋</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'umsg')">😊</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'umsg')">💬</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'umsg')">🛍️</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'umsg')">📞</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'umsg')">✨</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'umsg')">✅</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'umsg')">👍</button>
+          </div>
           <textarea id="umsg" placeholder="Hi! I came from your Instagram ad..." oninput="live()" style="min-height:68px;"></textarea>
+        </div>
+        <div class="field">
+          <label class="lbl">Custom Short Link <span class="opt">(optional)</span></label>
+          <div class="short-slug-row">
+            <span class="slug-prefix">linkwa.in/</span>
+            <input type="text" id="uslug" placeholder="mybrand-ad" oninput="live()" />
+          </div>
+          <div class="hint">Track custom short links at the edge (e.g. linkwa.in/mybrand-ad)</div>
         </div>
         <div class="utm-block">
           <div class="utm-grid">
@@ -222,6 +258,14 @@ import Base from '../layouts/Base.astro';
             <div class="color-picker-wrapper">
               <input type="color" id="qrColorPicker" value="#080f0d" oninput="changeQRColor(this.value, this)" title="Custom Color" />
             </div>
+          </div>
+        </div>
+        <div class="qr-templates" style="display: none; margin-top: 14px;">
+          <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Template</label>
+          <div class="qr-template-options">
+            <button class="qr-temp-btn active" onclick="changeQRTemplate('classic', this)">Classic</button>
+            <button class="qr-temp-btn" onclick="changeQRTemplate('minimal', this)">Minimal</button>
+            <button class="qr-temp-btn" onclick="changeQRTemplate('stand', this)">Table Stand</button>
           </div>
         </div>
         <button class="btn-dl" id="dlBtn" onclick="downloadQR()">
@@ -328,6 +372,130 @@ import Base from '../layouts/Base.astro';
   </div>
 </section>
 
+<!-- COMPARISON: LinkWA vs Competitors -->
+<section class="comparison-section">
+  <div class="container">
+    <div class="sec-label">Why Choose Us</div>
+    <div class="sec-title">Beat the Paywalls: LinkWA vs. create.wa.link</div>
+    <p class="sec-subtitle">Stop paying for essential business tools. See how we offer premium marketing features completely free compared to the leading competitor.</p>
+    
+    <div class="comparison-grid">
+      <!-- Competitor Card -->
+      <div class="comp-card competitor">
+        <div class="comp-card-badge">Competitor</div>
+        <h3 class="comp-card-title">create.wa.link (Walink)</h3>
+        <p class="comp-card-desc">Popular generator but locks key business features behind paywalls and subscriptions.</p>
+        <ul class="comp-points">
+          <li class="point-negative">
+            <span class="point-icon">✕</span>
+            <div><strong>Paid custom links:</strong> Branded readable links (wa.link/Name) cost $6/year.</div>
+          </li>
+          <li class="point-negative">
+            <span class="point-icon">✕</span>
+            <div><strong>No edits for free links:</strong> Free links are permanent; if your number or message changes, you must create a new link.</div>
+          </li>
+          <li class="point-negative">
+            <span class="point-icon">✕</span>
+            <div><strong>Basic black & white QR codes:</strong> Standard template. Logo overlays and custom colored frames require a premium subscription.</div>
+          </li>
+          <li class="point-negative">
+            <span class="point-icon">✕</span>
+            <div><strong>Heavy Ad clutter:</strong> The creator dashboard is surrounded by aggressive display ads that slow page load.</div>
+          </li>
+          <li class="point-positive">
+            <span class="point-icon">✓</span>
+            <div>Fast no-login generation & live preview.</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Our Card -->
+      <div class="comp-card ours">
+        <div class="comp-card-badge">LinkWA (100% Free)</div>
+        <h3 class="comp-card-title">LinkWA (linkwa.in)</h3>
+        <p class="comp-card-desc">A premium, ad-free tool area offering all advanced features at absolutely no cost.</p>
+        <ul class="comp-points">
+          <li class="point-positive">
+            <span class="point-icon">✓</span>
+            <div><strong>100% Free Custom Links:</strong> Branded short URLs (linkwa.in/yourbrand) are free forever.</div>
+          </li>
+          <li class="point-positive">
+            <span class="point-icon">✓</span>
+            <div><strong>Unlimited editability:</strong> Update the target phone number or pre-filled message of your short link anytime.</div>
+          </li>
+          <li class="point-positive">
+            <span class="point-icon">✓</span>
+            <div><strong>Custom Color QR Codes:</strong> Customize colors, background, and pick from pre-designed templates (Classic, Minimal, Table Stand).</div>
+          </li>
+          <li class="point-positive">
+            <span class="point-icon">✓</span>
+            <div><strong>Premium Clean UX:</strong> Completely ad-free interface around the generator tool, keeping it fast and sleek.</div>
+          </li>
+          <li class="point-positive">
+            <span class="point-icon">✓</span>
+            <div><strong>UTM Campaign Builder:</strong> Advanced campaign parameters and emoji insertion pickers built-in for free.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="table-responsive">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Feature comparison</th>
+            <th>LinkWA (linkwa.in)</th>
+            <th>create.wa.link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feat-name">Custom Short Link (Branded URL)</td>
+            <td class="val-ours">✓ Free (Lifetime redirects)</td>
+            <td class="val-comp">✕ Paid ($6/year per link)</td>
+          </tr>
+          <tr>
+            <td class="feat-name">QR Code Colors & Styles</td>
+            <td class="val-ours">✓ Free (Unlimited Customization)</td>
+            <td class="val-comp">✕ Paid (Subscription required)</td>
+          </tr>
+          <tr>
+            <td class="feat-name">QR Code Print Templates</td>
+            <td class="val-ours">✓ Free (Classic, Minimal, Table Stand)</td>
+            <td class="val-comp">✕ Paid (Subscription required)</td>
+          </tr>
+          <tr>
+            <td class="feat-name">Editing Generated Links</td>
+            <td class="val-ours">✓ Free (Unlimited updates)</td>
+            <td class="val-comp">✕ Not supported on free links</td>
+          </tr>
+          <tr>
+            <td class="feat-name">Emoji Picker Toolbar</td>
+            <td class="val-ours">✓ Free (Quick insert tools)</td>
+            <td class="val-comp">✕ Not available</td>
+          </tr>
+          <tr>
+            <td class="feat-name">UTM Tracking Fields</td>
+            <td class="val-ours">✓ Free (Built-in campaign setup)</td>
+            <td class="val-comp">✓ Free (Manual config)</td>
+          </tr>
+          <tr>
+            <td class="feat-name">Tool Interface Ads</td>
+            <td class="val-ours">✓ Clean (Ad-free generator card)</td>
+            <td class="val-comp">✕ High (Intrusive banners)</td>
+          </tr>
+          <tr>
+            <td class="feat-name">Registration / Account Required</td>
+            <td class="val-ours">✓ No account needed</td>
+            <td class="val-comp">✓ No account needed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq-section">
   <div class="container">
@@ -398,7 +566,7 @@ import Base from '../layouts/Base.astro';
 
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script is:inline>
-let tab = 'basic', curUrl = '', qrColor = '#080f0d';
+let tab = 'basic', curUrl = '', qrColor = '#080f0d', qrTemplate = 'classic';
 
 function switchTab(t, btn) {
   tab = t;
@@ -460,12 +628,52 @@ function updatePreview() {
 
 function cnt(el, id) { document.getElementById(id).textContent = el.value.length+' / 500'; }
 
-function generate() {
+async function generate() {
   if (tab === 'multi') { genMulti(); return; }
   live();
   if (!curUrl) { toast('Please enter a phone number first'); return; }
-  renderQR(curUrl);
-  toast('WhatsApp link ready!');
+  
+  const slugInput = tab === 'basic' ? document.getElementById('slug') : document.getElementById('uslug');
+  const slugValue = slugInput ? slugInput.value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, '') : '';
+  
+  if (slugValue) {
+    if (slugValue.length < 3) {
+      toast('Custom name must be at least 3 characters');
+      return;
+    }
+    const btnGen = document.querySelector('.btn-gen');
+    const origHtml = btnGen.innerHTML;
+    btnGen.disabled = true;
+    btnGen.textContent = 'Creating custom link...';
+    
+    try {
+      const resp = await fetch('/api/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: slugValue, url: curUrl })
+      });
+      const data = await resp.json();
+      if (resp.ok && data.success) {
+        curUrl = data.shortUrl;
+        const el = document.getElementById('rurl');
+        el.className = 'result-url';
+        el.textContent = curUrl;
+        updatePreview();
+        renderQR(curUrl);
+        toast('Custom short link created!');
+      } else {
+        toast(data.error || 'Failed to create custom link');
+      }
+    } catch (err) {
+      toast('KV Service Error. Make sure you deploy on Cloudflare with KV linked.');
+    } finally {
+      btnGen.disabled = false;
+      btnGen.innerHTML = origHtml;
+    }
+  } else {
+    renderQR(curUrl);
+    toast('WhatsApp link ready!');
+  }
 }
 
 function genMulti() {
@@ -489,6 +697,20 @@ function genMulti() {
   toast(html ? 'Links generated!' : 'Enter at least one number');
 }
 
+function insertEmoji(emoji, targetId) {
+  const el = document.getElementById(targetId);
+  const start = el.selectionStart;
+  const end = el.selectionEnd;
+  const val = el.value;
+  el.value = val.substring(0, start) + emoji + val.substring(end);
+  el.selectionStart = el.selectionEnd = start + emoji.length;
+  el.focus();
+  live();
+  if (targetId === 'msg') {
+    cnt(el, 'mc');
+  }
+}
+
 function changeQRColor(color, btn) {
   qrColor = color;
   if (btn && btn.id !== 'qrColorPicker') {
@@ -503,6 +725,15 @@ function changeQRColor(color, btn) {
   }
 }
 
+function changeQRTemplate(template, btn) {
+  qrTemplate = template;
+  document.querySelectorAll('.qr-temp-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  if (curUrl) {
+    renderQR(curUrl);
+  }
+}
+
 function renderQR(url) {
   const frame = document.getElementById('qrFrame');
   const target = document.getElementById('qr-target');
@@ -511,48 +742,110 @@ function renderQR(url) {
   target.innerHTML = '';
   target.style.display = 'block';
   if (ph) ph.style.display = 'none';
-  frame.classList.add('ready');
-  new QRCode(target, { text: url, width: 152, height: 152, colorDark: qrColor, colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
-  logo.classList.add('show');
+  frame.className = 'qr-frame ready ' + qrTemplate;
+  
+  const size = qrTemplate === 'minimal' ? 164 : 152;
+  new QRCode(target, { text: url, width: size, height: size, colorDark: qrColor, colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+  
+  if (qrTemplate === 'minimal') {
+    logo.className = 'qr-center-logo show minimal';
+  } else {
+    logo.className = 'qr-center-logo show';
+  }
   logo.style.backgroundColor = qrColor;
+  
   document.getElementById('dlBtn').style.display = 'flex';
   document.querySelector('.qr-colors').style.display = 'block';
+  document.querySelector('.qr-templates').style.display = 'block';
 }
 
 function downloadQR() {
   const qrEl = document.querySelector('#qr-target canvas') || document.querySelector('#qr-target img');
   if (!qrEl) { toast('Generate a link first'); return; }
-  const S=480, PAD=28, HEADER=56, FOOTER=52;
+  
   const c = document.getElementById('exportCanvas');
-  c.width=S; c.height=S+HEADER+FOOTER;
-  const ctx = c.getContext('2d');
-  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,c.width,c.height);
-  ctx.fillStyle=qrColor; ctx.fillRect(0,0,S,HEADER);
-  ctx.fillStyle='#ffffff'; ctx.font='600 16px -apple-system,BlinkMacSystemFont,sans-serif';
-  ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText('Scan to chat on WhatsApp', S/2, HEADER/2);
   const drawFinal = (src) => {
     const img = new Image();
     img.onload = () => {
-      const QS=S-PAD*2;
-      ctx.drawImage(img,PAD,HEADER+PAD/2,QS,QS);
-      const cx=S/2, cy=HEADER+PAD/2+QS/2, R=26;
-      ctx.fillStyle='#ffffff'; ctx.beginPath(); ctx.arc(cx,cy,R+5,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle=qrColor; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#ffffff'; ctx.font='700 15px -apple-system,sans-serif';
-      ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText('WA',cx,cy);
-      ctx.fillStyle='#7a9490'; ctx.font='13px -apple-system,sans-serif';
-      ctx.textBaseline='middle'; ctx.fillText('linkwa.in',S/2,S+HEADER+FOOTER/2);
-      ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1.5; ctx.strokeRect(0.75,0.75,c.width-1.5,c.height-1.5);
-      const a=document.createElement('a'); a.download='linkwa-qr-code.png'; a.href=c.toDataURL('image/png'); a.click();
+      if (qrTemplate === 'minimal') {
+        const S = 400, PAD = 20;
+        c.width = S; c.height = S;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, S, S);
+        ctx.drawImage(img, PAD, PAD, S - PAD*2, S - PAD*2);
+        
+        const cx = S/2, cy = S/2, R = 24;
+        ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = qrColor; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 14px -apple-system,sans-serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('WA', cx, cy);
+        
+        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.strokeRect(0.75, 0.75, S - 1.5, S - 1.5);
+      } else if (qrTemplate === 'stand') {
+        const W = 400, H = 560, PAD = 36, HEADER = 90, FOOTER = 80;
+        c.width = W; c.height = H;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
+        
+        ctx.fillStyle = qrColor; ctx.fillRect(0, 0, W, HEADER);
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 20px -apple-system,BlinkMacSystemFont,sans-serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('SCAN TO CHAT', W/2, HEADER/2 - 10);
+        ctx.font = '500 13px -apple-system,sans-serif';
+        ctx.fillText('Message us on WhatsApp', W/2, HEADER/2 + 18);
+        
+        const QSz = W - PAD*2;
+        ctx.drawImage(img, PAD, HEADER + 30, QSz, QSz);
+        
+        const cx = W/2, cy = HEADER + 30 + QSz/2, R = 26;
+        ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = qrColor; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 15px -apple-system,sans-serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('WA', cx, cy);
+        
+        ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, H - FOOTER, W, FOOTER);
+        ctx.fillStyle = '#0f172a'; ctx.font = '700 15px -apple-system,sans-serif';
+        ctx.fillText('linkwa.in', W/2, H - FOOTER/2 + 5);
+        
+        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.strokeRect(0.75, 0.75, W - 1.5, H - 1.5);
+      } else {
+        const S = 480, PAD = 28, HEADER = 56, FOOTER = 52;
+        c.width = S; c.height = S + HEADER + FOOTER;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, S, c.height);
+        ctx.fillStyle = qrColor; ctx.fillRect(0, 0, S, HEADER);
+        ctx.fillStyle = '#ffffff'; ctx.font = '600 16px -apple-system,BlinkMacSystemFont,sans-serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('Scan to chat on WhatsApp', S/2, HEADER/2);
+        
+        const QS = S - PAD*2;
+        ctx.drawImage(img, PAD, HEADER + PAD/2, QS, QS);
+        
+        const cx = S/2, cy = HEADER + PAD/2 + QS/2, R = 26;
+        ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = qrColor; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 15px -apple-system,sans-serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('WA', cx, cy);
+        
+        ctx.fillStyle = '#7a9490'; ctx.font = '13px -apple-system,sans-serif';
+        ctx.fillText('linkwa.in', S/2, S + HEADER + FOOTER/2);
+        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.strokeRect(0.75, 0.75, S - 1.5, c.height - 1.5);
+      }
+      
+      const a = document.createElement('a');
+      a.download = `linkwa-qr-${qrTemplate}.png`;
+      a.href = c.toDataURL('image/png');
+      a.click();
       toast('QR downloaded!');
     };
-    img.src=src;
+    img.src = src;
   };
-  const qrC=document.querySelector('#qr-target canvas');
-  const qrI=document.querySelector('#qr-target img');
-  if(qrC) drawFinal(qrC.toDataURL()); else if(qrI) drawFinal(qrI.src);
+  const qrC = document.querySelector('#qr-target canvas');
+  const qrI = document.querySelector('#qr-target img');
+  if (qrC) drawFinal(qrC.toDataURL()); else if (qrI) drawFinal(qrI.src);
 }
 
 function copyLink() {
