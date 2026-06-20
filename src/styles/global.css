@@ -825,3 +825,63 @@ select, input[type=tel], input[type=text], textarea {
   color: #c93b3b;
 }
 
+/* ── SEO CONTENT SECTION ── */
+.seo-content-section {
+  padding: 4rem 1.5rem;
+  background: var(--bgl);
+  border-top: 1px solid var(--bd);
+  border-bottom: 1px solid var(--bd);
+}
+.seo-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.seo-container h2 {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.5vw, 28px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.6px;
+}
+.seo-container h3 {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 20px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.3px;
+}
+.seo-container p {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink2);
+  margin-bottom: 1.2rem;
+}
+.seo-container strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.seo-container ul {
+  margin-bottom: 1.5rem;
+  padding-left: 0;
+  list-style: none;
+}
+.seo-container li {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink2);
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.seo-container li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--gm);
+  font-weight: 700;
+}
+
+
