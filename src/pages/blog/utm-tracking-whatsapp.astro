@@ -1,0 +1,124 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="UTM Tracking for WhatsApp: Know Exactly Which Ad Sends You Leads | LinkWA"
+  description="Add UTM parameters to your WhatsApp links to track which Instagram ad, Facebook post, or Google campaign is generating your WhatsApp enquiries in Google Analytics."
+  canonical="https://linkwa.in/blog/utm-tracking-whatsapp"
+>
+<article class="article-wrap">
+  <div class="article-hero">
+    <div class="container">
+      <div class="article-tag">Marketing</div>
+      <h1>UTM Tracking for WhatsApp: Know Which Ad Sends You Leads</h1>
+      <div class="article-meta"><span>Jun 8, 2025</span><span>·</span><span>6 min read</span></div>
+      <p class="article-intro">Running ads and sending people to WhatsApp? Without UTM tracking, you have no idea which campaign is actually working. Here is how to set it up in minutes — no code required.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="prose">
+      <div class="callout"><strong>Use LinkWA's UTM tab:</strong> Switch to <strong>UTM Tracking</strong> on <a href="/">linkwa.in</a>, fill in 4 fields, and your tracking link is ready instantly.</div>
+
+      <h2>Why UTM tracking matters for WhatsApp marketing</h2>
+      <p>Most businesses run ads on Instagram, Facebook, and Google that direct people to WhatsApp. But without tracking, you cannot answer basic questions:</p>
+      <ul>
+        <li>Which ad generated the most leads this month?</li>
+        <li>Did the Reel or the Story drive more WhatsApp enquiries?</li>
+        <li>Is our Google ad spend actually producing results?</li>
+        <li>Which influencer campaign sent us customers?</li>
+      </ul>
+      <p>UTM parameters answer all of these — without installing any additional software.</p>
+
+      <h2>What are UTM parameters?</h2>
+      <p>UTM stands for Urchin Tracking Module. They are tags you add to the end of any URL so Google Analytics can identify the source of each visit. For a WhatsApp link, they look like this:</p>
+      <pre><code>https://wa.me/919876543210?text=Hi&utm_source=instagram&utm_medium=social&utm_campaign=june-sale</code></pre>
+
+      <h2>The 4 UTM parameters you need</h2>
+      <ul>
+        <li><strong>utm_source:</strong> Where the traffic comes from. Examples: instagram, facebook, google, email, youtube</li>
+        <li><strong>utm_medium:</strong> The marketing channel. Examples: social, cpc, reel, story, bio, email</li>
+        <li><strong>utm_campaign:</strong> The specific campaign name. Examples: diwali-sale, new-collection, june-launch</li>
+        <li><strong>utm_content:</strong> Which specific ad or post. Examples: reel-product-demo, story-swipe-up, carousel-post-3</li>
+      </ul>
+
+      <h2>How to create a UTM-tracked WhatsApp link</h2>
+      <h3>Method 1: Use LinkWA (recommended)</h3>
+      <ol>
+        <li>Go to <a href="/">linkwa.in</a></li>
+        <li>Click the <strong>UTM Tracking</strong> tab</li>
+        <li>Enter your number and pre-filled message</li>
+        <li>Fill in Source, Medium, Campaign, Content</li>
+        <li>Click Generate — your tracked link is ready</li>
+      </ol>
+
+      <h3>Method 2: Build it manually</h3>
+      <p>Start with your base link and append the UTM parameters:</p>
+      <pre><code>Base: https://wa.me/919876543210
+Add: ?utm_source=instagram&utm_medium=bio&utm_campaign=always-on</code></pre>
+
+      <h2>Real examples: UTM setups for Indian businesses</h2>
+
+      <h3>Instagram ad (paid)</h3>
+      <pre><code>utm_source=instagram
+utm_medium=cpc
+utm_campaign=june-sale
+utm_content=video-ad-1</code></pre>
+
+      <h3>Instagram bio (organic)</h3>
+      <pre><code>utm_source=instagram
+utm_medium=bio
+utm_campaign=organic
+utm_content=profile-link</code></pre>
+
+      <h3>WhatsApp status</h3>
+      <pre><code>utm_source=whatsapp
+utm_medium=status
+utm_campaign=product-launch</code></pre>
+
+      <h3>Influencer campaign</h3>
+      <pre><code>utm_source=influencer
+utm_medium=social
+utm_campaign=june-collab
+utm_content=nazim-ninja</code></pre>
+
+      <h2>How to see UTM results in Google Analytics</h2>
+      <p>Go to Google Analytics 4 → Reports → Acquisition → Traffic acquisition. Change the dimension to "Session source / medium" or "Session campaign". You will see which UTM-tagged links are sending visitors to your site.</p>
+      <p><strong>Note:</strong> UTM tracking works when the link leads to a website or landing page first, then to WhatsApp. If you link directly to wa.me, the UTM data is captured by Analytics only if someone has previously visited your site in the same session or if you are using a redirect page.</p>
+
+      <h2>The smarter approach: Use a redirect page</h2>
+      <p>For the most accurate UTM data, create a simple redirect page on your website (e.g., linkwa.in/go/instagram) that logs the UTM parameters in Analytics and then redirects to the wa.me link. This way every click is tracked perfectly.</p>
+
+      <div class="callout"><strong>Quick win:</strong> Create one UTM link per traffic source right now — Instagram bio, Facebook page, and your Google Business profile. After 30 days, check Analytics to see which one is sending you the most leads. Cut the worst, double down on the best.</div>
+
+      <h2>Common UTM mistakes to avoid</h2>
+      <ul>
+        <li><strong>Inconsistent naming:</strong> "Instagram" and "instagram" are treated as two different sources. Always use lowercase.</li>
+        <li><strong>Spaces in values:</strong> Use hyphens instead of spaces. "june sale" should be "june-sale".</li>
+        <li><strong>Not tracking at all:</strong> Even a basic utm_source=instagram on your bio link tells you more than nothing.</li>
+        <li><strong>Using the same link for all channels:</strong> Create a separate link per source so you can compare them.</li>
+      </ul>
+    </div>
+    <div class="article-cta">
+      <h3>Create your UTM-tracked WhatsApp link</h3>
+      <p>Switch to the UTM Tracking tab — free, instant, no account.</p>
+      <a href="/" class="article-cta-btn">Open LinkWA →</a>
+    </div>
+    <div class="article-nav"><a href="/blog" class="back-link">← All articles</a></div>
+  </div>
+</article>
+</Base>
+<style>
+.article-wrap { padding-bottom: 5rem; }
+.article-hero { background: linear-gradient(180deg, var(--gll) 0%, var(--bg) 100%); padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.article-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gm); margin-bottom: 10px; }
+.article-hero h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,38px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; max-width: 720px; }
+.article-meta { font-size: 13px; color: var(--ink3); display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.article-intro { font-size: 16.5px; color: var(--ink2); line-height: 1.7; max-width: 640px; }
+.article-cta { background: linear-gradient(135deg, var(--gd), var(--gm)); border-radius: 16px; padding: 2rem; margin-top: 3rem; text-align: center; }
+.article-cta h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.article-cta p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 1.25rem; }
+.article-cta-btn { background: #fff; color: var(--gd); padding: 11px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-block; font-family: var(--font-display); }
+.article-nav { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--bd); }
+.back-link { font-size: 14px; color: var(--ink3); text-decoration: none; font-weight: 500; }
+.back-link:hover { color: var(--gm); }
+</style>

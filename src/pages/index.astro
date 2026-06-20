@@ -1,0 +1,529 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="LinkWA – Free WhatsApp Link Generator with QR Code | wa.me Link Creator"
+  description="Generate a WhatsApp click-to-chat link instantly. Add a custom message, download a QR code, and track clicks with UTM parameters. Free, no login, works on all devices."
+>
+
+<!-- SCHEMA MARKUP -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LinkWA – WhatsApp Link Generator",
+  "operatingSystem": "Web",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Free WhatsApp click-to-chat link generator with QR code, UTM tracking, and multi-number support. No login required.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "url": "https://linkwa.in",
+  "author": { "@type": "Organization", "name": "LinkWA" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is a WhatsApp click-to-chat link?", "acceptedAnswer": { "@type": "Answer", "text": "A WhatsApp click-to-chat link lets anyone message you on WhatsApp without saving your number. When tapped, WhatsApp opens with a pre-written message ready to send." } },
+    { "@type": "Question", "name": "Is LinkWA free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free. No account, no email, no credit card. Your number never leaves your browser." } },
+    { "@type": "Question", "name": "What is the correct WhatsApp link format?", "acceptedAnswer": { "@type": "Answer", "text": "The official format is https://wa.me/[country code][number]. For India +91, number 9876543210 becomes https://wa.me/919876543210." } },
+    { "@type": "Question", "name": "Does the QR code expire?", "acceptedAnswer": { "@type": "Answer", "text": "No. The QR code is permanent and works as long as your WhatsApp number is active. Print it on cards, banners, or menus." } },
+    { "@type": "Question", "name": "Does this work with WhatsApp Business?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WhatsApp and WhatsApp Business use the same wa.me link format." } }
+  ]
+}
+</script>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-chip">
+    <span class="hero-chip-dot"></span>
+    Trusted by 10,000+ businesses
+  </div>
+  <h1>Your customers are one<br>tap away on <strong>WhatsApp</strong></h1>
+  <p class="hero-sub">Generate a wa.me link with pre-filled message, QR code &amp; UTM tracking. No account. No app. Instant.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">2B+</div><div class="hstat-l">WA users globally</div></div>
+    <div class="hstat"><div class="hstat-n">wa.me</div><div class="hstat-l">Official format</div></div>
+    <div class="hstat"><div class="hstat-n">Free</div><div class="hstat-l">Always & forever</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-wrap">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('basic',this)">Basic Link</button>
+    <button class="tab" onclick="switchTab('utm',this)">UTM Tracking</button>
+    <button class="tab" onclick="switchTab('multi',this)">Multi-Number</button>
+  </div>
+</div>
+
+<!-- TOOL GRID -->
+<div class="tool-grid">
+
+  <!-- LEFT: INPUT -->
+  <div>
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <div>
+          <div class="ch-title">Your details</div>
+          <div class="ch-sub">Enter your number and message</div>
+        </div>
+      </div>
+
+      <!-- BASIC PANEL -->
+      <div id="panel-basic" class="panel active">
+        <div class="field">
+          <label class="lbl">Phone number</label>
+          <div class="row">
+            <select id="cc">
+              <option value="91">🇮🇳 +91</option>
+              <option value="1">🇺🇸 +1</option>
+              <option value="44">🇬🇧 +44</option>
+              <option value="971">🇦🇪 +971</option>
+              <option value="61">🇦🇺 +61</option>
+              <option value="65">🇸🇬 +65</option>
+              <option value="60">🇲🇾 +60</option>
+              <option value="880">🇧🇩 +880</option>
+              <option value="92">🇵🇰 +92</option>
+              <option value="55">🇧🇷 +55</option>
+            </select>
+            <input type="tel" id="phone" placeholder="98765 43210" oninput="live()" />
+          </div>
+          <div class="hint">Without country code or spaces</div>
+        </div>
+        <div class="field">
+          <label class="lbl">Pre-filled message <span class="opt">(optional)</span></label>
+          <textarea id="msg" placeholder="Hi! I saw your post and I'm interested in..." oninput="live();cnt(this,'mc')"></textarea>
+          <div class="char-count" id="mc">0 / 500</div>
+          <div class="hint">Customer sees this when they open your link — makes it effortless to reach you</div>
+        </div>
+      </div>
+
+      <!-- UTM PANEL -->
+      <div id="panel-utm" class="panel">
+        <div class="field">
+          <label class="lbl">Phone number</label>
+          <div class="row">
+            <select id="ucc">
+              <option value="91">🇮🇳 +91</option>
+              <option value="1">🇺🇸 +1</option>
+              <option value="44">🇬🇧 +44</option>
+              <option value="971">🇦🇪 +971</option>
+              <option value="61">🇦🇺 +61</option>
+            </select>
+            <input type="tel" id="uphone" placeholder="98765 43210" oninput="live()" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl">Pre-filled message <span class="opt">(optional)</span></label>
+          <textarea id="umsg" placeholder="Hi! I came from your Instagram ad..." oninput="live()" style="min-height:68px;"></textarea>
+        </div>
+        <div class="utm-block">
+          <div class="utm-grid">
+            <div><label class="lbl" style="color:var(--gm);">Source</label><input id="us" placeholder="instagram" oninput="live()" /></div>
+            <div><label class="lbl" style="color:var(--gm);">Medium</label><input id="um" placeholder="social" oninput="live()" /></div>
+            <div><label class="lbl" style="color:var(--gm);">Campaign</label><input id="uc" placeholder="summer-sale" oninput="live()" /></div>
+            <div><label class="lbl" style="color:var(--gm);">Content</label><input id="uk" placeholder="reel-cta" oninput="live()" /></div>
+          </div>
+          <div class="hint" style="margin-top:10px;">Track which ad or post drives your WhatsApp leads in Google Analytics</div>
+        </div>
+      </div>
+
+      <!-- MULTI PANEL -->
+      <div id="panel-multi" class="panel">
+        <div class="multi-entry">
+          <div class="multi-entry-h">Number 1 — e.g. Sales</div>
+          <div class="row" style="margin-bottom:8px;">
+            <select class="mcc"><option value="91">🇮🇳 +91</option><option value="1">🇺🇸 +1</option><option value="44">🇬🇧 +44</option><option value="971">🇦🇪 +971</option></select>
+            <input type="tel" class="mphone" placeholder="98765 43210" />
+          </div>
+          <input type="text" class="mlabel" placeholder="Label: Sales Team" />
+        </div>
+        <div class="multi-entry">
+          <div class="multi-entry-h">Number 2 — e.g. Support</div>
+          <div class="row" style="margin-bottom:8px;">
+            <select class="mcc"><option value="91">🇮🇳 +91</option><option value="1">🇺🇸 +1</option><option value="44">🇬🇧 +44</option><option value="971">🇦🇪 +971</option></select>
+            <input type="tel" class="mphone" placeholder="98765 43210" />
+          </div>
+          <input type="text" class="mlabel" placeholder="Label: Support Team" />
+        </div>
+        <div class="hint">One link per team — perfect for bio, website, or print material</div>
+      </div>
+
+      <button class="btn-gen" onclick="generate()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Generate WhatsApp Link
+      </button>
+    </div>
+  </div>
+
+  <!-- RIGHT: OUTPUT -->
+  <div>
+    <!-- LINK OUTPUT -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        </div>
+        <div>
+          <div class="ch-title">Your WhatsApp link</div>
+          <div class="ch-sub">Ready to copy and share</div>
+        </div>
+      </div>
+      <div class="result-wrap">
+        <span class="result-url empty" id="rurl">Your link appears here after you generate...</span>
+        <button class="copy-btn" id="cpbtn" onclick="copyLink()">Copy</button>
+      </div>
+      <div class="act-row">
+        <button class="act-btn" onclick="testLink()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Test link
+        </button>
+        <button class="act-btn" onclick="shareLink()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+          Share
+        </button>
+      </div>
+      <div id="multiOut"></div>
+    </div>
+
+    <!-- QR CODE -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path stroke-linecap="round" d="M14 14h1m2 0h2m-2 2v2m2-2v4m-4 0h2"/></svg>
+        </div>
+        <div>
+          <div class="ch-title">QR code</div>
+          <div class="ch-sub">Print on cards, banners &amp; menus</div>
+        </div>
+      </div>
+      <div class="qr-area">
+        <div class="qr-frame" id="qrFrame">
+          <p class="qr-ph" id="qrPh">Generate a link to see your QR code</p>
+          <div id="qr-target"></div>
+          <div class="qr-center-logo" id="qrLogo">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.07 21.5l4.432-1.343A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 12 2zm0 18.182a8.173 8.173 0 01-4.168-1.143l-.3-.178-3.1.939.892-3.232-.196-.315A8.18 8.18 0 013.818 12c0-4.513 3.669-8.182 8.182-8.182 4.512 0 8.181 3.669 8.181 8.182 0 4.513-3.669 8.182-8.182 8.182z"/></svg>
+          </div>
+        </div>
+        <button class="btn-dl" id="dlBtn" onclick="downloadQR()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download QR code
+        </button>
+      </div>
+    </div>
+
+    <!-- LIVE PREVIEW -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        </div>
+        <div>
+          <div class="ch-title">Live preview</div>
+          <div class="ch-sub">How it looks in WhatsApp</div>
+        </div>
+      </div>
+      <div class="preview-phone">
+        <div class="preview-notch"></div>
+        <div class="preview-screen">
+          <div class="preview-bar">
+            <div class="preview-av">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            </div>
+            <div>
+              <div class="preview-name">You</div>
+              <div class="preview-status">online</div>
+            </div>
+          </div>
+          <div class="preview-body">
+            <div class="bubble">
+              <div class="bubble-msg ph" id="pvMsg">Type a message above...</div>
+              <div class="bubble-link" id="pvLink"></div>
+              <div class="bubble-time">now ✓✓</div>
+            </div>
+          </div>
+          <div class="preview-input">
+            <div class="preview-input-inner">Type a message</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <div><h4>Zero data stored</h4><p>Your phone number never leaves your browser. No servers, no logs, no tracking.</p></div>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <div><h4>Official wa.me format</h4><p>We use WhatsApp's official link standard — the same one used by millions of businesses worldwide.</p></div>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path stroke-linecap="round" d="M12 18h.01"/></svg></div>
+        <div><h4>Mobile optimised</h4><p>Works perfectly on any device. Your customers can tap the link from anywhere.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hiw-section">
+  <div class="container">
+    <div class="sec-label">How it works</div>
+    <div class="sec-title">Up and running in 4 steps</div>
+    <div class="steps">
+      <div class="step"><div class="step-n">01</div><h3>Enter your number</h3><p>Choose your country and type your WhatsApp number — no formatting needed.</p></div>
+      <div class="step"><div class="step-n">02</div><h3>Write your message</h3><p>Add the opening message your customer sees — makes it effortless for them.</p></div>
+      <div class="step"><div class="step-n">03</div><h3>Copy or scan</h3><p>Copy the link for your bio and ads, or use the QR code for cards and print.</p></div>
+      <div class="step"><div class="step-n">04</div><h3>Track with UTM</h3><p>Switch to UTM mode to know exactly which campaign is sending you leads.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="sec-label" style="text-align:left;margin-bottom:6px;">FAQ</div>
+    <div class="sec-title" style="text-align:left;margin-bottom:1.5rem;font-size:clamp(20px,3vw,26px);">Common questions</div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is a WhatsApp click-to-chat link?<span class="faq-icon">+</span></div><div class="faq-a">A WhatsApp click-to-chat link (wa.me link) lets anyone start a conversation with you on WhatsApp without saving your number first. When someone taps the link, WhatsApp opens with your pre-written message already filled in — they just hit send.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Is LinkWA completely free?<span class="faq-icon">+</span></div><div class="faq-a">Yes — no account, no email, no credit card. LinkWA is free forever. We earn through non-intrusive display ads shown outside the tool area. Your data is never monetised.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is the correct WhatsApp link format?<span class="faq-icon">+</span></div><div class="faq-a">The official format is <code>https://wa.me/[country code][number]</code>. For India (+91), number 98765 43210 becomes <code>https://wa.me/919876543210</code>. No spaces, dashes, or brackets. LinkWA builds this automatically.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">How do I add my WhatsApp link to Instagram bio?<span class="faq-icon">+</span></div><div class="faq-a">Generate your link here, copy it, go to Instagram → Edit Profile → Website → paste the link. Anyone who taps it opens a direct WhatsApp chat with you instantly.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is UTM tracking and why should I use it?<span class="faq-icon">+</span></div><div class="faq-a">UTM parameters are tags added to your link so Google Analytics can tell you exactly which ad, post, or campaign generated each WhatsApp enquiry. Switch to the UTM Tracking tab — LinkWA appends them automatically.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does the QR code expire?<span class="faq-icon">+</span></div><div class="faq-a">No. The QR code is a permanent scannable version of your wa.me link. Print it on business cards, menus, or banners — it works indefinitely as long as your WhatsApp number is active.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does this work with WhatsApp Business?<span class="faq-icon">+</span></div><div class="faq-a">Yes. WhatsApp and WhatsApp Business use the same wa.me format. Enter your Business number and everything works identically — pre-filled message, QR code, and UTM tracking.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG CTA -->
+<section class="blog-cta-section">
+  <div class="container">
+    <div class="blog-cta-inner">
+      <div>
+        <div class="blog-cta-label">From the blog</div>
+        <h2 class="blog-cta-title">Learn how to use WhatsApp for business</h2>
+        <p class="blog-cta-sub">Step-by-step guides on growing your business with WhatsApp links, QR codes, and automation.</p>
+      </div>
+      <a href="/blog" class="blog-cta-btn">Read guides →</a>
+    </div>
+  </div>
+</section>
+
+</Base>
+
+<style>
+.tool-grid {
+  max-width: 1020px;
+  margin: 2rem auto 0;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+  align-items: start;
+}
+@media(max-width:740px){ .tool-grid { grid-template-columns: 1fr; } }
+
+.trust-section { padding: 2.5rem 0 1.5rem; }
+.hiw-section { padding: 3rem 0 2rem; border-top: 1px solid var(--bd); }
+.faq-section { padding: 2rem 0 3rem; }
+.faq-list { max-width: 680px; }
+
+.blog-cta-section { padding: 0 0 4rem; }
+.blog-cta-inner {
+  background: linear-gradient(135deg, var(--gd), var(--gm));
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.blog-cta-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 6px; }
+.blog-cta-title { font-family: var(--font-display); font-size: clamp(18px,3vw,24px); font-weight: 700; color: #fff; letter-spacing: -0.4px; margin-bottom: 8px; }
+.blog-cta-sub { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 420px; }
+.blog-cta-btn { background: #fff; color: var(--gd); padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 14px; text-decoration: none; white-space: nowrap; font-family: var(--font-display); transition: all 0.14s; flex-shrink: 0; }
+.blog-cta-btn:hover { background: var(--gl); }
+</style>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script is:inline>
+let tab = 'basic', curUrl = '';
+
+function switchTab(t, btn) {
+  tab = t;
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + t).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('multiOut').innerHTML = '';
+  live();
+}
+
+function buildUrl() {
+  if (tab === 'basic') {
+    const c = document.getElementById('cc').value;
+    const p = document.getElementById('phone').value.replace(/\D/g,'');
+    const m = document.getElementById('msg').value.trim();
+    if (!p) return '';
+    return 'https://wa.me/' + c + p + (m ? '?text=' + encodeURIComponent(m) : '');
+  }
+  if (tab === 'utm') {
+    const c = document.getElementById('ucc').value;
+    const p = document.getElementById('uphone').value.replace(/\D/g,'');
+    const m = document.getElementById('umsg').value.trim();
+    const s = document.getElementById('us').value.trim();
+    const med = document.getElementById('um').value.trim();
+    const camp = document.getElementById('uc').value.trim();
+    const k = document.getElementById('uk').value.trim();
+    if (!p) return '';
+    const ps = [];
+    if (m) ps.push('text=' + encodeURIComponent(m));
+    if (s) ps.push('utm_source=' + encodeURIComponent(s));
+    if (med) ps.push('utm_medium=' + encodeURIComponent(med));
+    if (camp) ps.push('utm_campaign=' + encodeURIComponent(camp));
+    if (k) ps.push('utm_content=' + encodeURIComponent(k));
+    return 'https://wa.me/' + c + p + (ps.length ? '?' + ps.join('&') : '');
+  }
+  return '';
+}
+
+function live() {
+  const url = buildUrl();
+  curUrl = url;
+  const el = document.getElementById('rurl');
+  if (url) { el.className = 'result-url'; el.textContent = url; }
+  else { el.className = 'result-url empty'; el.textContent = 'Your link appears here after you generate...'; }
+  updatePreview();
+}
+
+function updatePreview() {
+  const pm = document.getElementById('pvMsg');
+  const pl = document.getElementById('pvLink');
+  let m = tab === 'basic' ? (document.getElementById('msg').value||'').trim()
+        : tab === 'utm'   ? (document.getElementById('umsg').value||'').trim() : '';
+  if (m) { pm.className='bubble-msg'; pm.textContent=m; } 
+  else { pm.className='bubble-msg ph'; pm.textContent='Type a message above...'; }
+  if (curUrl) { pl.style.display='block'; pl.textContent=curUrl.length>40?curUrl.slice(0,40)+'...':curUrl; }
+  else pl.style.display='none';
+}
+
+function cnt(el, id) { document.getElementById(id).textContent = el.value.length+' / 500'; }
+
+function generate() {
+  if (tab === 'multi') { genMulti(); return; }
+  live();
+  if (!curUrl) { toast('Please enter a phone number first'); return; }
+  renderQR(curUrl);
+  toast('WhatsApp link ready!');
+}
+
+function genMulti() {
+  const phones = document.querySelectorAll('.mphone');
+  const codes = document.querySelectorAll('.mcc');
+  const labels = document.querySelectorAll('.mlabel');
+  let html = '', first = '';
+  phones.forEach((ph, i) => {
+    const p = ph.value.replace(/\D/g,'');
+    if (!p) return;
+    const url = 'https://wa.me/' + codes[i].value + p;
+    const lbl = labels[i].value || 'Number '+(i+1);
+    if (!first) first = url;
+    html += '<div class="mout-item"><div class="mout-lbl">'+lbl+'</div><div class="mout-url">'+url+'</div><button class="mini-copy" onclick="navigator.clipboard.writeText(\''+url+'\').then(()=>toast(\'Copied!\'))">Copy</button></div>';
+  });
+  document.getElementById('multiOut').innerHTML = html;
+  if (first) renderQR(first);
+  toast(html ? 'Links generated!' : 'Enter at least one number');
+}
+
+function renderQR(url) {
+  const frame = document.getElementById('qrFrame');
+  const target = document.getElementById('qr-target');
+  const logo = document.getElementById('qrLogo');
+  const ph = document.getElementById('qrPh');
+  target.innerHTML = '';
+  target.style.display = 'block';
+  if (ph) ph.style.display = 'none';
+  frame.classList.add('ready');
+  new QRCode(target, { text: url, width: 152, height: 152, colorDark: '#080f0d', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+  logo.classList.add('show');
+  document.getElementById('dlBtn').style.display = 'flex';
+}
+
+function downloadQR() {
+  const qrEl = document.querySelector('#qr-target canvas') || document.querySelector('#qr-target img');
+  if (!qrEl) { toast('Generate a link first'); return; }
+  const S=480, PAD=28, HEADER=56, FOOTER=52;
+  const c = document.getElementById('exportCanvas');
+  c.width=S; c.height=S+HEADER+FOOTER;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle='#25D366'; ctx.fillRect(0,0,S,HEADER);
+  ctx.fillStyle='#ffffff'; ctx.font='600 16px -apple-system,BlinkMacSystemFont,sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('Scan to chat on WhatsApp', S/2, HEADER/2);
+  const drawFinal = (src) => {
+    const img = new Image();
+    img.onload = () => {
+      const QS=S-PAD*2;
+      ctx.drawImage(img,PAD,HEADER+PAD/2,QS,QS);
+      const cx=S/2, cy=HEADER+PAD/2+QS/2, R=26;
+      ctx.fillStyle='#ffffff'; ctx.beginPath(); ctx.arc(cx,cy,R+5,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#25D366'; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#ffffff'; ctx.font='700 15px -apple-system,sans-serif';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('WA',cx,cy);
+      ctx.fillStyle='#7a9490'; ctx.font='13px -apple-system,sans-serif';
+      ctx.textBaseline='middle'; ctx.fillText('linkwa.in',S/2,S+HEADER+FOOTER/2);
+      ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1.5; ctx.strokeRect(0.75,0.75,c.width-1.5,c.height-1.5);
+      const a=document.createElement('a'); a.download='linkwa-qr-code.png'; a.href=c.toDataURL('image/png'); a.click();
+      toast('QR downloaded!');
+    };
+    img.src=src;
+  };
+  const qrC=document.querySelector('#qr-target canvas');
+  const qrI=document.querySelector('#qr-target img');
+  if(qrC) drawFinal(qrC.toDataURL()); else if(qrI) drawFinal(qrI.src);
+}
+
+function copyLink() {
+  if (!curUrl) { toast('Generate a link first'); return; }
+  navigator.clipboard.writeText(curUrl).then(() => {
+    const btn=document.getElementById('cpbtn');
+    btn.textContent='Copied ✓'; btn.classList.add('done');
+    toast('Copied to clipboard!');
+    setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('done'); },2000);
+  });
+}
+function testLink() { if (!curUrl) { toast('Generate a link first'); return; } window.open(curUrl,'_blank'); }
+function shareLink() {
+  if (!curUrl) { toast('Generate a link first'); return; }
+  if (navigator.share) navigator.share({ title:'My WhatsApp Link', url:curUrl });
+  else { navigator.clipboard.writeText(curUrl); toast('Link copied — share it anywhere!'); }
+}
+function faq(el) {
+  const a=el.querySelector('.faq-a'), ic=el.querySelector('.faq-icon');
+  const wasOpen=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(x=>x.classList.remove('open'));
+  if(!wasOpen){a.classList.add('open');ic.classList.add('open');}
+}
+function toast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2400);
+}
+</script>
