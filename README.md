@@ -1,5 +1,6 @@
 # LinkWA — Astro Project
 
+<!-- Trigger redeployment to activate KV binding -->
 WhatsApp Link Generator built with Astro for maximum SEO performance.
 
 ---
