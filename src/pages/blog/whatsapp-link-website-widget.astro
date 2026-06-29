@@ -1,0 +1,92 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="How to Add a WhatsApp Chat Widget to Your Website | LinkWA"
+  description="Step-by-step guide to adding a WhatsApp chat widget or floating button to your website. Boost your web conversion rates and capture leads instantly."
+  canonical="https://linkwa.in/blog/whatsapp-link-website-widget"
+>
+<article class="article-wrap">
+  <div class="article-hero">
+    <div class="container">
+      <div class="article-tag">Guide</div>
+      <h1>How to Add a WhatsApp Chat Widget to Your Website</h1>
+      <div class="article-meta"><span>Jun 24, 2026</span><span>·</span><span>5 min read</span></div>
+      <p class="article-intro">A floating WhatsApp chat button makes it incredibly easy for website visitors to contact you. Here is the complete guide to adding a custom WhatsApp widget to your website without slowing it down.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="prose">
+      <div class="callout"><strong>Pro tip:</strong> You don't need expensive plugins. A simple HTML/CSS button linked to your WhatsApp number can serve as a lightweight, fast-loading widget.</div>
+
+      <h2>Why add a WhatsApp widget to your website?</h2>
+      <p>Traditional email contact forms suffer from low response rates, and complex live chat widgets can slow down your page loading speed. A WhatsApp widget bridges this gap by providing visitors with a familiar, instant way to communicate. When a visitor clicks the widget, they are directed to the WhatsApp application on their phone or desktop, initiating a direct line of communication that you can nurture over time.</p>
+
+      <h2>How to create a simple, custom WhatsApp button</h2>
+      <p>To create a floating WhatsApp button, you only need a small snippet of HTML and CSS. This method is highly recommended because it has zero dependency on third-party scripts, keeping your site fast and SEO-friendly.</p>
+
+      <h3>Step 1: The HTML code</h3>
+      <p>Add the following HTML structure just before the closing <code>&lt;/body&gt;</code> tag of your website template. Replace the phone number and pre-filled message with your own:</p>
+      <pre><code>&lt;a href="https://wa.me/15551234567?text=Hi!%20I%20have%20a%20question%20about%20your%20services." 
+   class="whatsapp-widget" target="_blank" rel="noopener noreferrer"&gt;
+  &lt;span&gt;Chat with Us&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+
+      <h3>Step 2: The CSS styling</h3>
+      <p>Add this CSS code to your site's stylesheet to position the widget in the bottom-right corner of the screen and style it with the characteristic WhatsApp green:</p>
+      <pre><code>.whatsapp-widget &#123;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #25D366;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+&#125;
+.whatsapp-widget:hover &#123;
+  transform: scale(1.05);
+&#125;</code></pre>
+
+      <h2>Using third-party WhatsApp widget generators</h2>
+      <p>If you prefer a pre-built widget with advanced customization, such as multiple agent profiles, greeting messages, or custom triggers, you can use widget generators like Elfsight, GetButton, or automated chat platforms. These tools provide a JavaScript snippet that you paste into your header, rendering a highly stylized and interactive chat widget instantly.</p>
+
+      <h2>Best practices for website widgets</h2>
+      <ul>
+        <li><strong>Position Wisely:</strong> Place the button in the bottom-right corner, as this is the standard location where visitors look for support channels.</li>
+        <li><strong>Keep it Clean:</strong> Ensure the widget doesn't block critical screen elements like checkout buttons, navigation links, or cookie consent banners.</li>
+        <li><strong>Include a Call to Action:</strong> Use text like "Chat with us" or "Ask a question" instead of just a generic logo to encourage interaction.</li>
+        <li><strong>Monitor Analytics:</strong> Use UTM parameters in your WhatsApp link to track how many website conversions originate directly from your widget.</li>
+      </ul>
+    </div>
+    <div class="article-cta">
+      <h3>Generate your custom link first</h3>
+      <p>Before building your website widget, generate a clean link with a pre-filled message using LinkWA.</p>
+      <a href="/" class="article-cta-btn">Open LinkWA →</a>
+    </div>
+    <div class="article-nav"><a href="/blog" class="back-link">← All articles</a></div>
+  </div>
+</article>
+</Base>
+<style>
+.article-wrap { padding-bottom: 5rem; }
+.article-hero { background: linear-gradient(180deg, var(--gll) 0%, var(--bg) 100%); padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.article-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gm); margin-bottom: 10px; }
+.article-hero h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,38px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; max-width: 720px; }
+.article-meta { font-size: 13px; color: var(--ink3); display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.article-intro { font-size: 16.5px; color: var(--ink2); line-height: 1.7; max-width: 640px; }
+.article-cta { background: linear-gradient(135deg, var(--gd), var(--gm)); border-radius: 16px; padding: 2rem; margin-top: 3rem; text-align: center; }
+.article-cta h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.article-cta p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 1.25rem; }
+.article-cta-btn { background: #fff; color: var(--gd); padding: 11px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-block; font-family: var(--font-display); }
+.article-nav { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--bd); }
+.back-link { font-size: 14px; color: var(--ink3); text-decoration: none; font-weight: 500; }
+.back-link:hover { color: var(--gm); }
+</style>

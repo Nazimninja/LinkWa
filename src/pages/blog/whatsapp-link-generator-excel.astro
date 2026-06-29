@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="How to Generate WhatsApp Links in Bulk with Excel | LinkWA"
+  description="Learn how to use Excel or Google Sheets to generate WhatsApp links in bulk. Step-by-step tutorial with Excel formulas for wa.me links."
+  canonical="https://linkwa.in/blog/whatsapp-link-generator-excel"
+>
+<article class="article-wrap">
+  <div class="article-hero">
+    <div class="container">
+      <div class="article-tag">Guide</div>
+      <h1>How to Generate WhatsApp Links in Bulk with Excel</h1>
+      <div class="article-meta"><span>Jun 25, 2026</span><span>·</span><span>5 min read</span></div>
+      <p class="article-intro">Need to create WhatsApp links for hundreds of customers or team members? Here is how to use Microsoft Excel or Google Sheets to generate bulk click-to-chat links using simple formulas.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="prose">
+      <div class="callout"><strong>Quick start:</strong> Use this Excel formula to create a basic link: <code>="https://wa.me/" & A2</code> (where A2 contains the phone number with country code). Read on for advanced formulas with pre-filled messages.</div>
+
+      <h2>Why generate WhatsApp links in bulk?</h2>
+      <p>If you run a marketing campaign, manage a customer service team, or operate an e-commerce store, you often need to contact multiple clients individually. Creating links manually for every customer is slow and prone to errors. By generating these links in Excel or Google Sheets, you can automate the process, save hours, and ensure accurate formatting.</p>
+
+      <h2>Step-by-step: Generating WhatsApp links in Excel</h2>
+      <h3>Step 1: Format your phone numbers</h3>
+      <p>WhatsApp links require numbers to be in the international format, without any spaces, brackets, or plus signs (+). For example, a US number should look like <code>15551234567</code>, and an Indian number should look like <code>919876543210</code>.</p>
+      <p>In Excel, place your clean phone numbers in Column A, starting from cell A2.</p>
+
+      <h3>Step 2: Enter the basic formula</h3>
+      <p>In cell B2, enter the following formula to construct a simple wa.me link:</p>
+      <pre><code>="https://wa.me/" & A2</code></pre>
+      <p>Press enter, and drag the fill handle down to apply the formula to all your rows. This generates a direct click-to-chat link for every number instantly.</p>
+
+      <h3>Step 3: Add pre-filled messages (Advanced)</h3>
+      <p>To make the customer journey even smoother, you can include a pre-filled text message. In Excel, spaces and special characters in URLs must be URL-encoded (e.g., spaces become <code>%20</code>). Fortunately, Google Sheets and modern Excel versions have built-in functions to handle this.</p>
+      <p>If you are using Google Sheets, place your message text in Column B (e.g. "Hi, I am interested in your services"), and use the following formula in Column C:</p>
+      <pre><code>="https://wa.me/" & A2 & "?text=" & ENCODEURL(B2)</code></pre>
+      <p>In Excel, you can use the <code>ENCODEURL</code> function similarly to automatically replace spaces with <code>%20</code>, ensuring the link remains valid and scannable.</p>
+
+      <h2>Best practices for bulk link generation</h2>
+      <ul>
+        <li><strong>Verify Country Codes:</strong> Double-check that every number has a valid country prefix. A link without a country code will fail to open a chat.</li>
+        <li><strong>Avoid Special Characters:</strong> Ensure the phone number column does not contain parentheses or dashes. Use Excel's Find & Replace (Ctrl+H) to strip them out.</li>
+        <li><strong>Hyperlink the Cells:</strong> To make the generated links clickable directly from Excel, wrap the formula in the <code>HYPERLINK</code> function: <code>=HYPERLINK("https://wa.me/" & A2, "Chat on WhatsApp")</code>.</li>
+      </ul>
+
+      <h2>Testing your bulk links</h2>
+      <p>Before launching a broadcast or sending links to your sales agents, copy a random sample of 5 links and paste them into your browser. If they open the correct WhatsApp chat window with the expected pre-filled text, your sheet is set up correctly.</p>
+    </div>
+    <div class="article-cta">
+      <h3>Need to generate a single link quickly?</h3>
+      <p>Use our free generator to create custom WhatsApp links with messages in seconds.</p>
+      <a href="/" class="article-cta-btn">Open LinkWA →</a>
+    </div>
+    <div class="article-nav"><a href="/blog" class="back-link">← All articles</a></div>
+  </div>
+</article>
+</Base>
+<style>
+.article-wrap { padding-bottom: 5rem; }
+.article-hero { background: linear-gradient(180deg, var(--gll) 0%, var(--bg) 100%); padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.article-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gm); margin-bottom: 10px; }
+.article-hero h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,38px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; max-width: 720px; }
+.article-meta { font-size: 13px; color: var(--ink3); display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.article-intro { font-size: 16.5px; color: var(--ink2); line-height: 1.7; max-width: 640px; }
+.article-cta { background: linear-gradient(135deg, var(--gd), var(--gm)); border-radius: 16px; padding: 2rem; margin-top: 3rem; text-align: center; }
+.article-cta h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.article-cta p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 1.25rem; }
+.article-cta-btn { background: #fff; color: var(--gd); padding: 11px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-block; font-family: var(--font-display); }
+.article-nav { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--bd); }
+.back-link { font-size: 14px; color: var(--ink3); text-decoration: none; font-weight: 500; }
+.back-link:hover { color: var(--gm); }
+</style>
