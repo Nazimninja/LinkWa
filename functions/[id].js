@@ -8,6 +8,12 @@ export async function onRequest(context) {
     return Response.redirect(new URL("/", context.request.url), 302);
   }
 
+  // Bypass dynamic redirection for static site pages
+  const staticRoutes = new Set(['about', 'contact', 'blog', 'privacy', 'terms']);
+  if (staticRoutes.has(cleanId)) {
+    return context.next();
+  }
+
   try {
     const destination = await context.env.LINKWA_KV.get(cleanId);
     if (destination) {
