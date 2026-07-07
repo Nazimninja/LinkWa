@@ -1,5 +1,47 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const latestPosts = [
+  {
+    slug: 'how-to-create-whatsapp-link',
+    title: 'How to Create a WhatsApp Link for Your Business (2025 Guide)',
+    excerpt: 'Learn how to create a WhatsApp click-to-chat link in under 60 seconds. Step-by-step guide with examples for Instagram bio, website, and ads.',
+    tag: 'Guide',
+    readTime: '5 min read',
+    date: 'Jun 15, 2025'
+  },
+  {
+    slug: 'whatsapp-link-instagram-bio',
+    title: 'How to Add a WhatsApp Link to Your Instagram Bio',
+    excerpt: 'Add a WhatsApp link to your Instagram bio and start getting enquiries directly on WhatsApp. Works for personal and business accounts.',
+    tag: 'Instagram',
+    readTime: '4 min read',
+    date: 'Jun 12, 2025'
+  },
+  {
+    slug: 'whatsapp-qr-code-guide',
+    title: 'WhatsApp QR Code: How to Create and Use It for Business',
+    excerpt: 'Create a WhatsApp QR code for free and add it to your visiting cards, menus, posters, and store displays. Complete guide with download steps.',
+    tag: 'QR Code',
+    readTime: '4 min read',
+    date: 'Jun 10, 2025'
+  }
+];
+
+const categoryMeta: Record<string, { gradient: string; svg: string }> = {
+  'Guide': {
+    gradient: 'linear-gradient(135deg, #059669, #10b981)',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="width:40px;height:40px;opacity:0.9;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>`
+  },
+  'Instagram': {
+    gradient: 'linear-gradient(135deg, #f77737, #833ab4)',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="width:40px;height:40px;opacity:0.9;"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316A2.192 2.192 0 0014.512 3.75H9.488c-.69 0-1.332.325-1.748.877L6.827 6.175z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`
+  },
+  'QR Code': {
+    gradient: 'linear-gradient(135deg, #0d9488, #0f766e)',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="width:40px;height:40px;opacity:0.9;"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.875zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.875zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.875zM15 15h.008v.008H15V15zm0 2.25h.008v.008H15v-.008zm2.25-2.25h.008v.008H17.25V15zm0 2.25h.008v.008H17.25v-.008zm2.25-2.25h.008v.008H19.5V15zm0 2.25h.008v.008H19.5v-.008zM15 19.5h.008v.008H15v-.008zm2.25 0h.008v.008H17.25v-.008zm2.25 0h.008v.008H19.5v-.008z" /></svg>`
+  }
+};
 ---
 
 <Base
@@ -549,6 +591,33 @@ import Base from '../layouts/Base.astro';
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is UTM tracking and why should I use it?<span class="faq-icon">+</span></div><div class="faq-a">UTM parameters are tags added to your link so Google Analytics can tell you exactly which ad, post, or campaign generated each WhatsApp enquiry. Switch to the UTM Tracking tab — LinkWA appends them automatically.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does the QR code expire?<span class="faq-icon">+</span></div><div class="faq-a">No. The QR code is a permanent scannable version of your wa.me link. Print it on business cards, menus, or banners — it works indefinitely as long as your WhatsApp number is active.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does this work with WhatsApp Business?<span class="faq-icon">+</span></div><div class="faq-a">Yes. WhatsApp and WhatsApp Business use the same wa.me format. Enter your Business number and everything works identically — pre-filled message, QR code, and UTM tracking.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST ARTICLES -->
+<section class="latest-articles-section" style="padding: 4rem 0 2rem; border-top: 1px solid var(--bd);">
+  <div class="container">
+    <div class="sec-label" style="text-align:center;">Guides & Tips</div>
+    <div class="sec-title" style="text-align:center; margin-bottom: 2.5rem; font-size:clamp(22px,4vw,32px);">Latest WhatsApp Marketing Guides</div>
+    
+    <div class="blog-grid" style="margin-bottom:2rem;">
+      {latestPosts.map(post => (
+        <a href={`/blog/${post.slug}`} class="blog-card" style="background: var(--surf); border: 1px solid var(--bd); border-radius: var(--rl); overflow: hidden; box-shadow: var(--sh); text-decoration: none; transition: box-shadow 0.18s, transform 0.18s; display: block;">
+          <div class="blog-card-img" style={{ height: '160px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: (categoryMeta[post.tag] || categoryMeta['Guide']).gradient }} set:html={(categoryMeta[post.tag] || categoryMeta['Guide']).svg}>
+          </div>
+          <div class="blog-card-body" style="padding:1.1rem;">
+            <div class="blog-tag" style="font-size:10px; font-weight:600; text-transform:uppercase; color:var(--gm); margin-bottom:6px; letter-spacing:1px;">{post.tag}</div>
+            <div class="blog-card-title" style="font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 7px; line-height: 1.3;">{post.title}</div>
+            <div class="blog-card-excerpt" style="font-size: 13px; color: var(--ink3); line-height: 1.55;">{post.excerpt}</div>
+            <div class="blog-card-meta" style="font-size: 11.5px; color: var(--ink3); margin-top: 12px; display: flex; gap: 10px;">
+              <span>{post.date}</span>
+              <span>·</span>
+              <span>{post.readTime}</span>
+            </div>
+          </div>
+        </a>
+      ))}
     </div>
   </div>
 </section>
