@@ -8,9 +8,9 @@ export async function onRequest(context) {
     return Response.redirect(new URL("/", context.request.url), 302);
   }
 
-  // Bypass dynamic redirection for static site pages
-  const staticRoutes = new Set(['about', 'contact', 'blog', 'privacy', 'terms']);
-  if (staticRoutes.has(cleanId)) {
+  // Bypass dynamic redirection for static files (containing a dot) and standard pages
+  const staticRoutes = new Set(['about', 'contact', 'blog', 'privacy', 'terms', 'robots', 'sitemap']);
+  if (id.includes('.') || staticRoutes.has(cleanId)) {
     return context.next();
   }
 
