@@ -49,7 +49,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Preconnect for performance -->
@@ -73,17 +73,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 <nav>
   <a class="logo" href="/">
     <div style="display: flex; align-items: center; justify-content: center;">
-      <svg viewBox="0 0 32 32" style="width: 32px; height: 32px; border-radius: 9px; overflow: hidden; display: block;">
-        <defs>
-          <linearGradient id="navLinkwaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#22c55e" />
-            <stop offset="100%" stop-color="#06b6d4" />
-          </linearGradient>
-        </defs>
-        <rect width="32" height="32" fill="url(#navLinkwaGrad)"/>
-        <path d="M 16 7 A 9 9 0 0 1 22.36 21.64 L 23 25 L 19.64 24.36 A 9 9 0 1 1 16 7 Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none" />
-        <path d="M 16 15.5 C 17.8 13.5, 21 13.5, 21 15.5 C 21 17.5, 17.8 17.5, 16 15.5 C 14.2 13.5, 11 13.5, 11 15.5 C 11 17.5, 14.2 17.5, 16 15.5 Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-      </svg>
+      <img src="/favicon.png" alt="LinkWA Logo" style="width: 32px; height: 32px; border-radius: 9px; display: block;" />
     </div>
     <span class="logo-name">Link<em>WA</em></span>
   </a>
