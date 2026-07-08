@@ -7,6 +7,5 @@
   </defs>
   <rect width="32" height="32" rx="9" fill="url(#linkwaGrad)"/>
   <path d="M 16 7 A 9 9 0 0 1 22.36 21.64 L 23 25 L 19.64 24.36 A 9 9 0 1 1 16 7 Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none" />
-  <path d="M 15 13.5 A 2.5 2.5 0 1 0 15 18.5 A 2.5 2.5 0 0 0 17 15" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" />
-  <path d="M 17 18.5 A 2.5 2.5 0 1 0 17 13.5 A 2.5 2.5 0 0 0 15 17" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" />
+  <path d="M 16 15.5 C 17.8 13.5, 21 13.5, 21 15.5 C 21 17.5, 17.8 17.5, 16 15.5 C 14.2 13.5, 11 13.5, 11 15.5 C 11 17.5, 14.2 17.5, 16 15.5 Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 </svg>
