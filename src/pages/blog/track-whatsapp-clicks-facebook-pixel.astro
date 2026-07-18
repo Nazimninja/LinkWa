@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const scriptCode = `<script>
+document.getElementById('whatsapp-btn-track').addEventListener('click', function() {
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Contact', {
+      content_category: 'Lead Acquisition',
+      content_name: 'WhatsApp Button Click'
+    });
+  }
+});
+</script>`;
+---
+<Base
+  title="How to Track WhatsApp Link Clicks with Facebook Pixel | LinkWA"
+  description="Optimize your Facebook and Meta ads conversion. Learn how to track WhatsApp link clicks as custom conversions using Meta Pixel (Facebook Pixel)."
+  canonical="https://linkwa.in/blog/track-whatsapp-clicks-facebook-pixel"
+>
+<article class="article-wrap">
+  <div class="article-hero">
+    <div class="container">
+      <div class="article-tag">Marketing & Tech</div>
+      <h1>How to Track WhatsApp Link Clicks with Facebook Pixel</h1>
+      <div class="article-meta"><span>Jul 18, 2026</span><span>·</span><span>6 min read</span></div>
+      <p class="article-intro">Stop running ads in the dark. Learn how to trigger Meta conversion events every time a website visitor clicks your WhatsApp click-to-chat button, allowing you to optimize ad spending for actual inquiries.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="prose">
+      <div class="callout"><strong>Pro integration:</strong> Add your tracking tags using the UTM tab in <a href="/">LinkWA</a>, and then follow this guide to fire custom JavaScript events directly to your Meta Pixel dashboard.</div>
+
+      <h2>The tracking gap on click-to-chat links</h2>
+      <p>When running Facebook, Instagram, or Google Ads driving traffic to a landing page, you want to optimize your spending for conversions. But since WhatsApp is an external app owned by Meta, your site's standard tracking scripts cannot tell if the user actually clicked the button on your page and launched the app. Without event tracking, Facebook Ads Manager treats all landing page visits the same, meaning you waste money on users who leave your page without messaging you. Firing custom events via the Meta Pixel resolves this gap.</p>
+
+      <h2>Step-by-Step Meta Pixel Event Setup</h2>
+      <p>To start tracking WhatsApp button clicks as custom conversion events (like "Lead" or "Contact"), follow this technical setup guide:</p>
+
+      <h3>Step 1: Install Your Base Meta Pixel Code</h3>
+      <p>Ensure you have installed the standard Meta Pixel script inside the header layout of your website (e.g. inside the <code>&lt;head&gt;</code> tags). The base code initializes tracking on page loads.</p>
+
+      <h3>Step 2: Add a Class or ID to Your WhatsApp Button</h3>
+      <p>Locate the WhatsApp click-to-chat link in your HTML code and assign it a specific identifier, like a class or unique ID. For example:</p>
+      <pre><code>&lt;a href="https://wa.me/your-number" id="whatsapp-btn-track"&gt;Chat on WhatsApp&lt;/a&gt;</code></pre>
+
+      <h3>Step 3: Insert the Click Event JavaScript Listener</h3>
+      <p>Add a small JavaScript script block right before the closing <code>&lt;/body&gt;</code> tag of your website. This script listens for a click on your WhatsApp button and triggers a custom conversion event to Meta's servers:</p>
+      <pre><code>{scriptCode}</code></pre>
+
+      <h2>How to Verify Event Tracking</h2>
+      <p>Before launching paid ad campaigns, it is crucial to verify that the tracking script is active and firing correctly:</p>
+      <ul>
+        <li><strong>Install Meta Pixel Helper:</strong> Download the official "Meta Pixel Helper" Chrome Extension.</li>
+        <li><strong>Test the Click:</strong> Open your live landing page, click the extension icon to see active pixels, and click your WhatsApp button.</li>
+        <li><strong>Verify Event Firing:</strong> The extension should show a green checkmark next to the custom event <strong>"Contact"</strong>, confirming the click was registered successfully.</li>
+      </ul>
+
+      <h2>Optimizing Meta Ads for WhatsApp Leads</h2>
+      <p>Once you are capturing clicks as conversion events, you can modify your Facebook Ads Manager campaigns. Instead of optimizing for "Landing Page Views," select **"Conversions"** and choose your custom **"Contact"** event as the primary optimization goal. Meta's algorithms will analyze which users are clicking the WhatsApp button and deliver your ads specifically to other profiles most likely to send you inquiries, reducing your customer acquisition costs (CAC) by up to 50%.</p>
+
+      <h2>Conclusion</h2>
+      <p>Setting up conversion tracking is the single most important step for scaling WhatsApp-based marketing campaigns. It ensures that every dollar spent on ads is optimized for real business conversations. Create your tracked links with UTM tags today using our free generator dashboard.</p>
+    </div>
+    <div class="article-cta">
+      <h3>Generate Your Campaign WhatsApp Links</h3>
+      <p>Generate clean, campaign-ready UTM tracking links to configure your ad sets for free.</p>
+      <a href="/" class="article-cta-btn">Open LinkWA →</a>
+    </div>
+    <div class="article-nav"><a href="/blog" class="back-link">← All articles</a></div>
+  </div>
+</article>
+</Base>
+<style>
+.article-wrap { padding-bottom: 5rem; }
+.article-hero { background: linear-gradient(180deg, var(--gll) 0%, var(--bg) 100%); padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.article-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gm); margin-bottom: 10px; }
+.article-hero h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,38px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; max-width: 720px; }
+.article-meta { font-size: 13px; color: var(--ink3); display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.article-intro { font-size: 16.5px; color: var(--ink2); line-height: 1.7; max-width: 640px; }
+.article-cta { background: linear-gradient(135deg, var(--gd), var(--gm)); border-radius: 16px; padding: 2rem; margin-top: 3rem; text-align: center; }
+.article-cta h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.article-cta p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 1.25rem; }
+.article-cta-btn { background: #fff; color: var(--gd); padding: 11px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-block; font-family: var(--font-display); }
+.article-nav { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--bd); }
+.back-link { font-size: 14px; color: var(--ink3); text-decoration: none; font-weight: 500; }
+.back-link:hover { color: var(--gm); }
+</style>
