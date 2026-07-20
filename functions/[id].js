@@ -10,7 +10,7 @@ export async function onRequest(context) {
 
   // Bypass dynamic redirection for static files (containing a dot) and standard pages
   const staticRoutes = new Set(['about', 'contact', 'blog', 'privacy', 'terms', 'robots', 'sitemap']);
-  if (id.includes('.') || staticRoutes.has(cleanId)) {
+  if (id.includes('.') || cleanId.startsWith('yandex') || staticRoutes.has(cleanId)) {
     return context.next();
   }
 
