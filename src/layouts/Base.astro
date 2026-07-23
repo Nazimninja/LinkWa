@@ -58,6 +58,65 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   <!-- Theme color -->
   <meta name="theme-color" content="#25D366" />
 
+  <!-- JSON-LD Structured Data Schema Markup -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "LinkWA - WhatsApp Link & QR Code Generator",
+        "operatingSystem": "Web",
+        "applicationCategory": "BusinessApplication",
+        "description": "Create instant WhatsApp links (wa.me) with custom pre-filled messages and trackable QR codes for marketing campaigns.",
+        "url": "https://linkwa.in/",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1250"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "LinkWA",
+        "url": "https://linkwa.in/",
+        "logo": "https://linkwa.in/favicon.png",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Social Ninja's",
+          "url": "https://socialninjas.in"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is LinkWA WhatsApp Link Generator free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, LinkWA is 100% free with no sign-up or registration required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I create a WhatsApp link with a custom message?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply enter your phone number with country code, type your desired pre-filled text message, and click 'Generate Link'."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7295477262076788" crossorigin="anonymous"></script>
 </head>
