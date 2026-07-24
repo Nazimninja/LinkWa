@@ -79,7 +79,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 
 <!-- HERO -->
 <div class="hero">
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+  <div class="hero-header-badges" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
     <div class="hero-chip" style="margin-bottom: 0;">
       <span class="hero-chip-dot"></span>
       Trusted by 10,000+ businesses
@@ -90,7 +90,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       </a>
     </div>
   </div>
-  <h1>Your customers are one<br>tap away on <strong>WhatsApp</strong></h1>
+  <h1>Your customers are one<br class="hero-br">tap away on <strong>WhatsApp</strong></h1>
   <p class="hero-sub">Generate a wa.me link with pre-filled message, QR code &amp; UTM tracking. No account. No app. Instant.</p>
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-n">2B+</div><div class="hstat-l">WA users globally</div></div>
@@ -244,6 +244,43 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         Generate WhatsApp Link
       </button>
+
+      <!-- INLINE OUTPUT (EXCELLENT FOR MOBILE VIEW) -->
+      <div id="inline-output" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--bd2); text-align: left;">
+        <div class="card-head" style="border-bottom:none; margin-bottom:10px; padding-bottom:0; display: flex; align-items: center; gap: 10px;">
+          <div class="ch-icon" style="background:var(--gl); border-radius:10px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2.5" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="ch-title" style="color: var(--gm); font-weight: 700; font-size:14px; margin-bottom: 2px;">Link Generated!</div>
+            <div class="ch-sub" style="font-size:11.5px; color:var(--ink3);">Copy the link below to share</div>
+          </div>
+        </div>
+        
+        <!-- For single link -->
+        <div id="inline-single-area">
+          <div class="result-wrap" style="background: var(--gl); border: 2.5px solid var(--g); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; min-height: 52px; box-shadow: 0 4px 12px rgba(37,211,102,0.08);">
+            <span class="result-url" id="inline-rurl" style="flex:1; font-family:var(--font-mono); font-size:13.5px; color:var(--gd); word-break:break-all; font-weight:600; line-height:1.4;"></span>
+            <button class="copy-btn" id="inline-cpbtn" onclick="copyInlineLink()" style="background: var(--g); color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: background 0.15s; font-family: var(--font-body); min-height: 38px; font-size:13px; flex-shrink:0;">Copy</button>
+          </div>
+
+          <div class="act-row" style="display: flex; gap: 10px; margin-top: 8px;">
+            <button class="act-btn" onclick="testInlineLink()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:1.5px solid var(--bd2); border-radius:10px; background:transparent; font-family:var(--font-body); font-size:12.5px; font-weight:600; color:var(--ink2); cursor:pointer;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Test Link
+            </button>
+            <button class="act-btn" onclick="shareInlineLink()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:1.5px solid var(--bd2); border-radius:10px; background:transparent; font-family:var(--font-body); font-size:12.5px; font-weight:600; color:var(--ink2); cursor:pointer;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+              Share
+            </button>
+          </div>
+        </div>
+
+        <!-- For multi link -->
+        <div id="inline-multi-area" style="display: none;">
+          <div id="inline-multiOut"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -783,6 +820,45 @@ function updatePreview() {
 
 function cnt(el, id) { document.getElementById(id).textContent = el.value.length+' / 500'; }
 
+function showInlineSingle(url) {
+  const inlineOut = document.getElementById('inline-output');
+  const inlineUrl = document.getElementById('inline-rurl');
+  const inlineSingleArea = document.getElementById('inline-single-area');
+  const inlineMultiArea = document.getElementById('inline-multi-area');
+  
+  if (inlineOut && inlineUrl && url) {
+    inlineUrl.textContent = url;
+    inlineOut.style.display = 'block';
+    inlineSingleArea.style.display = 'block';
+    inlineMultiArea.style.display = 'none';
+  }
+}
+
+function copyInlineLink() {
+  if (!curUrl) { toast('Generate a link first'); return; }
+  navigator.clipboard.writeText(curUrl).then(() => {
+    const btn = document.getElementById('inline-cpbtn');
+    btn.textContent = 'Copied ✓';
+    toast('Copied to clipboard!');
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+
+function testInlineLink() {
+  if (!curUrl) { toast('Generate a link first'); return; }
+  window.open(curUrl, '_blank');
+}
+
+function shareInlineLink() {
+  if (!curUrl) { toast('Generate a link first'); return; }
+  if (navigator.share) {
+    navigator.share({ title: 'My WhatsApp Link', url: curUrl });
+  } else {
+    navigator.clipboard.writeText(curUrl);
+    toast('Link copied — share it anywhere!');
+  }
+}
+
 async function generate() {
   if (tab === 'multi') { genMulti(); return; }
   live();
@@ -816,6 +892,7 @@ async function generate() {
         updatePreview();
         renderQR(curUrl);
         toast('Custom short link created!');
+        showInlineSingle(curUrl);
       } else {
         toast(data.error || 'Failed to create custom link');
       }
@@ -828,6 +905,7 @@ async function generate() {
   } else {
     renderQR(curUrl);
     toast('WhatsApp link ready!');
+    showInlineSingle(curUrl);
   }
 }
 
@@ -842,9 +920,27 @@ function genMulti() {
     const url = 'https://wa.me/' + codes[i].value + p;
     const lbl = labels[i].value || 'Number '+(i+1);
     if (!first) first = url;
-    html += '<div class="mout-item"><div class="mout-lbl">'+lbl+'</div><div class="mout-url">'+url+'</div><button class="mini-copy" onclick="navigator.clipboard.writeText(\''+url+'\').then(()=>toast(\'Copied!\'))">Copy</button></div>';
+    html += '<div class="mout-item"><div class="mout-lbl">'+lbl+'</div><div class="mout-url">'+url+'</div><button class="mini-copy" onclick="navigator.clipboard.writeText(\''+url+'\').then(()=>toast(\'Copied!\'))" style="cursor:pointer;">Copy</button></div>';
   });
   document.getElementById('multiOut').innerHTML = html;
+  
+  // Populate inline multi output
+  const inlineMulti = document.getElementById('inline-multiOut');
+  const inlineOut = document.getElementById('inline-output');
+  const inlineSingleArea = document.getElementById('inline-single-area');
+  const inlineMultiArea = document.getElementById('inline-multi-area');
+  
+  if (inlineMulti && inlineOut) {
+    inlineMulti.innerHTML = html;
+    if (html) {
+      inlineOut.style.display = 'block';
+      inlineSingleArea.style.display = 'none';
+      inlineMultiArea.style.display = 'block';
+    } else {
+      inlineOut.style.display = 'none';
+    }
+  }
+
   if (first) {
     curUrl = first;
     renderQR(first);
