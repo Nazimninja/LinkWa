@@ -303,24 +303,48 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 <!-- FOOTER -->
 <footer>
-  <div class="ft-inner">
-    <div class="ft-logo">Link<em>WA</em></div>
-    <div class="ft-links">
-      <a href="/about">About Us</a>
-      <a href="/contact">Contact Us</a>
-      <a href="/blog">Blog</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms & Conditions</a>
+  <div class="ft-inner" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; text-align: left; align-items: start;">
+    <div>
+      <div class="ft-logo" style="margin-bottom: 8px;">Link<em>WA</em></div>
+      <div class="ft-tagline" style="font-size: 13px; color: #5a7570; line-height: 1.5; margin-bottom: 12px;">Free WhatsApp link generator with analytics & custom branding.</div>
+      
+      <!-- Agency Promo Card -->
+      <div style="margin-top: 14px; padding: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--g); margin-bottom: 4px;">⚡ NEED GROWTH?</div>
+        <div style="font-size: 11.5px; color: rgba(255,255,255,0.65); line-height: 1.45; margin-bottom: 10px;">Our AI agency builds custom chatbots, sales agents, & automations to double your revenue.</div>
+        <a href="https://socialninjas.in/contact" target="_blank" style="font-size: 11.5px; font-weight: 700; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.15s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#fff'">Get Free Growth Audit →</a>
+      </div>
     </div>
-    <!-- PRODUCT HUNT DRIVE SUPPORT BADGE -->
-    <div style="display: flex; align-items: center; margin-top: 10px;">
-      <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer">
-        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=dark&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 250px; height: 54px; display: block;" width="250" height="54" />
+    
+    <!-- Cross Promo Column -->
+    <div class="ft-col" style="display: flex; flex-direction: column; gap: 10px;">
+      <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 4px;">Free Ninja Tools</h4>
+      <a href="https://linkwa.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">WhatsApp Link Generator</a>
+      <a href="https://salary.socialninjas.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">US Salary Tax Calculator</a>
+      <a href="https://mortgage.socialninjas.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Mortgage Pay Calculator</a>
+      <a href="https://fit.socialninjas.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Fit Ninja Fitness Planner</a>
+    </div>
+
+    <!-- Links Column -->
+    <div class="ft-col" style="display: flex; flex-direction: column; gap: 10px;">
+      <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 4px;">Company</h4>
+      <a href="/about" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">About Us</a>
+      <a href="/contact" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Contact Us</a>
+      <a href="/blog" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Blog Guides</a>
+      <a href="/privacy" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Privacy Policy</a>
+    </div>
+
+    <!-- Product Hunt Badge Column -->
+    <div>
+      <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 8px;">Badge</h4>
+      <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: block;">
+        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=dark&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 200px; height: 43px; display: block;" width="200" height="43" />
       </a>
     </div>
   </div>
-  <div class="ft-copy">
-    © 2025 LinkWA · linkwa.in · Your phone number never leaves your browser · Powered by <a href="https://socialninjas.in" target="_blank" style="color: #5ba4f5; text-decoration: none; font-weight: 600;">Social Ninja's AI Agency</a>
+  
+  <div class="ft-copy" style="width: 100%; text-align: center; font-size: 11.5px; color: #2e4540; margin-top: 30px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.05);">
+    © 2025 LinkWA · linkwa.in · Built by <a href="https://socialninjas.in" target="_blank" style="color: #5ba4f5; text-decoration: none; font-weight: 600;">Social Ninja's AI Agency</a>
   </div>
 </footer>
 
