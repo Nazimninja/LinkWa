@@ -1,0 +1,283 @@
+---
+import Base from '../../layouts/Base.astro';
+
+export function getStaticPaths() {
+  const niches = [
+    {
+      slug: 'restaurant',
+      name: 'Restaurant',
+      emoji: '🍽️',
+      headline: 'WhatsApp Link Generator for Restaurants',
+      useCase: 'Let customers reserve a table, ask about your menu, or place an order directly on WhatsApp — no phone call required.',
+      cta: 'Create Your Restaurant WhatsApp Link',
+      examples: ['Table reservations', 'Daily specials enquiry', 'Takeaway & delivery orders', 'Feedback & reviews'],
+      preFilledMessage: 'Hi! I\'d like to reserve a table for tonight. Do you have availability?',
+    },
+    {
+      slug: 'real-estate',
+      name: 'Real Estate',
+      emoji: '🏠',
+      headline: 'WhatsApp Link Generator for Real Estate Agents',
+      useCase: 'Convert property listing viewers into leads instantly. One tap and they\'re chatting with you about the property.',
+      cta: 'Create Your Real Estate WhatsApp Link',
+      examples: ['Property enquiries', 'Site visit scheduling', 'Price negotiation', 'Document requests'],
+      preFilledMessage: 'Hi! I saw your property listing and would like to know more details.',
+    },
+    {
+      slug: 'salon',
+      name: 'Salon & Spa',
+      emoji: '💇',
+      headline: 'WhatsApp Link Generator for Salons & Spas',
+      useCase: 'Let clients book appointments, ask about services and pricing, and confirm bookings — all on WhatsApp.',
+      cta: 'Create Your Salon WhatsApp Link',
+      examples: ['Appointment booking', 'Service pricing', 'Stylist availability', 'Package enquiries'],
+      preFilledMessage: 'Hi! I\'d like to book an appointment. What slots do you have available this week?',
+    },
+    {
+      slug: 'ecommerce',
+      name: 'E-Commerce',
+      emoji: '🛒',
+      headline: 'WhatsApp Link Generator for E-Commerce Stores',
+      useCase: 'Turn product page visitors into buyers. Add a WhatsApp link to every product for instant order assistance.',
+      cta: 'Create Your Store WhatsApp Link',
+      examples: ['Order enquiries', 'COD confirmation', 'Return & refund requests', 'Bulk order pricing'],
+      preFilledMessage: 'Hi! I\'m interested in placing an order. Can you help me?',
+    },
+    {
+      slug: 'doctor',
+      name: 'Doctor & Clinic',
+      emoji: '🏥',
+      headline: 'WhatsApp Link Generator for Doctors & Clinics',
+      useCase: 'Let patients book appointments, send reports, and ask health questions — directly on WhatsApp.',
+      cta: 'Create Your Clinic WhatsApp Link',
+      examples: ['Appointment booking', 'Report sharing', 'Prescription renewal', 'Health queries'],
+      preFilledMessage: 'Hello! I\'d like to book an appointment with the doctor. What\'s your next available slot?',
+    },
+    {
+      slug: 'gym',
+      name: 'Gym & Fitness',
+      emoji: '💪',
+      headline: 'WhatsApp Link Generator for Gyms & Fitness Trainers',
+      useCase: 'Convert website visitors into gym members. Let people ask about membership plans, batch timings, and trial sessions.',
+      cta: 'Create Your Gym WhatsApp Link',
+      examples: ['Membership enquiries', 'Trial class booking', 'Personal training', 'Batch timing queries'],
+      preFilledMessage: 'Hi! I\'m interested in joining your gym. Can you tell me about your membership plans?',
+    },
+    {
+      slug: 'travel-agency',
+      name: 'Travel Agency',
+      emoji: '✈️',
+      headline: 'WhatsApp Link Generator for Travel Agents',
+      useCase: 'Let travellers enquire about packages, get custom quotes, and confirm bookings — all via WhatsApp.',
+      cta: 'Create Your Travel Agency WhatsApp Link',
+      examples: ['Holiday package enquiries', 'Custom itinerary requests', 'Visa assistance', 'Group bookings'],
+      preFilledMessage: 'Hi! I\'m planning a trip and would like to know more about your packages.',
+    },
+    {
+      slug: 'india',
+      name: 'India',
+      emoji: '🇮🇳',
+      headline: 'WhatsApp Link Generator for Indian Businesses',
+      useCase: 'Create a WhatsApp click-to-chat link with +91 India country code pre-filled. Works for any Indian business.',
+      cta: 'Create Your India WhatsApp Link',
+      examples: ['Any Indian business', '+91 number format', 'Hindi & English messages', 'UPI payment links'],
+      preFilledMessage: 'नमस्ते! मुझे आपकी सेवाओं के बारे में जानना है।',
+      countryCode: '+91',
+    },
+    {
+      slug: 'freelancer',
+      name: 'Freelancer',
+      emoji: '💼',
+      headline: 'WhatsApp Link Generator for Freelancers',
+      useCase: 'Share your WhatsApp link on Fiverr, Upwork, Instagram, and LinkedIn bios to get client enquiries directly.',
+      cta: 'Create Your Freelancer WhatsApp Link',
+      examples: ['Project enquiries', 'Portfolio sharing', 'Rate negotiation', 'Proposal requests'],
+      preFilledMessage: 'Hi! I saw your profile and I\'d like to discuss a project with you.',
+    },
+    {
+      slug: 'school',
+      name: 'School & Coaching',
+      emoji: '📚',
+      headline: 'WhatsApp Link Generator for Schools & Coaching Centres',
+      useCase: 'Let parents and students enquire about admissions, fees, batch timings, and results directly on WhatsApp.',
+      cta: 'Create Your School WhatsApp Link',
+      examples: ['Admission enquiries', 'Fee structure', 'Batch timing', 'Demo class booking'],
+      preFilledMessage: 'Hello! I\'d like to know about admissions and fee structure for this year.',
+    },
+    {
+      slug: 'photographer',
+      name: 'Photographer',
+      emoji: '📸',
+      headline: 'WhatsApp Link Generator for Photographers',
+      useCase: 'Let clients book shoots, ask for packages, and view your portfolio — starting with a WhatsApp message.',
+      cta: 'Create Your Photography WhatsApp Link',
+      examples: ['Wedding shoot booking', 'Package pricing', 'Portfolio sharing', 'Availability check'],
+      preFilledMessage: 'Hi! I\'d like to enquire about your photography packages for an upcoming event.',
+    },
+    {
+      slug: 'insurance',
+      name: 'Insurance Agent',
+      emoji: '🛡️',
+      headline: 'WhatsApp Link Generator for Insurance Agents',
+      useCase: 'Generate leads from every channel. Share your WhatsApp link and let prospects compare plans on chat.',
+      cta: 'Create Your Insurance WhatsApp Link',
+      examples: ['Policy enquiries', 'Premium comparison', 'Claim assistance', 'Renewal reminders'],
+      preFilledMessage: 'Hi! I\'m looking for an insurance plan and would like to compare options.',
+    },
+    {
+      slug: 'boutique',
+      name: 'Boutique & Fashion',
+      emoji: '👗',
+      headline: 'WhatsApp Link Generator for Boutiques & Fashion Brands',
+      useCase: 'Turn Instagram and website traffic into buyers. Let shoppers ask about sizes, availability, and custom orders.',
+      cta: 'Create Your Boutique WhatsApp Link',
+      examples: ['Size availability', 'Custom orders', 'New arrivals', 'Delivery & returns'],
+      preFilledMessage: 'Hi! I saw your collection and would like to know about available sizes and pricing.',
+    },
+    {
+      slug: 'interior-designer',
+      name: 'Interior Designer',
+      emoji: '🛋️',
+      headline: 'WhatsApp Link Generator for Interior Designers',
+      useCase: 'Convert portfolio viewers into clients. Let prospects describe their space and get an instant quote via WhatsApp.',
+      cta: 'Create Your Interior Design WhatsApp Link',
+      examples: ['Project consultation', 'Budget estimate', 'Portfolio request', 'Site visit booking'],
+      preFilledMessage: 'Hi! I\'m looking for interior design services. Can we discuss my project?',
+    },
+    {
+      slug: 'car-dealer',
+      name: 'Car Dealer',
+      emoji: '🚗',
+      headline: 'WhatsApp Link Generator for Car Dealers',
+      useCase: 'Let buyers enquire about inventory, test drives, exchange values, and EMI options directly on WhatsApp.',
+      cta: 'Create Your Car Dealership WhatsApp Link',
+      examples: ['Test drive booking', 'Exchange enquiry', 'EMI calculation', 'Stock availability'],
+      preFilledMessage: 'Hi! I\'m interested in a vehicle and would like to know about availability and pricing.',
+    },
+  ];
+
+  return niches.map(niche => ({
+    params: { niche: niche.slug },
+    props: niche,
+  }));
+}
+
+const {
+  slug, name, emoji, headline, useCase, cta,
+  examples, preFilledMessage, countryCode
+} = Astro.props;
+
+const pageTitle = `${headline} | Free WhatsApp Link Generator — LinkWA`;
+const pageDesc = `Free WhatsApp click-to-chat link generator for ${name}. ${useCase} No signup required.`;
+const canonical = `https://linkwa.in/whatsapp-link/${slug}`;
+const encodedMsg = encodeURIComponent(preFilledMessage);
+---
+
+<Base title={pageTitle} description={pageDesc} canonical={canonical}>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": `How to Create a WhatsApp Link for ${name}`,
+  "description": pageDesc,
+  "step": [
+    { "@type": "HowToStep", "name": "Enter your WhatsApp number", "text": `Type your ${countryCode || ''} WhatsApp business number in the field above.` },
+    { "@type": "HowToStep", "name": "Add a pre-filled message", "text": `Customise the welcome message your ${name} customers will see when they tap the link.` },
+    { "@type": "HowToStep", "name": "Generate and copy your link", "text": "Click Generate, then copy your wa.me link or download the QR code." },
+    { "@type": "HowToStep", "name": "Share your link", "text": `Add the link to your ${name} website, Instagram bio, business card, or Google Maps listing.` }
+  ],
+  "tool": { "@type": "HowToTool", "name": "LinkWA WhatsApp Link Generator", "url": "https://linkwa.in" }
+})} />
+
+<div style="max-width:900px;margin:0 auto;padding:48px 20px 80px;">
+
+  <!-- HERO -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <span style="font-size:52px;display:block;margin-bottom:16px;">{emoji}</span>
+    <div style="display:inline-block;padding:4px 14px;background:rgba(37,211,102,0.1);color:#25D366;border-radius:20px;font-weight:600;font-size:13px;margin-bottom:16px;border:1px solid rgba(37,211,102,0.2);">
+      Free Tool · No Signup Required
+    </div>
+    <h1 style="font-size:clamp(26px,4vw,40px);font-weight:800;color:#0f172a;line-height:1.2;margin-bottom:16px;">{headline}</h1>
+    <p style="font-size:17px;color:#64748b;max-width:620px;margin:0 auto 32px;">{useCase}</p>
+
+    <!-- Generator Tool -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:32px;box-shadow:0 4px 24px rgba(0,0,0,0.06);text-align:left;max-width:600px;margin:0 auto;">
+      <label style="display:block;font-weight:700;font-size:14px;color:#0f172a;margin-bottom:8px;">Your WhatsApp Number</label>
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <input id="niCountryCode" type="text" value={countryCode || '+91'} style="width:70px;padding:12px;border:1px solid #e2e8f0;border-radius:10px;font-size:15px;font-weight:600;text-align:center;" />
+        <input id="niPhone" type="tel" placeholder="9876543210" style="flex:1;padding:12px 16px;border:1px solid #e2e8f0;border-radius:10px;font-size:15px;" />
+      </div>
+      <label style="display:block;font-weight:700;font-size:14px;color:#0f172a;margin-bottom:8px;">Pre-filled Message</label>
+      <textarea id="niMsg" rows="3" style="width:100%;padding:12px 16px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;resize:vertical;margin-bottom:16px;box-sizing:border-box;">{preFilledMessage}</textarea>
+      <button onclick="niGenerate()" style="width:100%;padding:14px;background:#25D366;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;">{cta} →</button>
+      <div id="niResult" style="display:none;margin-top:20px;padding:16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;">
+        <p style="font-size:13px;color:#166534;font-weight:600;margin:0 0 8px;">Your WhatsApp Link:</p>
+        <a id="niLink" href="#" target="_blank" style="font-size:14px;color:#15803d;word-break:break-all;font-weight:600;"></a>
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button onclick="niCopy()" style="flex:1;padding:10px;background:#25D366;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">Copy Link</button>
+          <a id="niTest" href="#" target="_blank" style="flex:1;padding:10px;background:#0f172a;color:#fff;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;text-align:center;text-decoration:none;">Test on WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USE CASES -->
+  <div style="margin-bottom:48px;">
+    <h2 style="font-size:24px;font-weight:800;color:#0f172a;margin-bottom:20px;">How {name} businesses use this tool</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+      {examples.map(ex => (
+        <div style="padding:16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;display:flex;align-items:center;gap:10px;">
+          <span style="color:#25D366;font-size:18px;">✓</span>
+          <span style="font-size:14px;color:#334155;font-weight:500;">{ex}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- HOW TO -->
+  <div style="margin-bottom:48px;">
+    <h2 style="font-size:24px;font-weight:800;color:#0f172a;margin-bottom:20px;">How to create your {name} WhatsApp link</h2>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      {[
+        { step: '1', title: 'Enter your number', desc: `Type your ${countryCode || '+91'} WhatsApp number — no spaces or dashes.` },
+        { step: '2', title: 'Write a welcome message', desc: `Add a message your ${name} customers will see pre-filled when they tap the link.` },
+        { step: '3', title: 'Click Generate', desc: 'Your wa.me link and QR code are ready instantly. No account required.' },
+        { step: '4', title: 'Share everywhere', desc: `Add the link to your ${name} website, Google Maps, Instagram bio, and visiting cards.` },
+      ].map(item => (
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:20px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;">
+          <div style="min-width:36px;height:36px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;">{item.step}</div>
+          <div>
+            <p style="font-weight:700;color:#0f172a;margin:0 0 4px;">{item.title}</p>
+            <p style="color:#64748b;font-size:14px;margin:0;">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- BACK LINK -->
+  <div style="text-align:center;">
+    <a href="/" style="display:inline-block;padding:12px 28px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;color:#0f172a;font-weight:700;text-decoration:none;font-size:14px;">← Back to WhatsApp Link Generator</a>
+  </div>
+</div>
+
+<script is:inline>
+function niGenerate() {
+  const cc = document.getElementById('niCountryCode').value.replace(/\D/g,'');
+  const ph = document.getElementById('niPhone').value.replace(/\D/g,'');
+  const msg = document.getElementById('niMsg').value;
+  if (!ph) { alert('Please enter your WhatsApp number.'); return; }
+  const full = cc + ph;
+  const url = `https://wa.me/${full}?text=${encodeURIComponent(msg)}`;
+  document.getElementById('niLink').textContent = url;
+  document.getElementById('niLink').href = url;
+  document.getElementById('niTest').href = url;
+  document.getElementById('niResult').style.display = 'block';
+}
+function niCopy() {
+  const link = document.getElementById('niLink').textContent;
+  navigator.clipboard.writeText(link).then(() => alert('Link copied!'));
+}
+</script>
+
+</Base>
