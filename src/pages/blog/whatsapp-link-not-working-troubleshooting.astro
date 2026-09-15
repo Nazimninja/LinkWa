@@ -1,0 +1,197 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="WhatsApp Link Not Working? 7 Common Errors & How to Fix Them | LinkWA"
+  description="Is your WhatsApp link broken or showing 'Phone number shared via url is invalid'? Here are the 7 most common WhatsApp link errors and how to fix them in seconds."
+  canonical="https://linkwa.in/blog/whatsapp-link-not-working-troubleshooting"
+>
+
+<!-- JSON-LD FAQ Schema for Google Search Rich Snippets -->
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does WhatsApp say 'The phone number shared via url is invalid'?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This error happens when the URL contains illegal characters like a plus sign (+), spaces, dashes, or leading zeros. The official wa.me format requires purely continuous digits: country code followed by phone number (e.g., wa.me/14155552671)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my WhatsApp link not opening on Instagram or TikTok?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Social media in-app browsers often restrict external protocol redirects. Using a direct wa.me link or a clean short URL like linkwa.in/yourbrand ensures the browser properly hands off the click to the native WhatsApp app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to include a plus sign (+) in a wa.me WhatsApp link?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No! Never include the '+' symbol. WhatsApp's link API requires the number without symbols. For example, use 'https://wa.me/919876543210' instead of 'https://wa.me/+919876543210'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my pre-filled message cutting off or showing weird characters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp URLs require URL encoding (percent-encoding) for spaces, commas, emojis, and line breaks. For instance, spaces must be encoded as '%20'. LinkWA handles this encoding automatically."
+      }
+    }
+  ]
+}
+</script>
+
+<article class="article-wrap">
+  <div class="article-hero">
+    <div class="container">
+      <div class="article-tag">Troubleshooting · Fix Guide</div>
+      <h1>WhatsApp Link Not Working? 7 Common Errors & How to Fix Them</h1>
+      <div class="article-meta">
+        <span>Published September 2026</span><span>·</span><span>6 min read</span><span>·</span><span>Author: LinkWA Technical Team</span>
+      </div>
+      <p class="article-intro">There is nothing more frustrating than launching an ad campaign or posting a social bio link, only to discover that customers get an "Invalid Number" error. Here is the definitive troubleshooting guide to diagnose and fix broken WhatsApp links in under 60 seconds.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="prose">
+
+      <div class="callout">
+        <strong>🔧 Quick Fix:</strong> If you are in a rush and need a 100% error-free link right now, head to <a href="/">linkwa.in</a>. Our generator automatically strips invalid characters, formats country codes correctly, and encodes pre-filled messages safely.
+      </div>
+
+      <h2>The 7 Most Common WhatsApp Link Errors (And Instant Fixes)</h2>
+
+      <h3>Error 1: "The phone number shared via url is invalid"</h3>
+      <p>This is by far the #1 error encountered by businesses worldwide. When clicked, WhatsApp loads a white error screen stating:</p>
+      <pre><code>"The phone number shared via url is invalid."</code></pre>
+      <p><strong>The Cause:</strong> You included a plus sign (<code>+</code>), spaces, brackets, or leading zeros before your country code.</p>
+      <ul>
+        <li>❌ <code>https://wa.me/+1(415)555-2671</code> (Contains +, brackets, and dashes)</li>
+        <li>❌ <code>https://wa.me/00447911123456</code> (Contains leading international zeros 00)</li>
+        <li>❌ <code>https://wa.me/09876543210</code> (Contains local trunk prefix 0)</li>
+        <li>✅ <code>https://wa.me/14155552671</code> (Pure numeric string)</li>
+      </ul>
+      <p><strong>The Fix:</strong> Strip every character except numbers. Combine the country code directly with your national number without spaces.</p>
+
+      <h3>Error 2: Missing Country Code</h3>
+      <p>Many users type their local 10-digit mobile number and wonder why the link fails to connect:</p>
+      <ul>
+        <li>❌ <code>https://wa.me/9876543210</code> (WhatsApp does not know which country this number belongs to)</li>
+        <li>✅ <code>https://wa.me/919876543210</code> (Prefix 91 explicitly declares India)</li>
+        <li>✅ <code>https://wa.me/447911123456</code> (Prefix 44 explicitly declares United Kingdom)</li>
+      </ul>
+      <p><strong>The Fix:</strong> Always verify your international dialing code before creating the link.</p>
+
+      <h3>Error 3: Broken Pre-Filled Message Due to URL Encoding Failures</h3>
+      <p>If you want a pre-filled text to open in the chat, you append <code>?text=Your%20Message</code>. However, typing raw spaces or symbols directly breaks the URL in browsers:</p>
+      <ul>
+        <li>❌ <code>https://wa.me/919876543210?text=Hi, I want info!</code> (Browsers cut off the link at the first space)</li>
+        <li>✅ <code>https://wa.me/919876543210?text=Hi%2C%20I%20want%20info%21</code> (Safely URL-encoded)</li>
+      </ul>
+      <p><strong>The Fix:</strong> Every space must be written as <code>%20</code>, and special punctuation must be percent-encoded. Instead of doing this by hand, use <a href="/">LinkWA</a>, which auto-encodes emojis, commas, and line breaks automatically.</p>
+
+      <h3>Error 4: Instagram or TikTok In-App Browser Blocking the Redirect</h3>
+      <p>When users tap a WhatsApp link inside Instagram or TikTok, the platform opens its internal in-app web browser rather than Safari or Chrome. In-app browsers frequently fail to trigger native deep-link schemes (like <code>whatsapp://</code>).</p>
+      <p><strong>The Fix:</strong> Always use standard <code>https://wa.me/...</code> URLs or short branded links (like <code>linkwa.in/yourname</code>). Standard HTTPS protocols smoothly trigger the deep-link prompt across iOS and Android without getting trapped in the in-app browser sandbox.</p>
+
+      <h3>Error 5: Using Dead or Expired Competitor Short Links (wa.link, bit.ly)</h3>
+      <p>Competitor link services like <code>wa.link</code> often lock custom branded links behind annual subscriptions ($6/year). If payment lapses or the third-party domain encounters downtime, your marketing link goes dead overnight. Generic bit.ly links also trigger aggressive spam warnings on Meta platforms.</p>
+      <p><strong>The Fix:</strong> Switch to <a href="/">LinkWA</a>. Our links are 100% free forever, backed by Cloudflare's ultra-fast global edge network with 99.99% uptime.</p>
+
+      <h3>Error 6: Desktop Browser Opening WhatsApp Web Instead of App (or vice versa)</h3>
+      <p>When someone taps a link on a desktop computer, they might see a screen asking them to <em>"Download WhatsApp"</em> even if they already have WhatsApp Web open in another tab.</p>
+      <p><strong>The Fix:</strong> Modern <code>wa.me</code> links display an official intermediate landing screen with two clear options: <strong>"Continue to Chat"</strong> and <strong>"use WhatsApp Web"</strong>. If a user gets stuck, advise them to click <em>"use WhatsApp Web"</em> to open the chat instantly in their active browser session.</p>
+
+      <h3>Error 7: The Phone Number is Not Registered on WhatsApp</h3>
+      <p>Even if the syntax is 100% correct, if the target phone number does not currently have an active WhatsApp or WhatsApp Business account registered, WhatsApp displays a generic error: <em>"Phone number is not on WhatsApp."</em></p>
+      <p><strong>The Fix:</strong> Open WhatsApp on your own phone and send a manual test message to that exact number. Verify that the checkmarks turn delivered.</p>
+
+      <h2>Troubleshooting Cheat Sheet & Diagnostic Table</h2>
+
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px;">
+        <thead>
+          <tr style="background: var(--surf); border-bottom: 2px solid var(--bd); text-align: left;">
+            <th style="padding: 10px;">Symptom</th>
+            <th style="padding: 10px;">Probable Cause</th>
+            <th style="padding: 10px;">Instant Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--bd);">
+            <td style="padding: 10px; font-weight: 600;">"Number is invalid"</td>
+            <td style="padding: 10px;">+ sign, spaces, or dashes present</td>
+            <td style="padding: 10px;">Remove all non-numeric characters</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--bd);">
+            <td style="padding: 10px; font-weight: 600;">Opens wrong contact</td>
+            <td style="padding: 10px;">Missing country code prefix</td>
+            <td style="padding: 10px;">Add international code (e.g., 91, 1, 44)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--bd);">
+            <td style="padding: 10px; font-weight: 600;">Message cuts off</td>
+            <td style="padding: 10px;">Unencoded spaces or symbols</td>
+            <td style="padding: 10px;">Generate with auto-URL encoding on LinkWA</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--bd);">
+            <td style="padding: 10px; font-weight: 600;">Blank screen on Instagram</td>
+            <td style="padding: 10px;">In-app browser redirect loop</td>
+            <td style="padding: 10px;">Use official https://wa.me/ protocol</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Can I test my WhatsApp link without messaging myself?</h3>
+      <p>Yes! Simply paste your generated link into any mobile or desktop browser and hit Enter. You should see the official WhatsApp confirmation screen displaying your pre-filled message.</p>
+
+      <h3>Does WhatsApp click-to-chat work for landline numbers?</h3>
+      <p>Only if the landline number has been registered on the WhatsApp Business app via phone call verification. Standard personal WhatsApp accounts cannot be activated on landline numbers.</p>
+
+      <h3>Can I edit the destination phone number of an existing WhatsApp link?</h3>
+      <p>If you used a direct <code>wa.me/12345...</code> link, you cannot change the number without re-generating the link. However, if you created a short branded link using LinkWA's custom slug feature, you can route the link to a new phone number anytime without breaking printed QR codes or social bio links!</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Never Deal with Broken WhatsApp Links Again</h3>
+      <p>Generate guaranteed valid wa.me links, custom QR codes, and UTM tracking in seconds with LinkWA.</p>
+      <a href="/" class="article-cta-btn">Create Error-Free WhatsApp Link →</a>
+    </div>
+
+    <div class="article-nav">
+      <a href="/blog" class="back-link">← All articles</a>
+    </div>
+  </div>
+</article>
+
+</Base>
+
+<style>
+.article-wrap { padding-bottom: 5rem; }
+.article-hero { background: linear-gradient(180deg, var(--gll) 0%, var(--bg) 100%); padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--bd); margin-bottom: 2.5rem; }
+.article-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gm); margin-bottom: 10px; }
+.article-hero h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,38px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; max-width: 760px; }
+.article-meta { font-size: 13px; color: var(--ink3); display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.article-intro { font-size: 16.5px; color: var(--ink2); line-height: 1.7; max-width: 680px; }
+.article-cta { background: linear-gradient(135deg, var(--gd), var(--gm)); border-radius: 16px; padding: 2rem; margin-top: 3rem; text-align: center; }
+.article-cta h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.article-cta p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 1.25rem; }
+.article-cta-btn { background: #fff; color: var(--gd); padding: 11px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-block; font-family: var(--font-display); }
+.article-nav { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--bd); }
+.back-link { font-size: 14px; color: var(--ink3); text-decoration: none; font-weight: 500; }
+.back-link:hover { color: var(--gm); }
+.prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+.prose th, .prose td { border: 1px solid var(--bd); padding: 10px 12px; }
+.prose th { background: var(--surf); }
+</style>
