@@ -878,6 +878,8 @@ async function generate() {
   if (slugValue) {
     if (slugValue.length < 3) {
       toast('Custom name must be at least 3 characters');
+      renderQR(curUrl);
+      showInlineSingle(curUrl);
       return;
     }
     const btnGen = document.querySelector('.btn-gen');
@@ -895,24 +897,30 @@ async function generate() {
       if (resp.ok && data.success) {
         curUrl = data.shortUrl;
         const el = document.getElementById('rurl');
-        el.className = 'result-url';
-        el.textContent = curUrl;
+        if (el) {
+          el.className = 'result-url';
+          el.textContent = curUrl;
+        }
         updatePreview();
         renderQR(curUrl);
-        toast('Custom short link created!');
+        toast(data.updated ? 'Branded link updated & QR ready!' : 'Branded link & QR ready!');
         showInlineSingle(curUrl);
       } else {
         toast(data.error || 'Failed to create custom link');
+        renderQR(curUrl);
+        showInlineSingle(curUrl);
       }
     } catch (err) {
-      toast('KV Service Error. Make sure you deploy on Cloudflare with KV linked.');
+      toast('Custom link service offline. Direct WhatsApp link & QR generated.');
+      renderQR(curUrl);
+      showInlineSingle(curUrl);
     } finally {
       btnGen.disabled = false;
       btnGen.innerHTML = origHtml;
     }
   } else {
     renderQR(curUrl);
-    toast('WhatsApp link ready!');
+    toast('WhatsApp link & QR code ready!');
     showInlineSingle(curUrl);
   }
 }
@@ -994,6 +1002,12 @@ function changeQRTemplate(template, btn) {
 }
 
 function renderQR(url) {
+  if (!url) return;
+  if (typeof QRCode === 'undefined') {
+    setTimeout(() => renderQR(url), 100);
+    return;
+  }
+  curUrl = url;
   const frame = document.getElementById('qrFrame');
   const target = document.getElementById('qr-target');
   const logo = document.getElementById('qrLogo');
