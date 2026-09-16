@@ -190,6 +190,11 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
               <option value="44">🇬🇧 +44</option>
               <option value="971">🇦🇪 +971</option>
               <option value="61">🇦🇺 +61</option>
+              <option value="65">🇸🇬 +65</option>
+              <option value="60">🇲🇾 +60</option>
+              <option value="880">🇧🇩 +880</option>
+              <option value="92">🇵🇰 +92</option>
+              <option value="55">🇧🇷 +55</option>
             </select>
             <input type="tel" id="uphone" placeholder="98765 43210" oninput="live()" />
           </div>
@@ -229,22 +234,55 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 
       <!-- MULTI PANEL -->
       <div id="panel-multi" class="panel">
-        <div class="multi-entry">
-          <div class="multi-entry-h">Number 1 — e.g. Sales</div>
-          <div class="row" style="margin-bottom:8px;">
-            <select class="mcc"><option value="91">🇮🇳 +91</option><option value="1">🇺🇸 +1</option><option value="44">🇬🇧 +44</option><option value="971">🇦🇪 +971</option></select>
-            <input type="tel" class="mphone" placeholder="98765 43210" />
+        <div id="multiEntriesContainer">
+          <div class="multi-entry" data-index="1">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="multi-entry-h" style="margin-bottom:0;">Number 1 — e.g. Sales</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+              <select class="mcc">
+                <option value="91">🇮🇳 +91</option>
+                <option value="1">🇺🇸 +1</option>
+                <option value="44">🇬🇧 +44</option>
+                <option value="971">🇦🇪 +971</option>
+                <option value="61">🇦🇺 +61</option>
+                <option value="65">🇸🇬 +65</option>
+                <option value="60">🇲🇾 +60</option>
+                <option value="880">🇧🇩 +880</option>
+                <option value="92">🇵🇰 +92</option>
+                <option value="55">🇧🇷 +55</option>
+              </select>
+              <input type="tel" class="mphone" placeholder="98765 43210" />
+            </div>
+            <input type="text" class="mlabel" placeholder="Label: Sales Team" />
           </div>
-          <input type="text" class="mlabel" placeholder="Label: Sales Team" />
-        </div>
-        <div class="multi-entry">
-          <div class="multi-entry-h">Number 2 — e.g. Support</div>
-          <div class="row" style="margin-bottom:8px;">
-            <select class="mcc"><option value="91">🇮🇳 +91</option><option value="1">🇺🇸 +1</option><option value="44">🇬🇧 +44</option><option value="971">🇦🇪 +971</option></select>
-            <input type="tel" class="mphone" placeholder="98765 43210" />
+          <div class="multi-entry" data-index="2">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="multi-entry-h" style="margin-bottom:0;">Number 2 — e.g. Support</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+              <select class="mcc">
+                <option value="91">🇮🇳 +91</option>
+                <option value="1">🇺🇸 +1</option>
+                <option value="44">🇬🇧 +44</option>
+                <option value="971">🇦🇪 +971</option>
+                <option value="61">🇦🇺 +61</option>
+                <option value="65">🇸🇬 +65</option>
+                <option value="60">🇲🇾 +60</option>
+                <option value="880">🇧🇩 +880</option>
+                <option value="92">🇵🇰 +92</option>
+                <option value="55">🇧🇷 +55</option>
+              </select>
+              <input type="tel" class="mphone" placeholder="98765 43210" />
+            </div>
+            <input type="text" class="mlabel" placeholder="Label: Support Team" />
           </div>
-          <input type="text" class="mlabel" placeholder="Label: Support Team" />
         </div>
+
+        <button type="button" class="btn-add-number" onclick="addMultiNumber()" style="width:100%; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:1.5px dashed var(--g); border-radius:10px; background:var(--gl); color:var(--gd); font-size:12.5px; font-weight:700; cursor:pointer; margin-bottom:12px; transition:all 0.15s;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          + Add Another Number
+        </button>
         <div class="hint">One link per team — perfect for bio, website, or print material</div>
       </div>
 
@@ -948,22 +986,93 @@ async function generate() {
   }
 }
 
+function addMultiNumber() {
+  const container = document.getElementById('multiEntriesContainer');
+  if (!container) return;
+  const count = container.querySelectorAll('.multi-entry').length + 1;
+  if (count > 8) {
+    toast('Maximum 8 numbers allowed');
+    return;
+  }
+  
+  const div = document.createElement('div');
+  div.className = 'multi-entry';
+  div.dataset.index = count;
+  div.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <div class="multi-entry-h" style="margin-bottom:0;">Number ${count} — e.g. Branch ${count}</div>
+      <button type="button" class="btn-remove-entry" onclick="removeMultiEntry(this)">✕ Remove</button>
+    </div>
+    <div class="row" style="margin-bottom:8px;">
+      <select class="mcc">
+        <option value="91">🇮🇳 +91</option>
+        <option value="1">🇺🇸 +1</option>
+        <option value="44">🇬🇧 +44</option>
+        <option value="971">🇦🇪 +971</option>
+        <option value="61">🇦🇺 +61</option>
+        <option value="65">🇸🇬 +65</option>
+        <option value="60">🇲🇾 +60</option>
+        <option value="880">🇧🇩 +880</option>
+        <option value="92">🇵🇰 +92</option>
+        <option value="55">🇧🇷 +55</option>
+      </select>
+      <input type="tel" class="mphone" placeholder="98765 43210" />
+    </div>
+    <input type="text" class="mlabel" placeholder="Label: Team Member ${count}" />
+  `;
+  container.appendChild(div);
+  toast('Added Number ' + count);
+}
+
+function removeMultiEntry(btn) {
+  const entry = btn.closest('.multi-entry');
+  if (entry) {
+    entry.remove();
+    toast('Number removed');
+  }
+}
+
+function copyMultiUrl(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    toast('Copied to clipboard!');
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  });
+}
+
 function genMulti() {
   const phones = document.querySelectorAll('.mphone');
   const codes = document.querySelectorAll('.mcc');
   const labels = document.querySelectorAll('.mlabel');
   let html = '', first = '';
+  
   phones.forEach((ph, i) => {
     const p = ph.value.replace(/\D/g,'');
     if (!p) return;
-    const url = 'https://wa.me/' + codes[i].value + p;
-    const lbl = labels[i].value || 'Number '+(i+1);
+    const code = codes[i] ? codes[i].value : '91';
+    const url = 'https://wa.me/' + code + p;
+    const lbl = (labels[i] && labels[i].value.trim()) ? labels[i].value.trim() : ('Team ' + (i + 1));
     if (!first) first = url;
-    html += '<div class="mout-item"><div class="mout-lbl">'+lbl+'</div><div class="mout-url">'+url+'</div><button class="mini-copy" onclick="navigator.clipboard.writeText(\''+url+'\').then(()=>toast(\'Copied!\'))" style="cursor:pointer;">Copy</button></div>';
+    
+    html += `
+      <div class="mout-item">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <div class="mout-lbl">${lbl}</div>
+          <span style="font-size:11px; color:var(--ink3); font-family:var(--font-mono);">+${code} ${p}</span>
+        </div>
+        <div class="mout-url">${url}</div>
+        <div class="mini-actions" style="display:flex; gap:8px; margin-top:6px;">
+          <button type="button" class="mini-copy" onclick="copyMultiUrl('${url}', this)">Copy</button>
+          <a href="${url}" target="_blank" rel="noopener noreferrer" class="mini-test" style="text-decoration:none;">Open Chat ↗</a>
+        </div>
+      </div>
+    `;
   });
-  document.getElementById('multiOut').innerHTML = html;
   
-  // Populate inline multi output
+  const rightMultiOut = document.getElementById('multiOut');
+  if (rightMultiOut) rightMultiOut.innerHTML = html;
+  
   const inlineMulti = document.getElementById('inline-multiOut');
   const inlineOut = document.getElementById('inline-output');
   const inlineSingleArea = document.getElementById('inline-single-area');
@@ -984,7 +1093,7 @@ function genMulti() {
     curUrl = first;
     renderQR(first);
   }
-  toast(html ? 'Links generated!' : 'Enter at least one number');
+  toast(html ? 'Multi-number links generated!' : 'Enter at least one number');
 }
 
 function insertEmoji(emoji, targetId) {
