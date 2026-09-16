@@ -341,9 +341,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: block;">
           <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=dark&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 200px; height: 43px; display: block;" width="200" height="43" />
         </a>
-        <a href="https://www.tinyshelf.co/?ref=linkwa.in" title="Featured on TinyShelf">
-          <img src="https://www.tinyshelf.co/badge/tinyshelf-badge-light-amber-1cdea1ce.svg" alt="Featured on TinyShelf" width="216" height="64"/>
-        </a>
+        <Fragment set:html={`<a href="https://www.tinyshelf.co/?ref=linkwa.in" title="Featured on TinyShelf">\n  <img src="https://www.tinyshelf.co/badge/tinyshelf-badge-light-amber-1cdea1ce.svg" alt="Featured on TinyShelf" width="216" height="64"/>\n</a>`} />
       </div>
     </div>
   </div>
