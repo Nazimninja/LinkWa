@@ -334,12 +334,17 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       <a href="/privacy" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Privacy Policy</a>
     </div>
 
-    <!-- Product Hunt Badge Column -->
+    <!-- Badges Column -->
     <div>
-      <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 8px;">Badge</h4>
-      <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: block;">
-        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=dark&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 200px; height: 43px; display: block;" width="200" height="43" />
-      </a>
+      <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 10px;">Featured On</h4>
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+        <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: block;">
+          <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=dark&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 200px; height: 43px; display: block;" width="200" height="43" />
+        </a>
+        <a href="https://www.tinyshelf.co/?ref=linkwa.in" title="Featured on TinyShelf">
+          <img src="https://www.tinyshelf.co/badge/tinyshelf-badge-light-amber-1cdea1ce.svg" alt="Featured on TinyShelf" width="216" height="64"/>
+        </a>
+      </div>
     </div>
   </div>
   
