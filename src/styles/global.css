@@ -283,6 +283,16 @@ textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
 }
 .qr-center-logo svg { width: 20px; height: 20px; }
 .qr-center-logo.show { display: flex; }
+.qr-center-logo.custom-logo {
+  background: #ffffff !important;
+  padding: 2px !important;
+  box-shadow: 0 0 0 4px #ffffff, 0 2px 8px rgba(0,0,0,0.15) !important;
+}
+.btn-logo-upload:hover {
+  border-color: var(--g) !important;
+  color: var(--gm) !important;
+  background: var(--gl) !important;
+}
 
 /* ── UTM ── */
 .utm-block {
