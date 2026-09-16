@@ -1060,6 +1060,69 @@ function resetQRLogo() {
   toast('Reset to default WhatsApp logo');
 }
 
+function drawLogoBox(ctx, img, cx, cy, boxSize) {
+  const half = boxSize / 2;
+  const rad = 28;
+  
+  // 1. Draw rounded rectangle with crisp white backing & drop shadow
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.22)';
+  ctx.shadowBlur = 24;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 6;
+  ctx.fillStyle = '#ffffff';
+  
+  ctx.beginPath();
+  if (ctx.roundRect) {
+    ctx.roundRect(cx - half, cy - half, boxSize, boxSize, rad);
+  } else {
+    ctx.moveTo(cx - half + rad, cy - half);
+    ctx.lineTo(cx + half - rad, cy - half);
+    ctx.quadraticCurveTo(cx + half, cy - half, cx + half, cy - half + rad);
+    ctx.lineTo(cx + half, cy + half - rad);
+    ctx.quadraticCurveTo(cx + half, cy + half, cx + half - rad, cy + half);
+    ctx.lineTo(cx - half + rad, cy + half);
+    ctx.quadraticCurveTo(cx - half, cy + half, cx - half, cy + half - rad);
+    ctx.lineTo(cx - half, cy - half + rad);
+    ctx.quadraticCurveTo(cx - half, cy - half, cx - half + rad, cy - half);
+    ctx.closePath();
+  }
+  ctx.fill();
+  ctx.restore();
+  
+  // 2. Crisp border so it cleanly separates from QR blocks
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  if (ctx.roundRect) {
+    ctx.roundRect(cx - half, cy - half, boxSize, boxSize, rad);
+  } else {
+    ctx.moveTo(cx - half + rad, cy - half);
+    ctx.lineTo(cx + half - rad, cy - half);
+    ctx.quadraticCurveTo(cx + half, cy - half, cx + half, cy - half + rad);
+    ctx.lineTo(cx + half, cy + half - rad);
+    ctx.quadraticCurveTo(cx + half, cy + half, cx + half - rad, cy + half);
+    ctx.lineTo(cx - half + rad, cy + half);
+    ctx.quadraticCurveTo(cx - half, cy + half, cx - half, cy + half - rad);
+    ctx.lineTo(cx - half, cy - half + rad);
+    ctx.quadraticCurveTo(cx - half, cy - half, cx - half + rad, cy - half);
+    ctx.closePath();
+  }
+  ctx.stroke();
+  
+  // 3. Draw image inside box with object-fit: contain (generous sizing, minimal padding)
+  const inner = boxSize - 20;
+  const iw = img.naturalWidth || img.width || 1;
+  const ih = img.naturalHeight || img.height || 1;
+  const scale = Math.min(inner / iw, inner / ih);
+  const dw = iw * scale;
+  const dh = ih * scale;
+  const dx = cx - dw / 2;
+  const dy = cy - dh / 2;
+  
+  ctx.drawImage(img, dx, dy, dw, dh);
+}
+
 function renderQR(url) {
   if (!url) return;
   if (typeof QRCode === 'undefined') {
@@ -1079,15 +1142,21 @@ function renderQR(url) {
   if (ph) ph.style.display = 'none';
   frame.className = 'qr-frame ready ' + qrTemplate;
   
-  const size = qrTemplate === 'minimal' ? 164 : 152;
-  new QRCode(target, { text: url, width: size, height: size, colorDark: qrColor, colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+  // Generate at HD 1000x1000 resolution with Level H error correction (30% redundancy)
+  new QRCode(target, { 
+    text: url, 
+    width: 1000, 
+    height: 1000, 
+    colorDark: qrColor, 
+    colorLight: '#ffffff', 
+    correctLevel: QRCode.CorrectLevel.H 
+  });
   
   if (customLogoData && customLogoImg) {
     logo.className = 'qr-center-logo show custom-logo';
     logo.style.backgroundColor = '#ffffff';
-    logo.style.padding = '2px';
-    logo.style.boxShadow = '0 0 0 3px #ffffff, 0 2px 8px rgba(0,0,0,0.15)';
-    logo.innerHTML = `<img src="${customLogoData}" style="width:100%;height:100%;object-fit:contain;border-radius:6px;display:block;" alt="Brand Logo" />`;
+    logo.style.padding = '3px';
+    logo.innerHTML = `<img src="${customLogoData}" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;" alt="Brand Logo" />`;
   } else {
     if (qrTemplate === 'minimal') {
       logo.className = 'qr-center-logo show minimal';
@@ -1096,7 +1165,6 @@ function renderQR(url) {
     }
     logo.style.backgroundColor = qrColor;
     logo.style.padding = '';
-    logo.style.boxShadow = '0 0 0 4px #ffffff';
     if (waLogoSvg) logo.innerHTML = waLogoSvg;
   }
   
@@ -1116,125 +1184,107 @@ function downloadQR() {
     const img = new Image();
     img.onload = () => {
       if (qrTemplate === 'minimal') {
-        const S = 420, PAD = 24, FOOTER = 36;
-        c.width = S; c.height = S + FOOTER;
+        const W = 1200, H = 1320, PAD = 80, FOOTER = 120;
+        c.width = W; c.height = H;
         const ctx = c.getContext('2d');
-        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, S, c.height);
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
         
-        const QSz = S - PAD * 2;
+        const QSz = W - PAD * 2;
         ctx.drawImage(img, PAD, PAD, QSz, QSz);
         
-        const cx = S/2, cy = PAD + QSz/2;
+        const cx = W / 2, cy = PAD + QSz / 2;
         if (customLogoImg && customLogoImg.complete) {
-          const R = 28;
-          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 4, 0, Math.PI * 2); ctx.fill();
-          ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.stroke();
-          ctx.save();
-          ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.closePath(); ctx.clip();
-          ctx.drawImage(customLogoImg, cx - R, cy - R, R * 2, R * 2);
-          ctx.restore();
+          drawLogoBox(ctx, customLogoImg, cx, cy, 260);
         } else {
-          const R = 24;
-          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 4, 0, Math.PI * 2); ctx.fill();
+          const R = 75;
+          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 10, 0, Math.PI * 2); ctx.fill();
           ctx.fillStyle = qrColor; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = '700 14px -apple-system,sans-serif';
+          ctx.fillStyle = '#ffffff'; ctx.font = '700 48px -apple-system,sans-serif';
           ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
           ctx.fillText('WA', cx, cy);
         }
         
         ctx.fillStyle = '#94a3b8';
-        ctx.font = '600 11px -apple-system,sans-serif';
+        ctx.font = '600 32px -apple-system,sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('linkwa.in · Free WhatsApp QR', S/2, S + FOOTER/2 - 2);
+        ctx.fillText('linkwa.in · Free WhatsApp QR', W / 2, W + FOOTER / 2 - 10);
         
-        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.strokeRect(0.75, 0.75, S - 1.5, c.height - 1.5);
+        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 4; ctx.strokeRect(2, 2, W - 4, H - 4);
       } else if (qrTemplate === 'stand') {
-        const W = 400, H = 580, PAD = 36, HEADER = 90, FOOTER = 84;
+        const W = 1200, H = 1740, PAD = 100, HEADER = 260, FOOTER = 220;
         c.width = W; c.height = H;
         const ctx = c.getContext('2d');
         ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
         
         ctx.fillStyle = qrColor; ctx.fillRect(0, 0, W, HEADER);
-        ctx.fillStyle = '#ffffff'; ctx.font = '700 20px -apple-system,BlinkMacSystemFont,sans-serif';
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 54px -apple-system,BlinkMacSystemFont,sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('SCAN TO CHAT', W/2, HEADER/2 - 12);
-        ctx.font = '500 13px -apple-system,sans-serif';
-        ctx.fillText('Message us on WhatsApp', W/2, HEADER/2 + 16);
+        ctx.fillText('SCAN TO CHAT', W / 2, HEADER / 2 - 24);
+        ctx.font = '500 34px -apple-system,sans-serif';
+        ctx.fillText('Message us on WhatsApp', W / 2, HEADER / 2 + 38);
         
-        const QSz = W - PAD*2;
-        ctx.drawImage(img, PAD, HEADER + 26, QSz, QSz);
+        const QSz = W - PAD * 2;
+        ctx.drawImage(img, PAD, HEADER + 70, QSz, QSz);
         
-        const cx = W/2, cy = HEADER + 26 + QSz/2;
+        const cx = W / 2, cy = HEADER + 70 + QSz / 2;
         if (customLogoImg && customLogoImg.complete) {
-          const R = 32;
-          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 4, 0, Math.PI * 2); ctx.fill();
-          ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.stroke();
-          ctx.save();
-          ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.closePath(); ctx.clip();
-          ctx.drawImage(customLogoImg, cx - R, cy - R, R * 2, R * 2);
-          ctx.restore();
+          drawLogoBox(ctx, customLogoImg, cx, cy, 260);
         } else {
-          const R = 26;
-          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 5, 0, Math.PI * 2); ctx.fill();
+          const R = 75;
+          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 10, 0, Math.PI * 2); ctx.fill();
           ctx.fillStyle = qrColor; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = '700 15px -apple-system,sans-serif';
+          ctx.fillStyle = '#ffffff'; ctx.font = '700 48px -apple-system,sans-serif';
           ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
           ctx.fillText('WA', cx, cy);
         }
         
         ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, H - FOOTER, W, FOOTER);
-        ctx.fillStyle = '#0f172a'; ctx.font = '700 15px -apple-system,sans-serif';
+        ctx.fillStyle = '#0f172a'; ctx.font = '700 44px -apple-system,sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('linkwa.in', W/2, H - FOOTER/2 - 5);
-        ctx.fillStyle = '#64748b'; ctx.font = '500 11px -apple-system,sans-serif';
-        ctx.fillText('Powered by linkwa.in · Free WhatsApp Marketing', W/2, H - FOOTER/2 + 14);
+        ctx.fillText('linkwa.in', W / 2, H - FOOTER / 2 - 18);
+        ctx.fillStyle = '#64748b'; ctx.font = '500 28px -apple-system,sans-serif';
+        ctx.fillText('Powered by linkwa.in · Free WhatsApp Marketing', W / 2, H - FOOTER / 2 + 28);
         
-        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.strokeRect(0.75, 0.75, W - 1.5, H - 1.5);
+        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 4; ctx.strokeRect(2, 2, W - 4, H - 4);
       } else {
-        const S = 480, PAD = 28, HEADER = 56, FOOTER = 56;
-        c.width = S; c.height = S + HEADER + FOOTER;
+        const W = 1200, H = 1480, PAD = 90, HEADER = 160, FOOTER = 160;
+        c.width = W; c.height = H;
         const ctx = c.getContext('2d');
-        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, S, c.height);
-        ctx.fillStyle = qrColor; ctx.fillRect(0, 0, S, HEADER);
-        ctx.fillStyle = '#ffffff'; ctx.font = '600 16px -apple-system,BlinkMacSystemFont,sans-serif';
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = qrColor; ctx.fillRect(0, 0, W, HEADER);
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 44px -apple-system,BlinkMacSystemFont,sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('Scan to chat on WhatsApp', S/2, HEADER/2);
+        ctx.fillText('Scan to chat on WhatsApp', W / 2, HEADER / 2);
         
-        const QS = S - PAD*2;
-        ctx.drawImage(img, PAD, HEADER + PAD/2, QS, QS);
+        const QSz = W - PAD * 2;
+        ctx.drawImage(img, PAD, HEADER + 40, QSz, QSz);
         
-        const cx = S/2, cy = HEADER + PAD/2 + QS/2;
+        const cx = W / 2, cy = HEADER + 40 + QSz / 2;
         if (customLogoImg && customLogoImg.complete) {
-          const R = 30;
-          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 4, 0, Math.PI * 2); ctx.fill();
-          ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.stroke();
-          ctx.save();
-          ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.closePath(); ctx.clip();
-          ctx.drawImage(customLogoImg, cx - R, cy - R, R * 2, R * 2);
-          ctx.restore();
+          drawLogoBox(ctx, customLogoImg, cx, cy, 260);
         } else {
-          const R = 26;
-          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 5, 0, Math.PI * 2); ctx.fill();
+          const R = 75;
+          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(cx, cy, R + 10, 0, Math.PI * 2); ctx.fill();
           ctx.fillStyle = qrColor; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = '700 15px -apple-system,sans-serif';
+          ctx.fillStyle = '#ffffff'; ctx.font = '700 48px -apple-system,sans-serif';
           ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
           ctx.fillText('WA', cx, cy);
         }
         
-        ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, c.height - FOOTER, S, FOOTER);
-        ctx.fillStyle = '#475569'; ctx.font = '600 13px -apple-system,sans-serif';
+        ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, H - FOOTER, W, FOOTER);
+        ctx.fillStyle = '#475569'; ctx.font = '600 34px -apple-system,sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('Created with linkwa.in · Free WhatsApp Generator', S/2, c.height - FOOTER/2);
+        ctx.fillText('Created with linkwa.in · Free WhatsApp Generator', W / 2, H - FOOTER / 2);
         
-        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.strokeRect(0.75, 0.75, S - 1.5, c.height - 1.5);
+        ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 4; ctx.strokeRect(2, 2, W - 4, H - 4);
       }
       
       const a = document.createElement('a');
-      a.download = `linkwa-qr-${qrTemplate}.png`;
+      a.download = `linkwa-qr-${qrTemplate}-hd.png`;
       a.href = c.toDataURL('image/png');
       a.click();
-      toast('QR downloaded!');
+      toast('HD Print-ready QR downloaded!');
     };
     img.src = src;
   };
