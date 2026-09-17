@@ -354,7 +354,7 @@ textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
 .mini-copy:hover { background: var(--gm); }
 
 /* ── TABS ── */
-.tab-wrap { max-width: 420px; margin: 2.5rem auto 0; padding: 0 1.5rem; }
+.tab-wrap { max-width: 420px; margin: 1.15rem auto 0; padding: 0 1.5rem; }
 .tab-bar {
   display: flex; background: var(--surf);
   border: 1px solid var(--bd2); border-radius: 13px;
@@ -367,6 +367,39 @@ textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
   color: var(--ink3); cursor: pointer; transition: all 0.15s; white-space: nowrap;
 }
 .tab.active { background: var(--ink); color: #fff; font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,0.18); }
+
+/* ── STUDIO SWITCHER ── */
+.studio-switcher {
+  display: inline-flex;
+  background: var(--bgl);
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid var(--bd2);
+  gap: 3px;
+}
+.studio-tab {
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  padding: 5px 11px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink3);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.studio-tab:hover {
+  color: var(--ink);
+}
+.studio-tab.active {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
 
 /* ── PANEL ── */
 .panel { display: none; }
@@ -453,17 +486,17 @@ textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
 .prose .callout strong { color: var(--gm); }
 
 /* ── HERO ── */
-.hero { max-width: 700px; margin: 0 auto; padding: 4.5rem 1.5rem 2.5rem; text-align: center; }
-.hero-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surf); border: 1px solid var(--bd2); border-radius: 20px; padding: 5px 14px 5px 9px; font-size: 12px; font-weight: 500; color: var(--ink2); margin-bottom: 1.5rem; box-shadow: var(--sh); }
+.hero { max-width: 760px; margin: 0 auto; padding: 2.25rem 1.5rem 0.75rem; text-align: center; }
+.hero-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surf); border: 1px solid var(--bd2); border-radius: 20px; padding: 5px 13px 5px 9px; font-size: 12px; font-weight: 500; color: var(--ink2); box-shadow: var(--sh); height: 38px; box-sizing: border-box; }
 .hero-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g); }
-.hero h1 { font-family: var(--font-display); font-size: clamp(32px,5.5vw,52px); font-weight: 700; line-height: 1.08; letter-spacing: -2px; color: var(--ink); margin-bottom: 1.1rem; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(28px,4.5vw,46px); font-weight: 700; line-height: 1.12; letter-spacing: -1.5px; color: var(--ink); margin-bottom: 0.75rem; }
 .hero h1 strong { font-weight: 700; background: linear-gradient(135deg, var(--gm), var(--g)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero-sub { font-size: 16px; color: var(--ink3); line-height: 1.65; max-width: 460px; margin: 0 auto 2rem; font-weight: 400; }
-.hero-stats { display: flex; justify-content: center; background: var(--surf); border: 1px solid var(--bd); border-radius: var(--rl); padding: 1rem 1.5rem; box-shadow: var(--sh); max-width: 440px; margin: 0 auto; }
-.hstat { flex: 1; text-align: center; padding: 0 1rem; }
+.hero-sub { font-size: 15px; color: var(--ink3); line-height: 1.6; max-width: 500px; margin: 0 auto 1.25rem; font-weight: 400; }
+.hero-stats { display: flex; justify-content: center; background: var(--surf); border: 1px solid var(--bd); border-radius: var(--rl); padding: 0.65rem 1.25rem; box-shadow: var(--sh); max-width: 420px; margin: 0 auto; }
+.hstat { flex: 1; text-align: center; padding: 0 0.75rem; }
 .hstat + .hstat { border-left: 1px solid var(--bd2); }
-.hstat-n { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--ink); }
-.hstat-l { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+.hstat-n { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -0.4px; color: var(--ink); }
+.hstat-l { font-size: 10.5px; color: var(--ink3); margin-top: 1px; }
 
 /* ── TOAST ── */
 .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--ink); color: #fff; padding: 10px 22px; border-radius: 10px; font-size: 13px; font-weight: 500; opacity: 0; transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1); z-index: 999; pointer-events: none; box-shadow: 0 4px 20px rgba(0,0,0,0.25); white-space: nowrap; }

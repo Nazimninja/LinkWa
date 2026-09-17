@@ -87,14 +87,14 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-header-badges" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+  <div class="hero-header-badges" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-bottom: 14px;">
     <div class="hero-chip" style="margin-bottom: 0;">
       <span class="hero-chip-dot"></span>
       Trusted by 10,000+ businesses
     </div>
-    <div class="hero-ph-badge" style="margin-bottom: 24px; display: inline-block;">
-      <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer">
-        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=light" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 250px; height: 54px; display: block;" width="250" height="54" />
+    <div class="hero-ph-badge" style="margin-bottom: 0; display: inline-flex; align-items: center;">
+      <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;">
+        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=light" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="height: 38px; width: auto; display: block;" height="38" />
       </a>
     </div>
   </div>
@@ -360,110 +360,115 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       <div id="multiOut"></div>
     </div>
 
-    <!-- QR CODE -->
+    <!-- VISUAL STUDIO CARD (QR & LIVE PREVIEW SWITCHER) -->
     <div class="card">
-      <div class="card-head">
-        <div class="ch-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path stroke-linecap="round" d="M14 14h1m2 0h2m-2 2v2m2-2v4m-4 0h2"/></svg>
+      <div class="card-head" style="justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 11px;">
+          <div class="ch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path stroke-linecap="round" d="M14 14h1m2 0h2m-2 2v2m2-2v4m-4 0h2"/></svg>
+          </div>
+          <div>
+            <div class="ch-title" id="studioTitle">QR Code Studio</div>
+            <div class="ch-sub" id="studioSub">Print on cards, banners &amp; menus</div>
+          </div>
         </div>
-        <div>
-          <div class="ch-title">QR code</div>
-          <div class="ch-sub">Print on cards, banners &amp; menus</div>
+        <div class="studio-switcher">
+          <button type="button" class="studio-tab active" id="tabViewQR" onclick="switchStudioView('qr')">
+            📷 QR Code
+          </button>
+          <button type="button" class="studio-tab" id="tabViewChat" onclick="switchStudioView('chat')">
+            📱 Chat Preview
+          </button>
         </div>
       </div>
-      <div class="qr-area">
-        <div class="qr-frame" id="qrFrame">
-          <p class="qr-ph" id="qrPh">Generate a link to see your QR code</p>
-          <div id="qr-target"></div>
-          <div class="qr-center-logo" id="qrLogo">
-            <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.07 21.5l4.432-1.343A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 12 2zm0 18.182a8.173 8.173 0 01-4.168-1.143l-.3-.178-3.1.939.892-3.232-.196-.315A8.18 8.18 0 013.818 12c0-4.513 3.669-8.182 8.182-8.182 4.512 0 8.181 3.669 8.181 8.182 0 4.513-3.669 8.182-8.182 8.182z"/></svg>
-          </div>
-          <div class="qr-bottom-badge" id="qrBottomBadge" style="display: none;">
-            <span style="display:inline-block;width:5px;height:5px;background:#25D366;border-radius:50%;margin-right:4px;"></span>Created on linkwa.in
-          </div>
-        </div>
-        <div class="qr-colors" style="display: none;">
-          <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Color</label>
-          <div class="qr-color-options">
-            <button class="qr-color-btn active" style="background:#080f0d;" onclick="changeQRColor('#080f0d', this)" title="Sleek Dark"></button>
-            <button class="qr-color-btn" style="background:#25D366;" onclick="changeQRColor('#25D366', this)" title="WhatsApp Green"></button>
-            <button class="qr-color-btn" style="background:#0284c7;" onclick="changeQRColor('#0284c7', this)" title="Royal Blue"></button>
-            <button class="qr-color-btn" style="background:#dc2626;" onclick="changeQRColor('#dc2626', this)" title="Crimson Red"></button>
-            <button class="qr-color-btn" style="background:#7c3aed;" onclick="changeQRColor('#7c3aed', this)" title="Purple"></button>
-            <div class="color-picker-wrapper">
-              <input type="color" id="qrColorPicker" value="#080f0d" oninput="changeQRColor(this.value, this)" title="Custom Color" />
-            </div>
-          </div>
-        </div>
-        <div class="qr-templates" style="display: none; margin-top: 14px;">
-          <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Template</label>
-          <div class="qr-template-options">
-            <button class="qr-temp-btn active" onclick="changeQRTemplate('classic', this)">Classic</button>
-            <button class="qr-temp-btn" onclick="changeQRTemplate('minimal', this)">Minimal</button>
-            <button class="qr-temp-btn" onclick="changeQRTemplate('stand', this)">Table Stand</button>
-          </div>
-        </div>
 
-        <!-- CUSTOM LOGO UPLOAD -->
-        <div class="qr-logo-section" id="qrLogoSection" style="display: none; margin-top: 14px; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <label class="lbl" style="font-size: 11px; margin-bottom: 0;">Center Logo <span class="opt">(Optional)</span></label>
-            <button type="button" id="resetLogoBtn" onclick="resetQRLogo()" style="display: none; background: none; border: none; color: #dc2626; font-size: 11px; font-weight: 600; cursor: pointer; padding: 0;">✕ Remove Logo</button>
+      <!-- VIEW 1: QR CODE STUDIO -->
+      <div id="view-qr" class="studio-view">
+        <div class="qr-area">
+          <div class="qr-frame" id="qrFrame">
+            <p class="qr-ph" id="qrPh">Generate a link to see your QR code</p>
+            <div id="qr-target"></div>
+            <div class="qr-center-logo" id="qrLogo">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.07 21.5l4.432-1.343A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 12 2zm0 18.182a8.173 8.173 0 01-4.168-1.143l-.3-.178-3.1.939.892-3.232-.196-.315A8.18 8.18 0 013.818 12c0-4.513 3.669-8.182 8.182-8.182 4.512 0 8.181 3.669 8.181 8.182 0 4.513-3.669 8.182-8.182 8.182z"/></svg>
+            </div>
+            <div class="qr-bottom-badge" id="qrBottomBadge" style="display: none;">
+              <span style="display:inline-block;width:5px;height:5px;background:#25D366;border-radius:50%;margin-right:4px;"></span>Created on linkwa.in
+            </div>
           </div>
-          <div class="logo-upload-wrap">
-            <label for="qrLogoFile" class="btn-logo-upload" style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 12px; border: 1.5px dashed var(--bd2); border-radius: 8px; background: var(--bgl); font-size: 12px; font-weight: 600; color: var(--ink2); cursor: pointer; transition: all 0.15s; width: 100%; box-sizing: border-box;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 15px; height: 15px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <span id="logoUploadLbl">Upload Custom Brand/Store Logo</span>
-            </label>
-            <input type="file" id="qrLogoFile" accept="image/png, image/jpeg, image/webp, image/svg+xml" style="display: none;" onchange="handleQRLogoUpload(this)" />
+          <div class="qr-colors" style="display: none;">
+            <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Color</label>
+            <div class="qr-color-options">
+              <button class="qr-color-btn active" style="background:#080f0d;" onclick="changeQRColor('#080f0d', this)" title="Sleek Dark"></button>
+              <button class="qr-color-btn" style="background:#25D366;" onclick="changeQRColor('#25D366', this)" title="WhatsApp Green"></button>
+              <button class="qr-color-btn" style="background:#0284c7;" onclick="changeQRColor('#0284c7', this)" title="Royal Blue"></button>
+              <button class="qr-color-btn" style="background:#dc2626;" onclick="changeQRColor('#dc2626', this)" title="Crimson Red"></button>
+              <button class="qr-color-btn" style="background:#7c3aed;" onclick="changeQRColor('#7c3aed', this)" title="Purple"></button>
+              <div class="color-picker-wrapper">
+                <input type="color" id="qrColorPicker" value="#080f0d" oninput="changeQRColor(this.value, this)" title="Custom Color" />
+              </div>
+            </div>
           </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 7px;">
-            <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--ink); cursor: pointer;">
-              <input type="checkbox" id="autoCropBg" checked onchange="toggleAutoCrop()" style="accent-color: var(--g); width: 14px; height: 14px; cursor: pointer;" />
-              <span>Auto-trim &amp; remove white background</span>
-            </label>
+          <div class="qr-templates" style="display: none; margin-top: 14px;">
+            <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Template</label>
+            <div class="qr-template-options">
+              <button class="qr-temp-btn active" onclick="changeQRTemplate('classic', this)">Classic</button>
+              <button class="qr-temp-btn" onclick="changeQRTemplate('minimal', this)">Minimal</button>
+              <button class="qr-temp-btn" onclick="changeQRTemplate('stand', this)">Table Stand</button>
+            </div>
           </div>
-          <div class="hint" style="font-size: 10.5px; margin-top: 4px; color: var(--ink3);">Automatically trims dead white space &amp; cleans backgrounds so your logo looks huge &amp; bold</div>
-        </div>
-        <button class="btn-dl" id="dlBtn" onclick="downloadQR()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-          Download QR code
-        </button>
-      </div>
-    </div>
 
-    <!-- LIVE PREVIEW -->
-    <div class="card">
-      <div class="card-head">
-        <div class="ch-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-        </div>
-        <div>
-          <div class="ch-title">Live preview</div>
-          <div class="ch-sub">How it looks in WhatsApp</div>
+          <!-- CUSTOM LOGO UPLOAD -->
+          <div class="qr-logo-section" id="qrLogoSection" style="display: none; margin-top: 14px; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="lbl" style="font-size: 11px; margin-bottom: 0;">Center Logo <span class="opt">(Optional)</span></label>
+              <button type="button" id="resetLogoBtn" onclick="resetQRLogo()" style="display: none; background: none; border: none; color: #dc2626; font-size: 11px; font-weight: 600; cursor: pointer; padding: 0;">✕ Remove Logo</button>
+            </div>
+            <div class="logo-upload-wrap">
+              <label for="qrLogoFile" class="btn-logo-upload" style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 12px; border: 1.5px dashed var(--bd2); border-radius: 8px; background: var(--bgl); font-size: 12px; font-weight: 600; color: var(--ink2); cursor: pointer; transition: all 0.15s; width: 100%; box-sizing: border-box;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 15px; height: 15px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <span id="logoUploadLbl">Upload Custom Brand/Store Logo</span>
+              </label>
+              <input type="file" id="qrLogoFile" accept="image/png, image/jpeg, image/webp, image/svg+xml" style="display: none;" onchange="handleQRLogoUpload(this)" />
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 7px;">
+              <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--ink); cursor: pointer;">
+                <input type="checkbox" id="autoCropBg" checked onchange="toggleAutoCrop()" style="accent-color: var(--g); width: 14px; height: 14px; cursor: pointer;" />
+                <span>Auto-trim &amp; remove white background</span>
+              </label>
+            </div>
+            <div class="hint" style="font-size: 10.5px; margin-top: 4px; color: var(--ink3);">Automatically trims dead white space &amp; cleans backgrounds so your logo looks huge &amp; bold</div>
+          </div>
+          <button class="btn-dl" id="dlBtn" onclick="downloadQR()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Download QR code
+          </button>
         </div>
       </div>
-      <div class="preview-phone">
-        <div class="preview-notch"></div>
-        <div class="preview-screen">
-          <div class="preview-bar">
-            <div class="preview-av">
-              <svg viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+
+      <!-- VIEW 2: LIVE CHAT PREVIEW -->
+      <div id="view-chat" class="studio-view" style="display: none; padding: 10px 0;">
+        <div class="preview-phone" style="margin: 0 auto;">
+          <div class="preview-notch"></div>
+          <div class="preview-screen">
+            <div class="preview-bar">
+              <div class="preview-av">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+              </div>
+              <div>
+                <div class="preview-name">You</div>
+                <div class="preview-status">online</div>
+              </div>
             </div>
-            <div>
-              <div class="preview-name">You</div>
-              <div class="preview-status">online</div>
+            <div class="preview-body">
+              <div class="bubble">
+                <div class="bubble-msg ph" id="pvMsg">Type a message above...</div>
+                <div class="bubble-link" id="pvLink"></div>
+                <div class="bubble-time">now ✓✓</div>
+              </div>
             </div>
-          </div>
-          <div class="preview-body">
-            <div class="bubble">
-              <div class="bubble-msg ph" id="pvMsg">Type a message above...</div>
-              <div class="bubble-link" id="pvLink"></div>
-              <div class="bubble-time">now ✓✓</div>
+            <div class="preview-input">
+              <div class="preview-input-inner">Type a message</div>
             </div>
-          </div>
-          <div class="preview-input">
-            <div class="preview-input-inner">Type a message</div>
           </div>
         </div>
       </div>
@@ -734,15 +739,15 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 
 <style>
 .tool-grid {
-  max-width: 1020px;
-  margin: 2rem auto 0;
+  max-width: 1040px;
+  margin: 1.25rem auto 0;
   padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 16px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
   align-items: start;
 }
-@media(max-width:740px){ .tool-grid { grid-template-columns: 1fr; } }
+@media(max-width:740px){ .tool-grid { grid-template-columns: 1fr; margin-top: 1rem; gap: 14px; } }
 
 .trust-section { padding: 2.5rem 0 1.5rem; }
 .hiw-section { padding: 3rem 0 2rem; border-top: 1px solid var(--bd); }
@@ -1531,5 +1536,30 @@ function toast(msg) {
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+function switchStudioView(view) {
+  const vQR = document.getElementById('view-qr');
+  const vChat = document.getElementById('view-chat');
+  const tQR = document.getElementById('tabViewQR');
+  const tChat = document.getElementById('tabViewChat');
+  const sTitle = document.getElementById('studioTitle');
+  const sSub = document.getElementById('studioSub');
+  
+  if (view === 'chat') {
+    if (vQR) vQR.style.display = 'none';
+    if (vChat) vChat.style.display = 'block';
+    if (tQR) tQR.classList.remove('active');
+    if (tChat) tChat.classList.add('active');
+    if (sTitle) sTitle.textContent = 'Live Chat Preview';
+    if (sSub) sSub.textContent = 'How it looks in WhatsApp';
+  } else {
+    if (vQR) vQR.style.display = 'block';
+    if (vChat) vChat.style.display = 'none';
+    if (tQR) tQR.classList.add('active');
+    if (tChat) tChat.classList.remove('active');
+    if (sTitle) sTitle.textContent = 'QR Code Studio';
+    if (sSub) sSub.textContent = 'Print on cards, banners & menus';
+  }
 }
 </script>
