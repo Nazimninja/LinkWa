@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://linkwa.in/sitemap.xml
+Sitemap: https://linkwa.in/rss.xml

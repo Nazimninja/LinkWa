@@ -32,8 +32,38 @@
   </url>
   <url>
     <loc>https://linkwa.in/blog</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://linkwa.in/blog/whatsapp-usernames-feature-guide</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://linkwa.in/blog/whatsapp-meta-ai-voice-photo-mode-update</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://linkwa.in/blog/whatsapp-channels-new-features-video-notes-qr</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://linkwa.in/blog/meta-business-agents-whatsapp-ai-automation</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://linkwa.in/blog/whatsapp-advanced-chat-privacy-multi-device-update</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
