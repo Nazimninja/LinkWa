@@ -16,6 +16,51 @@ export const authorInfo = {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'whatsapp-usernames-feature-guide',
+    title: 'WhatsApp Usernames Feature: How to Chat Without Sharing Your Phone Number (2026 Update)',
+    excerpt: 'WhatsApp has officially rolled out usernames. Learn how the new @username system works, how to reserve your handle, and how to create privacy-first click-to-chat links.',
+    tag: 'News',
+    readTime: '5 min read',
+    date: 'Sep 22, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-meta-ai-voice-photo-mode-update',
+    title: 'Meta AI Voice & Photo Mode on WhatsApp: Everything You Need to Know',
+    excerpt: 'Meta AI now supports real-time voice conversations, camera photo recognition, and live chat summaries directly inside WhatsApp. Here is how to use it for business and daily tasks.',
+    tag: 'Features',
+    readTime: '6 min read',
+    date: 'Sep 22, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-channels-new-features-video-notes-qr',
+    title: 'WhatsApp Channels Major Update: 60-Sec Video Notes, Voice Transcripts & QR Codes',
+    excerpt: 'Meta releases a massive update for WhatsApp Channels with video notes, automated voice transcripts, and instant QR code sharing. Complete guide for channel admins.',
+    tag: 'News',
+    readTime: '5 min read',
+    date: 'Sep 22, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'meta-business-agents-whatsapp-ai-automation',
+    title: 'Meta Business Agents: WhatsApp Launches AI Customer Support & Sales Automation',
+    excerpt: 'WhatsApp Business introduces autonomous AI agents to qualify leads, book appointments, and provide 24/7 customer support. Here is how small businesses can set it up.',
+    tag: 'Automation',
+    readTime: '7 min read',
+    date: 'Sep 22, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-advanced-chat-privacy-multi-device-update',
+    title: 'WhatsApp Advanced Chat Privacy & Independent Multi-Device Sync (2026)',
+    excerpt: 'Discover WhatsApp new privacy shields: blocking chat exports, preventing AI scraping on private chats, and true standalone desktop sync without your phone being online.',
+    tag: 'News',
+    readTime: '5 min read',
+    date: 'Sep 22, 2026',
+    author: authorInfo.name
+  },
+  {
     slug: 'whatsapp-channel-link-growth-guide',
     title: 'How to Create, Share & Promote a WhatsApp Channel Link (2026 Growth Guide)',
     excerpt: 'Step-by-step guide to finding, copying, and sharing your WhatsApp Channel link. Learn how to create QR codes, promote on Instagram/TikTok, and grow your subscriber base.',
