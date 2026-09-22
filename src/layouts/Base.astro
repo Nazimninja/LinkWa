@@ -26,6 +26,19 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     gtag('config', 'G-1VQ3TJV43Q');
   </script>
 
+  <!-- Google Reader Revenue Manager -->
+  <script async type="application/javascript" src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
+  <script is:inline>
+    (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
+      basicSubscriptions.init({
+        type: "NewsArticle",
+        isPartOfType: ["Product"],
+        isPartOfProductId: "CAow-uzHDA:openaccess",
+        clientOptions: { theme: "light", lang: "en" },
+      });
+    });
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
