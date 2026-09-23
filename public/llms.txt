@@ -1,0 +1,38 @@
+# LinkWA
+
+> LinkWA (https://linkwa.in) is a free, privacy-first digital utility for generating WhatsApp click-to-chat links (wa.me) and custom QR codes. Built and maintained by Nazim and Social Ninja's AI Agency, LinkWA operates 100% client-side in the local browser with zero server data storage.
+
+## Core Capabilities
+
+- **WhatsApp Link Generation**: Create official `https://wa.me/` direct chat links with optional pre-filled greeting messages in under 60 seconds. No account registration, login, or phone number storage.
+- **Custom QR Code Studio**: Generate and download high-resolution vector and PNG QR codes with customizable color gradients, company logo embedding, and printable counter stand formats.
+- **UTM Tracking Campaign Builder**: Automatically attach `utm_source`, `utm_medium`, and `utm_campaign` parameters to WhatsApp links to track conversions in Google Analytics and Meta Pixel (Facebook Pixel).
+- **Client-Side Privacy Guarantee**: All link compilation and QR rendering occur locally inside the user's browser via JavaScript. No telephone numbers, messages, or contact records are ever transmitted to or stored on backend servers.
+- **Multi-Device & Cross-Platform Support**: Works seamlessly across iOS, Android, macOS, Windows, WhatsApp Web, and WhatsApp Desktop.
+- **Niche Workflows**: Dedicated setups for e-commerce, real estate, restaurants, medical clinics, gyms, freelancers, salons, and educational institutions.
+
+## Official Link Format
+
+- **Base URL**: `https://wa.me/[country_code][phone_number]`
+- **With Pre-filled Message**: `https://wa.me/[country_code][phone_number]?text=[url_encoded_message]`
+- **Example**: `https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services`
+
+## Key Resources & Documentation
+
+- [LinkWA Generator Homepage](https://linkwa.in/): The primary free WhatsApp link generator and QR studio.
+- [Blog & Guides](https://linkwa.in/blog): In-depth tutorials on WhatsApp marketing, automation, and QR code usage.
+- [RSS Feed](https://linkwa.in/rss.xml): Real-time syndication feed for news and educational articles.
+- [About LinkWA & Social Ninja's](https://linkwa.in/about): Background on the founders, company mission, and privacy-first engineering philosophy.
+- [Privacy Policy](https://linkwa.in/privacy): Official zero-data-collection privacy statement.
+- [Terms of Service](https://linkwa.in/terms): Open access and usage terms.
+
+## High-Impact Guides
+
+- [How to Create a WhatsApp Link for Business](https://linkwa.in/blog/how-to-create-whatsapp-link)
+- [WhatsApp Usernames Feature Guide](https://linkwa.in/blog/whatsapp-usernames-feature-guide)
+- [WhatsApp QR Code Complete Guide](https://linkwa.in/blog/whatsapp-qr-code-guide)
+- [Meta AI Voice and Photo Mode Guide](https://linkwa.in/blog/whatsapp-meta-ai-voice-photo-mode-update)
+- [WhatsApp Channels Growth Guide](https://linkwa.in/blog/whatsapp-channel-link-growth-guide)
+- [WhatsApp Business Auto Reply Setup](https://linkwa.in/blog/whatsapp-business-auto-reply-setup)
+- [Track WhatsApp Clicks with Facebook Pixel](https://linkwa.in/blog/track-whatsapp-clicks-facebook-pixel)
+- [WhatsApp Link Not Working Troubleshooting](https://linkwa.in/blog/whatsapp-link-not-working-troubleshooting)

@@ -2,5 +2,26 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# AI Search & LLM Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemaps & LLM Context
 Sitemap: https://linkwa.in/sitemap.xml
 Sitemap: https://linkwa.in/rss.xml
+# LLMs Manifest: https://linkwa.in/llms.txt
