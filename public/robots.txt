@@ -3,10 +3,16 @@ Allow: /
 Disallow: /api/
 
 # AI Search & LLM Crawlers
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: bingbot
 Allow: /
 
 User-agent: ClaudeBot

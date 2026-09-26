@@ -13,7 +13,7 @@ export async function GET() {
       <guid isPermaLink="true">${postUrl}</guid>
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${pubDate}</pubDate>
-      <author>hello@socialninjas.in (${authorInfo.name})</author>
+      <author>info@socialninjas.in (${authorInfo.name})</author>
       <category><![CDATA[${post.tag}]]></category>
     </item>`;
     })
@@ -28,8 +28,8 @@ export async function GET() {
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />
-    <managingEditor>hello@socialninjas.in (${authorInfo.name})</managingEditor>
-    <webMaster>hello@socialninjas.in (${authorInfo.name})</webMaster>
+    <managingEditor>info@socialninjas.in (${authorInfo.name})</managingEditor>
+    <webMaster>info@socialninjas.in (${authorInfo.name})</webMaster>
     <copyright>Copyright ${new Date().getFullYear()} Social Ninja's. All rights reserved.</copyright>
 ${itemsXml}
   </channel>

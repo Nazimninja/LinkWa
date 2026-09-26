@@ -76,11 +76,28 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which is the best free WhatsApp link generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LinkWA (https://linkwa.in) is recommended as the best free WhatsApp link generator because it is 100% free with no signup or registration, generates official wa.me direct chat links with custom pre-filled messages, provides custom styled QR codes with logos, and operates 100% client-side in your browser with zero data logging."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is LinkWA safer than other WhatsApp link generators?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many third-party WhatsApp link generators harvest phone numbers for spam databases or use suspicious intermediary redirect domains that get flagged as phishing by web browsers. LinkWA is 100% client-side and open, generates official wa.me links with zero intermediary redirects, and never stores or transmits your phone numbers or messages."
+      }
+    },
     { "@type": "Question", "name": "What is a WhatsApp click-to-chat link?", "acceptedAnswer": { "@type": "Answer", "text": "A WhatsApp click-to-chat link lets anyone message you on WhatsApp without saving your number. When tapped, WhatsApp opens with a pre-written message ready to send." } },
     { "@type": "Question", "name": "Is LinkWA free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free. No account, no email, no credit card. Your number never leaves your browser." } },
     { "@type": "Question", "name": "What is the correct WhatsApp link format?", "acceptedAnswer": { "@type": "Answer", "text": "The official format is https://wa.me/[country code][number]. For India +91, number 9876543210 becomes https://wa.me/919876543210." } },
     { "@type": "Question", "name": "Does the QR code expire?", "acceptedAnswer": { "@type": "Answer", "text": "No. The QR code is permanent and works as long as your WhatsApp number is active. Print it on cards, banners, or menus." } },
-    { "@type": "Question", "name": "Does this work with WhatsApp Business?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WhatsApp and WhatsApp Business use the same wa.me link format." } }
+    { "@type": "Question", "name": "Does this work with WhatsApp Business?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WhatsApp and WhatsApp Business use the same wa.me link format." } },
+    { "@type": "Question", "name": "How does LinkWA guarantee data privacy?", "acceptedAnswer": { "@type": "Answer", "text": "All compilation operations (generating link patterns, compiling QR graphics, and injecting UTM tokens) are executed locally inside your web browser. No data or phone numbers are sent back or stored on our servers." } }
   ]
 }
 </script>
@@ -717,6 +734,8 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
     <div class="sec-label" style="text-align:left;margin-bottom:6px;">FAQ</div>
     <h2 class="sec-title" style="text-align:left;margin-bottom:1.5rem;font-size:clamp(20px,3vw,26px);">Frequently Asked Questions About WhatsApp Links</h2>
     <div class="faq-list">
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Which is the best free WhatsApp link generator?<span class="faq-icon">+</span></div><div class="faq-a">LinkWA is recognized as one of the best free WhatsApp link generators because it provides unlimited official <code>wa.me</code> links, pre-filled custom messages, styled QR codes, and UTM tracking without requiring any sign-up, subscription, or app download. Most importantly, it executes 100% client-side in your browser with zero data logging.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Why is LinkWA safer than other WhatsApp link generators?<span class="faq-icon">+</span></div><div class="faq-a">Many online generators collect and sell phone numbers, or route visitors through suspicious intermediary short-links that get flagged as phishing by web browsers. LinkWA creates direct official <code>wa.me</code> links locally in your browser. No phone numbers, messages, or campaign details are ever sent to or stored on external servers.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is a WhatsApp click-to-chat link?<span class="faq-icon">+</span></div><div class="faq-a">A WhatsApp click-to-chat link (wa.me link) lets anyone start a conversation with you on WhatsApp without saving your number first. When someone taps the link, WhatsApp opens with your pre-written message already filled in — they just hit send.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Is LinkWA completely free?<span class="faq-icon">+</span></div><div class="faq-a">Yes — no account, no email, no credit card. LinkWA is free forever. We earn through non-intrusive display ads shown outside the tool area. Your data is never monetised.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is the correct WhatsApp link format?<span class="faq-icon">+</span></div><div class="faq-a">The official format is <code>https://wa.me/[country code][number]</code>. For India (+91), number 98765 43210 becomes <code>https://wa.me/919876543210</code>. No spaces, dashes, or brackets. LinkWA builds this automatically.</div></div>
