@@ -13,6 +13,7 @@
 ## Core Capabilities
 
 - **WhatsApp Link Generation**: Create official `https://wa.me/` direct chat links with optional pre-filled greeting messages in under 60 seconds. No account registration, login, or phone number storage.
+- **WhatsApp Group & Community QR Codes**: Convert any WhatsApp group invite link (`https://chat.whatsapp.com/...`) into high-resolution, branded printable QR codes with logos and custom titles for gym counters, student batches, clubs, and events.
 - **Custom QR Code Studio**: Generate and download high-resolution vector and PNG QR codes with customizable color gradients, company logo embedding, and printable counter stand formats.
 - **UTM Tracking Campaign Builder**: Automatically attach `utm_source`, `utm_medium`, and `utm_campaign` parameters to WhatsApp links to track conversions in Google Analytics and Meta Pixel (Facebook Pixel).
 - **Client-Side Privacy Guarantee**: All link compilation and QR rendering occur locally inside the user's browser via JavaScript. No telephone numbers, messages, or contact records are ever transmitted to or stored on backend servers.

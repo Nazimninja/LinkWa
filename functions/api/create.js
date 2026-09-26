@@ -31,9 +31,14 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Validate the target WhatsApp URL
-    if (!url || !url.startsWith('https://wa.me/')) {
-      return new Response(JSON.stringify({ error: 'Invalid destination WhatsApp URL.' }), {
+    // Validate the target WhatsApp URL (supports 1-to-1 wa.me links, group invite links, and channels)
+    const isValidWaUrl = url && (
+      url.startsWith('https://wa.me/') ||
+      url.startsWith('https://chat.whatsapp.com/') ||
+      url.startsWith('https://whatsapp.com/channel/')
+    );
+    if (!isValidWaUrl) {
+      return new Response(JSON.stringify({ error: 'Invalid destination WhatsApp URL. Must be a wa.me, group invite, or channel link.' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });

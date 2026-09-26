@@ -97,6 +97,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
     { "@type": "Question", "name": "What is the correct WhatsApp link format?", "acceptedAnswer": { "@type": "Answer", "text": "The official format is https://wa.me/[country code][number]. For India +91, number 9876543210 becomes https://wa.me/919876543210." } },
     { "@type": "Question", "name": "Does the QR code expire?", "acceptedAnswer": { "@type": "Answer", "text": "No. The QR code is permanent and works as long as your WhatsApp number is active. Print it on cards, banners, or menus." } },
     { "@type": "Question", "name": "Does this work with WhatsApp Business?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WhatsApp and WhatsApp Business use the same wa.me link format." } },
+    { "@type": "Question", "name": "Can I create a QR code for a WhatsApp group or community?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! Switch to the 'Group Invite' tab on LinkWA, paste your WhatsApp group invite link (https://chat.whatsapp.com/...), and optionally enter your group name. LinkWA creates a branded QR code with your logo and colors, ready to download for printable acrylic table stands or counter posters." } },
     { "@type": "Question", "name": "How does LinkWA guarantee data privacy?", "acceptedAnswer": { "@type": "Answer", "text": "All compilation operations (generating link patterns, compiling QR graphics, and injecting UTM tokens) are executed locally inside your web browser. No data or phone numbers are sent back or stored on our servers." } }
   ]
 }
@@ -130,6 +131,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
     <button class="tab active" onclick="switchTab('basic',this)">Basic Link</button>
     <button class="tab" onclick="switchTab('utm',this)">UTM Tracking</button>
     <button class="tab" onclick="switchTab('multi',this)">Multi-Number</button>
+    <button class="tab" onclick="switchTab('group',this)">👥 Group Invite</button>
   </div>
 </div>
 
@@ -301,6 +303,36 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           + Add Another Number
         </button>
         <div class="hint">One link per team — perfect for bio, website, or print material</div>
+      </div>
+
+      <!-- GROUP PANEL -->
+      <div id="panel-group" class="panel">
+        <div class="field">
+          <label class="lbl">WhatsApp Group or Community Link</label>
+          <input type="url" id="groupLink" placeholder="https://chat.whatsapp.com/L1k89..." oninput="live()" />
+          <div class="hint">In WhatsApp: Open Group → Tap Group Subject → <strong>Invite to Group via Link</strong> → Copy Link</div>
+        </div>
+        <div class="field">
+          <label class="lbl">Group or Business Name <span class="opt">(optional)</span></label>
+          <input type="text" id="groupName" placeholder="e.g. Iron Gym Members Batch, VIP Food Club" oninput="live()" />
+          <div class="hint">Displays prominently on your printable QR counter standee & preview</div>
+        </div>
+        <div class="field">
+          <label class="lbl">Custom Branded Short Link <span class="opt">(optional)</span></label>
+          <div class="short-slug-row">
+            <span class="slug-prefix">linkwa.in/</span>
+            <input type="text" id="gslug" placeholder="my-gym-group" oninput="live()" />
+          </div>
+          <div class="hint">Create a short memorable link for posters & flyers (e.g. linkwa.in/my-gym-group)</div>
+        </div>
+        <div style="background:var(--gl); border:1.5px dashed var(--g); border-radius:12px; padding:12px 14px; margin-top:8px;">
+          <div style="display:flex; align-items:center; gap:6px; font-weight:700; font-size:12.5px; color:var(--gd); margin-bottom:4px;">
+            <span>🏋️‍♂️</span> Perfect for Gyms, Cafes & Communities
+          </div>
+          <p style="font-size:11.5px; color:var(--ink2); line-height:1.45; margin:0;">
+            Print this QR code on reception counter acrylic stands, batch boards, or entrance posters so new members can scan and join your WhatsApp group in 1 second!
+          </p>
+        </div>
       </div>
 
       <button class="btn-gen" onclick="generate()">
@@ -750,6 +782,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is UTM tracking and why should I use it?<span class="faq-icon">+</span></div><div class="faq-a">UTM parameters are tags added to your link so Google Analytics can tell you exactly which ad, post, or campaign generated each WhatsApp enquiry. Switch to the UTM Tracking tab — LinkWA appends them automatically.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does the QR code expire?<span class="faq-icon">+</span></div><div class="faq-a">No. The QR code is a permanent scannable version of your wa.me link. Print it on business cards, menus, or banners — it works indefinitely as long as your WhatsApp number is active.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does this work with WhatsApp Business?<span class="faq-icon">+</span></div><div class="faq-a">Yes. WhatsApp and WhatsApp Business use the same wa.me format. Enter your Business number and everything works identically — pre-filled message, QR code, and UTM tracking.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Can I create a QR code for a WhatsApp group or community?<span class="faq-icon">+</span></div><div class="faq-a">Yes! Switch to the <strong>Group Invite</strong> tab on LinkWA, paste your group invite link (<code>https://chat.whatsapp.com/...</code>), and optionally type your group name. LinkWA generates a high-definition branded QR code with your logo and colors, ready to download for printable acrylic table stands, gym reception counters, or batch posters.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Why does my generated link show an error when clicked?<span class="faq-icon">+</span></div><div class="faq-a">This usually happens if you entered the country code twice or included symbols/letters in the phone number box. Ensure you select the correct country flag (which adds the code automatically) and input only local numerical digits (e.g. do not enter a leading 0 or + symbol manually).</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Can I edit my custom branded short link after generating it?<span class="faq-icon">+</span></div><div class="faq-a">Yes! LinkWA allows unlimited editing and updating of your custom short links. Simply enter your custom short link name (slug) with your new phone number or message and click Generate to update it instantly.</div></div>
       <div class="faq-item" onclick="faq(this)"><div class="faq-q">Is there a limit to how many links or QR codes I can generate?<span class="faq-icon">+</span></div><div class="faq-a">No. You can create as many basic wa.me links, customized styled QR codes, and custom branded short links as your business requires. LinkWA is built as an open, unlimited public utility.</div></div>
@@ -873,6 +906,11 @@ function switchTab(t, btn) {
     if (rightMultiOut && !rightMultiOut.innerHTML.trim()) {
       rightMultiOut.innerHTML = '<div style="padding:18px; background:var(--gl); border:1.5px dashed var(--g); border-radius:12px; font-size:13px; color:var(--gd); text-align:center; font-weight:600; line-height:1.5;">Enter team numbers on the left and click<br><strong>"Generate WhatsApp Link"</strong> to create all links.</div>';
     }
+  } else if (t === 'group') {
+    if (deskTitle) deskTitle.textContent = 'Your Group QR & Link';
+    if (deskSub) deskSub.textContent = 'Print for counter stands, posters or flyers';
+    if (deskSingle) deskSingle.style.display = 'block';
+    if (deskMulti) deskMulti.style.display = 'none';
   } else {
     if (deskTitle) deskTitle.textContent = 'Your WhatsApp link';
     if (deskSub) deskSub.textContent = 'Ready to copy and share';
@@ -909,6 +947,23 @@ function buildUrl() {
     if (k) ps.push('utm_content=' + encodeURIComponent(k));
     return 'https://wa.me/' + c + p + (ps.length ? '?' + ps.join('&') : '');
   }
+  if (tab === 'group') {
+    let raw = (document.getElementById('groupLink')?.value || '').trim();
+    if (!raw) return '';
+    if (raw.startsWith('https://chat.whatsapp.com/') || raw.startsWith('http://chat.whatsapp.com/')) {
+      return raw.replace('http://', 'https://');
+    }
+    if (raw.startsWith('chat.whatsapp.com/')) {
+      return 'https://' + raw;
+    }
+    if (raw.startsWith('https://whatsapp.com/channel/') || raw.startsWith('whatsapp.com/channel/')) {
+      return raw.startsWith('http') ? raw : 'https://' + raw;
+    }
+    if (/^[A-Za-z0-9_-]{15,35}$/.test(raw)) {
+      return 'https://chat.whatsapp.com/' + raw;
+    }
+    return raw.startsWith('http') ? raw : 'https://' + raw;
+  }
   return '';
 }
 
@@ -917,17 +972,24 @@ function live() {
   curUrl = url;
   const el = document.getElementById('rurl');
   if (url) { el.className = 'result-url'; el.textContent = url; }
-  else { el.className = 'result-url empty'; el.textContent = 'Your link appears here after you generate...'; }
+  else { el.className = 'result-url empty'; el.textContent = tab === 'group' ? 'Your group link & QR appear here...' : 'Your link appears here after you generate...'; }
   updatePreview();
 }
 
 function updatePreview() {
   const pm = document.getElementById('pvMsg');
   const pl = document.getElementById('pvLink');
-  let m = tab === 'basic' ? (document.getElementById('msg').value||'').trim()
-        : tab === 'utm'   ? (document.getElementById('umsg').value||'').trim() : '';
+  let m = '';
+  if (tab === 'basic') {
+    m = (document.getElementById('msg')?.value || '').trim();
+  } else if (tab === 'utm') {
+    m = (document.getElementById('umsg')?.value || '').trim();
+  } else if (tab === 'group') {
+    const grp = (document.getElementById('groupName')?.value || '').trim();
+    m = grp ? `👋 Tap to join "${grp}" on WhatsApp!` : '👋 Tap to join our WhatsApp group / community!';
+  }
   if (m) { pm.className='bubble-msg'; pm.textContent=m; } 
-  else { pm.className='bubble-msg ph'; pm.textContent='Type a message above...'; }
+  else { pm.className='bubble-msg ph'; pm.textContent=tab === 'group' ? 'Join WhatsApp Group' : 'Type a message above...'; }
   if (curUrl) { pl.style.display='block'; pl.textContent=curUrl.length>40?curUrl.slice(0,40)+'...':curUrl; }
   else pl.style.display='none';
 }
@@ -979,9 +1041,12 @@ function shareInlineLink() {
 async function generate() {
   if (tab === 'multi') { genMulti(); return; }
   live();
-  if (!curUrl) { toast('Please enter a phone number first'); return; }
+  if (!curUrl) { 
+    toast(tab === 'group' ? 'Please paste your WhatsApp group invite link' : 'Please enter a phone number first'); 
+    return; 
+  }
   
-  const slugInput = tab === 'basic' ? document.getElementById('slug') : document.getElementById('uslug');
+  const slugInput = tab === 'basic' ? document.getElementById('slug') : (tab === 'utm' ? document.getElementById('uslug') : document.getElementById('gslug'));
   const slugValue = slugInput ? slugInput.value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, '') : '';
   
   if (tab === 'utm') {
@@ -990,6 +1055,12 @@ async function generate() {
       utm_source: document.getElementById('us').value.trim() || 'none',
       utm_medium: document.getElementById('um').value.trim() || 'none',
       utm_campaign: document.getElementById('uc').value.trim() || 'none',
+      has_slug: Boolean(slugValue)
+    });
+  } else if (tab === 'group') {
+    trackEvent('generate_link', {
+      generator_type: 'group',
+      has_group_name: Boolean(document.getElementById('groupName')?.value.trim()),
       has_slug: Boolean(slugValue)
     });
   } else {
@@ -1045,7 +1116,7 @@ async function generate() {
     }
   } else {
     renderQR(curUrl);
-    toast('WhatsApp link & QR code ready!');
+    toast(tab === 'group' ? 'Group invite link & QR code ready!' : 'WhatsApp link & QR code ready!');
     showInlineSingle(curUrl);
   }
 }
@@ -1567,12 +1638,16 @@ function downloadQR() {
         const ctx = c.getContext('2d');
         ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
         
+        const grp = tab === 'group' ? ((document.getElementById('groupName')?.value || '').trim()) : '';
+        const titleText = tab === 'group' ? 'SCAN TO JOIN' : 'SCAN TO CHAT';
+        const subText = tab === 'group' ? (grp ? `Join ${grp}` : 'Join our WhatsApp Group') : 'Message us on WhatsApp';
+        
         ctx.fillStyle = qrColor; ctx.fillRect(0, 0, W, HEADER);
         ctx.fillStyle = '#ffffff'; ctx.font = '700 54px -apple-system,BlinkMacSystemFont,sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('SCAN TO CHAT', W / 2, HEADER / 2 - 24);
+        ctx.fillText(titleText, W / 2, HEADER / 2 - 24);
         ctx.font = '500 34px -apple-system,sans-serif';
-        ctx.fillText('Message us on WhatsApp', W / 2, HEADER / 2 + 38);
+        ctx.fillText(subText, W / 2, HEADER / 2 + 38);
         
         const QSz = W - PAD * 2;
         const qrTop = HEADER + 60;
@@ -1602,7 +1677,9 @@ function downloadQR() {
         ctx.fillStyle = qrColor; ctx.fillRect(0, 0, W, HEADER);
         ctx.fillStyle = '#ffffff'; ctx.font = '700 44px -apple-system,BlinkMacSystemFont,sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText('Scan to chat on WhatsApp', W / 2, HEADER / 2);
+        const grp = tab === 'group' ? ((document.getElementById('groupName')?.value || '').trim()) : '';
+        const classicText = tab === 'group' ? (grp ? `Scan to join ${grp}` : 'Scan to join WhatsApp Group') : 'Scan to chat on WhatsApp';
+        ctx.fillText(classicText, W / 2, HEADER / 2);
         
         const QSz = W - PAD * 2;
         const qrTop = HEADER + 40;
