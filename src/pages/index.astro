@@ -375,23 +375,32 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
         </div>
         <div>
-          <div class="ch-title">Your WhatsApp link</div>
-          <div class="ch-sub">Ready to copy and share</div>
+          <div class="ch-title" id="desktopCardTitle">Your WhatsApp link</div>
+          <div class="ch-sub" id="desktopCardSub">Ready to copy and share</div>
         </div>
       </div>
-      <div class="result-wrap">
-        <span class="result-url empty" id="rurl">Your link appears here after you generate...</span>
-        <button class="copy-btn" id="cpbtn" onclick="copyLink()">Copy</button>
+      
+      <!-- DESKTOP SINGLE LINK AREA -->
+      <div id="desktop-single-area">
+        <div class="result-wrap">
+          <span class="result-url empty" id="rurl">Your link appears here after you generate...</span>
+          <button class="copy-btn" id="cpbtn" onclick="copyLink()">Copy</button>
+        </div>
+        <div class="act-row">
+          <button class="act-btn" onclick="testLink()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Test link
+          </button>
+          <button class="act-btn" onclick="shareLink()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+            Share
+          </button>
+        </div>
       </div>
-      <div class="act-row">
-        <button class="act-btn" onclick="testLink()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          Test link
-        </button>
-        <button class="act-btn" onclick="shareLink()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-          Share
-        </button>
+
+      <!-- DESKTOP MULTI LINK AREA -->
+      <div id="desktop-multi-area" style="display: none;">
+        <div id="multiOut"></div>
       </div>
 
       <!-- Social Ninja's Agency Conversion Card (Desktop) -->
@@ -412,8 +421,6 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           <span>Get Free WhatsApp Automation Audit →</span>
         </a>
       </div>
-
-      <div id="multiOut"></div>
     </div>
 
     <!-- VISUAL STUDIO CARD (QR & LIVE PREVIEW SWITCHER) -->
@@ -835,13 +842,45 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 let tab = 'basic', curUrl = '', qrColor = '#080f0d', qrTemplate = 'classic';
 let customLogoData = null, customLogoImg = null, waLogoSvg = '', rawLogoImg = null;
 
+function trackEvent(name, params = {}) {
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params);
+    }
+  } catch (e) {
+    console.debug('Tracking error:', e);
+  }
+}
+
 function switchTab(t, btn) {
   tab = t;
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-' + t).classList.add('active');
   btn.classList.add('active');
-  document.getElementById('multiOut').innerHTML = '';
+
+  const deskTitle = document.getElementById('desktopCardTitle');
+  const deskSub = document.getElementById('desktopCardSub');
+  const deskSingle = document.getElementById('desktop-single-area');
+  const deskMulti = document.getElementById('desktop-multi-area');
+
+  if (t === 'multi') {
+    if (deskTitle) deskTitle.textContent = 'Your Team Links';
+    if (deskSub) deskSub.textContent = 'Individual links for each team member';
+    if (deskSingle) deskSingle.style.display = 'none';
+    if (deskMulti) deskMulti.style.display = 'block';
+    const rightMultiOut = document.getElementById('multiOut');
+    if (rightMultiOut && !rightMultiOut.innerHTML.trim()) {
+      rightMultiOut.innerHTML = '<div style="padding:18px; background:var(--gl); border:1.5px dashed var(--g); border-radius:12px; font-size:13px; color:var(--gd); text-align:center; font-weight:600; line-height:1.5;">Enter team numbers on the left and click<br><strong>"Generate WhatsApp Link"</strong> to create all links.</div>';
+    }
+  } else {
+    if (deskTitle) deskTitle.textContent = 'Your WhatsApp link';
+    if (deskSub) deskSub.textContent = 'Ready to copy and share';
+    if (deskSingle) deskSingle.style.display = 'block';
+    if (deskMulti) deskMulti.style.display = 'none';
+  }
+
+  trackEvent('tab_switch', { tab_name: t });
   live();
 }
 
@@ -915,17 +954,20 @@ function copyInlineLink() {
     const btn = document.getElementById('inline-cpbtn');
     btn.textContent = 'Copied ✓';
     toast('Copied to clipboard!');
+    trackEvent('copy_link', { link_type: tab, context: 'inline' });
     setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
   });
 }
 
 function testInlineLink() {
   if (!curUrl) { toast('Generate a link first'); return; }
+  trackEvent('test_link', { link_type: tab, context: 'inline' });
   window.open(curUrl, '_blank');
 }
 
 function shareInlineLink() {
   if (!curUrl) { toast('Generate a link first'); return; }
+  trackEvent('share_link', { link_type: tab, context: 'inline' });
   if (navigator.share) {
     navigator.share({ title: 'My WhatsApp Link', url: curUrl });
   } else {
@@ -942,6 +984,22 @@ async function generate() {
   const slugInput = tab === 'basic' ? document.getElementById('slug') : document.getElementById('uslug');
   const slugValue = slugInput ? slugInput.value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, '') : '';
   
+  if (tab === 'utm') {
+    trackEvent('generate_link', {
+      generator_type: 'utm',
+      utm_source: document.getElementById('us').value.trim() || 'none',
+      utm_medium: document.getElementById('um').value.trim() || 'none',
+      utm_campaign: document.getElementById('uc').value.trim() || 'none',
+      has_slug: Boolean(slugValue)
+    });
+  } else {
+    trackEvent('generate_link', {
+      generator_type: 'basic',
+      has_message: Boolean(document.getElementById('msg').value.trim()),
+      has_slug: Boolean(slugValue)
+    });
+  }
+
   if (slugValue) {
     if (slugValue.length < 3) {
       toast('Custom name must be at least 3 characters');
@@ -1027,6 +1085,7 @@ function addMultiNumber() {
     <input type="text" class="mlabel" placeholder="Label: Team Member ${count}" />
   `;
   container.appendChild(div);
+  trackEvent('add_multi_number', { total_numbers: count });
   toast('Added Number ' + count);
 }
 
@@ -1043,6 +1102,7 @@ function copyMultiUrl(url, btn) {
     const orig = btn.textContent;
     btn.textContent = 'Copied ✓';
     toast('Copied to clipboard!');
+    trackEvent('copy_link', { link_type: 'multi' });
     setTimeout(() => { btn.textContent = orig; }, 2000);
   });
 }
@@ -1052,10 +1112,12 @@ function genMulti() {
   const codes = document.querySelectorAll('.mcc');
   const labels = document.querySelectorAll('.mlabel');
   let html = '', first = '';
+  let validCount = 0;
   
   phones.forEach((ph, i) => {
     const p = ph.value.replace(/\D/g,'');
     if (!p) return;
+    validCount++;
     const code = codes[i] ? codes[i].value : '91';
     const url = 'https://wa.me/' + code + p;
     const lbl = (labels[i] && labels[i].value.trim()) ? labels[i].value.trim() : ('Team ' + (i + 1));
@@ -1076,9 +1138,18 @@ function genMulti() {
     `;
   });
   
+  trackEvent('generate_link', { generator_type: 'multi', number_count: validCount });
+
   const rightMultiOut = document.getElementById('multiOut');
   if (rightMultiOut) rightMultiOut.innerHTML = html;
   
+  const deskSingle = document.getElementById('desktop-single-area');
+  const deskMulti = document.getElementById('desktop-multi-area');
+  if (deskSingle && deskMulti) {
+    deskSingle.style.display = 'none';
+    deskMulti.style.display = 'block';
+  }
+
   const inlineMulti = document.getElementById('inline-multiOut');
   const inlineOut = document.getElementById('inline-output');
   const inlineSingleArea = document.getElementById('inline-single-area');
@@ -1559,6 +1630,7 @@ function downloadQR() {
       a.download = `linkwa-qr-${qrTemplate}-hd.png`;
       a.href = c.toDataURL('image/png');
       a.click();
+      trackEvent('download_qr', { template: qrTemplate, has_custom_logo: Boolean(customLogoImg) });
       toast('HD Print-ready QR downloaded!');
     };
     img.src = src;
@@ -1574,12 +1646,18 @@ function copyLink() {
     const btn=document.getElementById('cpbtn');
     btn.textContent='Copied ✓'; btn.classList.add('done');
     toast('Copied to clipboard!');
+    trackEvent('copy_link', { link_type: tab, context: 'desktop' });
     setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('done'); },2000);
   });
 }
-function testLink() { if (!curUrl) { toast('Generate a link first'); return; } window.open(curUrl,'_blank'); }
+function testLink() {
+  if (!curUrl) { toast('Generate a link first'); return; }
+  trackEvent('test_link', { link_type: tab, context: 'desktop' });
+  window.open(curUrl,'_blank');
+}
 function shareLink() {
   if (!curUrl) { toast('Generate a link first'); return; }
+  trackEvent('share_link', { link_type: tab, context: 'desktop' });
   if (navigator.share) navigator.share({ title:'My WhatsApp Link', url:curUrl });
   else { navigator.clipboard.writeText(curUrl); toast('Link copied — share it anywhere!'); }
 }
