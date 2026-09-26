@@ -128,10 +128,10 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 <!-- TABS -->
 <div class="tab-wrap">
   <div class="tab-bar">
-    <button class="tab active" onclick="switchTab('basic',this)">Basic Link</button>
+    <button class="tab active" onclick="switchTab('basic',this)">Single Link</button>
     <button class="tab" onclick="switchTab('utm',this)">UTM Tracking</button>
     <button class="tab" onclick="switchTab('multi',this)">Multi-Number</button>
-    <button class="tab" onclick="switchTab('group',this)">👥 Group Invite</button>
+    <button class="tab" onclick="switchTab('group',this)">Group Invite</button>
   </div>
 </div>
 
@@ -146,8 +146,8 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
         </div>
         <div>
-          <div class="ch-title">Your details</div>
-          <div class="ch-sub">Enter your number and message</div>
+          <div class="ch-title" id="formCardTitle">Your details</div>
+          <div class="ch-sub" id="formCardSub">Enter your number and message</div>
         </div>
       </div>
 
@@ -308,36 +308,27 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       <!-- GROUP PANEL -->
       <div id="panel-group" class="panel">
         <div class="field">
-          <label class="lbl">WhatsApp Group or Community Link</label>
-          <input type="url" id="groupLink" placeholder="https://chat.whatsapp.com/L1k89..." oninput="live()" />
-          <div class="hint">In WhatsApp: Open Group → Tap Group Subject → <strong>Invite to Group via Link</strong> → Copy Link</div>
+          <label class="lbl">WhatsApp Group Link</label>
+          <input type="url" id="groupLink" placeholder="https://chat.whatsapp.com/..." oninput="live()" />
+          <div class="hint">Paste your WhatsApp group or community invite link</div>
         </div>
         <div class="field">
-          <label class="lbl">Group or Business Name <span class="opt">(optional)</span></label>
-          <input type="text" id="groupName" placeholder="e.g. Iron Gym Members Batch, VIP Food Club" oninput="live()" />
-          <div class="hint">Displays prominently on your printable QR counter standee & preview</div>
+          <label class="lbl">Group Name <span class="opt">(optional)</span></label>
+          <input type="text" id="groupName" placeholder="e.g. Iron Gym Members, VIP Club" oninput="live()" />
+          <div class="hint">Used for the printable counter stand QR header</div>
         </div>
         <div class="field">
-          <label class="lbl">Custom Branded Short Link <span class="opt">(optional)</span></label>
+          <label class="lbl">Custom Short Link <span class="opt">(optional)</span></label>
           <div class="short-slug-row">
             <span class="slug-prefix">linkwa.in/</span>
-            <input type="text" id="gslug" placeholder="my-gym-group" oninput="live()" />
+            <input type="text" id="gslug" placeholder="my-group" oninput="live()" />
           </div>
-          <div class="hint">Create a short memorable link for posters & flyers (e.g. linkwa.in/my-gym-group)</div>
-        </div>
-        <div style="background:var(--gl); border:1.5px dashed var(--g); border-radius:12px; padding:12px 14px; margin-top:8px;">
-          <div style="display:flex; align-items:center; gap:6px; font-weight:700; font-size:12.5px; color:var(--gd); margin-bottom:4px;">
-            <span>🏋️‍♂️</span> Perfect for Gyms, Cafes & Communities
-          </div>
-          <p style="font-size:11.5px; color:var(--ink2); line-height:1.45; margin:0;">
-            Print this QR code on reception counter acrylic stands, batch boards, or entrance posters so new members can scan and join your WhatsApp group in 1 second!
-          </p>
         </div>
       </div>
 
-      <button class="btn-gen" onclick="generate()">
+      <button class="btn-gen" id="btnGen" onclick="generate()">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        Generate WhatsApp Link
+        <span>Generate WhatsApp Link</span>
       </button>
 
       <!-- INLINE OUTPUT (EXCELLENT FOR MOBILE VIEW) -->
@@ -897,21 +888,42 @@ function switchTab(t, btn) {
   const deskSingle = document.getElementById('desktop-single-area');
   const deskMulti = document.getElementById('desktop-multi-area');
 
+  const formTitle = document.getElementById('formCardTitle');
+  const formSub = document.getElementById('formCardSub');
+  const btnGen = document.getElementById('btnGen');
+
   if (t === 'multi') {
+    if (formTitle) formTitle.textContent = 'Team Details';
+    if (formSub) formSub.textContent = 'Add phone numbers for each team member';
+    if (btnGen) { const s = btnGen.querySelector('span'); if (s) s.textContent = 'Generate Team Links'; }
     if (deskTitle) deskTitle.textContent = 'Your Team Links';
     if (deskSub) deskSub.textContent = 'Individual links for each team member';
     if (deskSingle) deskSingle.style.display = 'none';
     if (deskMulti) deskMulti.style.display = 'block';
     const rightMultiOut = document.getElementById('multiOut');
     if (rightMultiOut && !rightMultiOut.innerHTML.trim()) {
-      rightMultiOut.innerHTML = '<div style="padding:18px; background:var(--gl); border:1.5px dashed var(--g); border-radius:12px; font-size:13px; color:var(--gd); text-align:center; font-weight:600; line-height:1.5;">Enter team numbers on the left and click<br><strong>"Generate WhatsApp Link"</strong> to create all links.</div>';
+      rightMultiOut.innerHTML = '<div style="padding:18px; background:var(--gl); border:1.5px dashed var(--g); border-radius:12px; font-size:13px; color:var(--gd); text-align:center; font-weight:600; line-height:1.5;">Enter team numbers on the left and click<br><strong>"Generate Team Links"</strong> to create all links.</div>';
     }
   } else if (t === 'group') {
+    if (formTitle) formTitle.textContent = 'Group Details';
+    if (formSub) formSub.textContent = 'Paste your group invite link to create QR code';
+    if (btnGen) { const s = btnGen.querySelector('span'); if (s) s.textContent = 'Generate Group QR Code'; }
     if (deskTitle) deskTitle.textContent = 'Your Group QR & Link';
-    if (deskSub) deskSub.textContent = 'Print for counter stands, posters or flyers';
+    if (deskSub) deskSub.textContent = 'Ready to print for counter stands & flyers';
+    if (deskSingle) deskSingle.style.display = 'block';
+    if (deskMulti) deskMulti.style.display = 'none';
+  } else if (t === 'utm') {
+    if (formTitle) formTitle.textContent = 'Campaign Details';
+    if (formSub) formSub.textContent = 'Enter number, message and UTM tags';
+    if (btnGen) { const s = btnGen.querySelector('span'); if (s) s.textContent = 'Generate Tracked Link'; }
+    if (deskTitle) deskTitle.textContent = 'Your WhatsApp link';
+    if (deskSub) deskSub.textContent = 'Ready to copy and share';
     if (deskSingle) deskSingle.style.display = 'block';
     if (deskMulti) deskMulti.style.display = 'none';
   } else {
+    if (formTitle) formTitle.textContent = 'Your Details';
+    if (formSub) formSub.textContent = 'Enter your number and message';
+    if (btnGen) { const s = btnGen.querySelector('span'); if (s) s.textContent = 'Generate WhatsApp Link'; }
     if (deskTitle) deskTitle.textContent = 'Your WhatsApp link';
     if (deskSub) deskSub.textContent = 'Ready to copy and share';
     if (deskSingle) deskSingle.style.display = 'block';
