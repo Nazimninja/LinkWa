@@ -16,6 +16,42 @@ export const authorInfo = {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'whatsapp-group-qr-code-standee-guide',
+    title: 'How to Create a WhatsApp Group QR Code Standee for Gyms, Cafes & Stores (2026 Guide)',
+    excerpt: 'Turn physical footfall into active community members. Step-by-step tutorial on generating high-resolution, branded WhatsApp Group QR code table standees for local businesses.',
+    tag: 'Retail & QR',
+    readTime: '6 min read',
+    date: 'Sep 28, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-multi-number-rotator-sales-teams',
+    title: 'WhatsApp Multi-Number Round Robin: How to Distribute Leads Across Sales Teams (2026)',
+    excerpt: 'Stop bottlenecking ad leads on a single phone. Learn how to route incoming WhatsApp inquiries across multiple sales reps using round-robin rotation without expensive CRMs.',
+    tag: 'Sales & Growth',
+    readTime: '7 min read',
+    date: 'Sep 28, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-community-vs-group-for-business',
+    title: 'WhatsApp Community vs. WhatsApp Group for Business: Complete 2026 Comparison',
+    excerpt: 'Should your brand use a WhatsApp Group or Community? Compare member limits, phone privacy safeguards, broadcast channels, and QR code onboarding for 2026.',
+    tag: 'Strategy',
+    readTime: '6 min read',
+    date: 'Sep 28, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'meta-whatsapp-business-pricing-changes-inbound-strategy',
+    title: "Meta's 2026 WhatsApp Business Pricing Update: How to Get Inbound Leads for Free",
+    excerpt: 'Navigate Meta updated per-message API pricing. Discover how small businesses can capture high-intent customers for free using smart inbound click-to-chat funnels.',
+    tag: 'Marketing',
+    readTime: '7 min read',
+    date: 'Sep 28, 2026',
+    author: authorInfo.name
+  },
+  {
     slug: 'whatsapp-usernames-feature-guide',
     title: 'WhatsApp Usernames Feature: How to Chat Without Sharing Your Phone Number (2026 Update)',
     excerpt: 'WhatsApp has officially rolled out usernames. Learn how the new @username system works, how to reserve your handle, and how to create privacy-first click-to-chat links.',
