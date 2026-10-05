@@ -258,7 +258,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
               <div class="multi-entry-h" style="margin-bottom:0;">Number 1 — e.g. Sales</div>
             </div>
             <div class="row" style="margin-bottom:8px;">
-              <select class="mcc">
+              <select class="mcc" aria-label="Country code for team member 1">
                 <option value="91">🇮🇳 +91</option>
                 <option value="1">🇺🇸 +1</option>
                 <option value="44">🇬🇧 +44</option>
@@ -270,16 +270,16 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
                 <option value="92">🇵🇰 +92</option>
                 <option value="55">🇧🇷 +55</option>
               </select>
-              <input type="tel" class="mphone" placeholder="98765 43210" />
+              <input type="tel" class="mphone" placeholder="98765 43210" aria-label="Phone number for team member 1" />
             </div>
-            <input type="text" class="mlabel" placeholder="Label: Sales Team" />
+            <input type="text" class="mlabel" placeholder="Label: Sales Team" aria-label="Department or name label for team member 1" />
           </div>
           <div class="multi-entry" data-index="2">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
               <div class="multi-entry-h" style="margin-bottom:0;">Number 2 — e.g. Support</div>
             </div>
             <div class="row" style="margin-bottom:8px;">
-              <select class="mcc">
+              <select class="mcc" aria-label="Country code for team member 2">
                 <option value="91">🇮🇳 +91</option>
                 <option value="1">🇺🇸 +1</option>
                 <option value="44">🇬🇧 +44</option>
@@ -291,9 +291,9 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
                 <option value="92">🇵🇰 +92</option>
                 <option value="55">🇧🇷 +55</option>
               </select>
-              <input type="tel" class="mphone" placeholder="98765 43210" />
+              <input type="tel" class="mphone" placeholder="98765 43210" aria-label="Phone number for team member 2" />
             </div>
-            <input type="text" class="mlabel" placeholder="Label: Support Team" />
+            <input type="text" class="mlabel" placeholder="Label: Support Team" aria-label="Department or name label for team member 2" />
           </div>
         </div>
 
@@ -406,14 +406,14 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       <div id="desktop-single-area">
         <div class="result-wrap">
           <span class="result-url empty" id="rurl">Your link appears here after you generate...</span>
-          <button class="copy-btn" id="cpbtn" onclick="copyLink()">Copy</button>
+          <button class="copy-btn" id="cpbtn" onclick="copyLink()" aria-label="Copy generated WhatsApp link">Copy</button>
         </div>
         <div class="act-row">
-          <button class="act-btn" onclick="testLink()">
+          <button class="act-btn" onclick="testLink()" aria-label="Test WhatsApp link in new tab">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             Test link
           </button>
-          <button class="act-btn" onclick="shareLink()">
+          <button class="act-btn" onclick="shareLink()" aria-label="Share WhatsApp link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
             Share
           </button>
@@ -483,13 +483,13 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           <div class="qr-colors" style="display: none;">
             <label class="lbl" style="font-size: 11px; margin-bottom: 8px;">QR Code Color</label>
             <div class="qr-color-options">
-              <button class="qr-color-btn active" style="background:#080f0d;" onclick="changeQRColor('#080f0d', this)" title="Sleek Dark"></button>
-              <button class="qr-color-btn" style="background:#25D366;" onclick="changeQRColor('#25D366', this)" title="WhatsApp Green"></button>
-              <button class="qr-color-btn" style="background:#0284c7;" onclick="changeQRColor('#0284c7', this)" title="Royal Blue"></button>
-              <button class="qr-color-btn" style="background:#dc2626;" onclick="changeQRColor('#dc2626', this)" title="Crimson Red"></button>
-              <button class="qr-color-btn" style="background:#7c3aed;" onclick="changeQRColor('#7c3aed', this)" title="Purple"></button>
+              <button class="qr-color-btn active" style="background:#080f0d;" onclick="changeQRColor('#080f0d', this)" title="Sleek Dark" aria-label="QR color Sleek Dark"></button>
+              <button class="qr-color-btn" style="background:#25D366;" onclick="changeQRColor('#25D366', this)" title="WhatsApp Green" aria-label="QR color WhatsApp Green"></button>
+              <button class="qr-color-btn" style="background:#0284c7;" onclick="changeQRColor('#0284c7', this)" title="Royal Blue" aria-label="QR color Royal Blue"></button>
+              <button class="qr-color-btn" style="background:#dc2626;" onclick="changeQRColor('#dc2626', this)" title="Crimson Red" aria-label="QR color Crimson Red"></button>
+              <button class="qr-color-btn" style="background:#7c3aed;" onclick="changeQRColor('#7c3aed', this)" title="Purple" aria-label="QR color Purple"></button>
               <div class="color-picker-wrapper">
-                <input type="color" id="qrColorPicker" value="#080f0d" oninput="changeQRColor(this.value, this)" title="Custom Color" />
+                <input type="color" id="qrColorPicker" value="#080f0d" oninput="changeQRColor(this.value, this)" title="Custom Color" aria-label="Choose custom QR code color" />
               </div>
             </div>
           </div>
@@ -860,7 +860,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 .blog-cta-btn:hover { background: var(--gl); }
 </style>
 
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script is:inline src="/qrcode.min.js"></script>
 <script is:inline>
 let tab = 'basic', curUrl = '', qrColor = '#080f0d', qrTemplate = 'classic';
 let customLogoData = null, customLogoImg = null, waLogoSvg = '', rawLogoImg = null;
@@ -1150,7 +1150,7 @@ function addMultiNumber() {
       <button type="button" class="btn-remove-entry" onclick="removeMultiEntry(this)">✕ Remove</button>
     </div>
     <div class="row" style="margin-bottom:8px;">
-      <select class="mcc">
+      <select class="mcc" aria-label="Country code for team member ${count}">
         <option value="91">🇮🇳 +91</option>
         <option value="1">🇺🇸 +1</option>
         <option value="44">🇬🇧 +44</option>
@@ -1162,9 +1162,9 @@ function addMultiNumber() {
         <option value="92">🇵🇰 +92</option>
         <option value="55">🇧🇷 +55</option>
       </select>
-      <input type="tel" class="mphone" placeholder="98765 43210" />
+      <input type="tel" class="mphone" placeholder="98765 43210" aria-label="Phone number for team member ${count}" />
     </div>
-    <input type="text" class="mlabel" placeholder="Label: Team Member ${count}" />
+    <input type="text" class="mlabel" placeholder="Label: Team Member ${count}" aria-label="Department or name label for team member ${count}" />
   `;
   container.appendChild(div);
   trackEvent('add_multi_number', { total_numbers: count });

@@ -30,4 +30,11 @@ Allow: /
 # Sitemaps & LLM Context
 Sitemap: https://linkwa.in/sitemap.xml
 Sitemap: https://linkwa.in/rss.xml
-# LLMs Manifest: https://linkwa.in/llms.txt
+
+# Agentic Browsing & AI Discovery (ARD)
+Agentmap: https://linkwa.in/.well-known/ard.json
+Agentmap: https://linkwa.in/.well-known/ai-catalog.json
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/ard.json
+Allow: /.well-known/ai-catalog.json
