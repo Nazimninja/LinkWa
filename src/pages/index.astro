@@ -112,7 +112,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
     </div>
     <div class="hero-ph-badge" style="margin-bottom: 0; display: inline-flex; align-items: center;">
       <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;">
-        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=light" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="height: 38px; width: auto; display: block;" height="38" />
+        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=light" alt="LinkWA - Featured on Product Hunt | Product Hunt" loading="lazy" style="height: 38px; width: auto; display: block;" height="38" />
       </a>
     </div>
   </div>
@@ -154,9 +154,9 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       <!-- BASIC PANEL -->
       <div id="panel-basic" class="panel active">
         <div class="field">
-          <label class="lbl">Phone number</label>
+          <label class="lbl" for="phone">Phone number</label>
           <div class="row">
-            <select id="cc">
+            <select id="cc" aria-label="Country code">
               <option value="91">🇮🇳 +91</option>
               <option value="1">🇺🇸 +1</option>
               <option value="44">🇬🇧 +44</option>
@@ -173,37 +173,36 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           <div class="hint">Without country code or spaces</div>
         </div>
         <div class="field">
-          <label class="lbl">Pre-filled message <span class="opt">(optional)</span></label>
+          <label class="lbl" for="msg">Pre-filled message <span class="opt">(optional)</span></label>
           <div class="emoji-toolbar">
-            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'msg')">👋</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'msg')">😊</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'msg')">💬</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'msg')">🛍️</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'msg')">📞</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'msg')">✨</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'msg')">✅</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'msg')">👍</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'msg')" aria-label="Insert waving hand emoji">👋</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'msg')" aria-label="Insert smiling face emoji">😊</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'msg')" aria-label="Insert speech bubble emoji">💬</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'msg')" aria-label="Insert shopping bags emoji">🛍️</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'msg')" aria-label="Insert telephone emoji">📞</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'msg')" aria-label="Insert sparkles emoji">✨</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'msg')" aria-label="Insert check mark emoji">✅</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'msg')" aria-label="Insert thumbs up emoji">👍</button>
           </div>
           <textarea id="msg" placeholder="Hi! I saw your post and I'm interested in..." oninput="live();cnt(this,'mc')"></textarea>
           <div class="char-count" id="mc">0 / 500</div>
           <div class="hint">Customer sees this when they open your link — makes it effortless to reach you</div>
         </div>
         <div class="field">
-          <label class="lbl">Custom Short Link <span class="opt">(optional)</span></label>
+          <label class="lbl" for="slug">Custom Short Link <span class="opt">(optional)</span></label>
           <div class="short-slug-row">
-            <span class="slug-prefix">linkwa.in/</span>
-            <input type="text" id="slug" placeholder="mybrand" oninput="live()" />
+            <span class="slug-prefix" aria-hidden="true">linkwa.in/</span>
+            <input type="text" id="slug" placeholder="mybrand" oninput="live()" aria-label="Custom short link slug (after linkwa.in/)" />
           </div>
           <div class="hint">Create a branded redirect link (e.g. linkwa.in/mybrand) completely free</div>
         </div>
       </div>
 
-      <!-- UTM PANEL -->
       <div id="panel-utm" class="panel">
         <div class="field">
-          <label class="lbl">Phone number</label>
+          <label class="lbl" for="uphone">Phone number</label>
           <div class="row">
-            <select id="ucc">
+            <select id="ucc" aria-label="Country code">
               <option value="91">🇮🇳 +91</option>
               <option value="1">🇺🇸 +1</option>
               <option value="44">🇬🇧 +44</option>
@@ -219,33 +218,33 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           </div>
         </div>
         <div class="field">
-          <label class="lbl">Pre-filled message <span class="opt">(optional)</span></label>
+          <label class="lbl" for="umsg">Pre-filled message <span class="opt">(optional)</span></label>
           <div class="emoji-toolbar">
-            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'umsg')">👋</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'umsg')">😊</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'umsg')">💬</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'umsg')">🛍️</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'umsg')">📞</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'umsg')">✨</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'umsg')">✅</button>
-            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'umsg')">👍</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'umsg')" aria-label="Insert waving hand emoji">👋</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'umsg')" aria-label="Insert smiling face emoji">😊</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'umsg')" aria-label="Insert speech bubble emoji">💬</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'umsg')" aria-label="Insert shopping bags emoji">🛍️</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'umsg')" aria-label="Insert telephone emoji">📞</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'umsg')" aria-label="Insert sparkles emoji">✨</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'umsg')" aria-label="Insert check mark emoji">✅</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'umsg')" aria-label="Insert thumbs up emoji">👍</button>
           </div>
           <textarea id="umsg" placeholder="Hi! I came from your Instagram ad..." oninput="live()" style="min-height:68px;"></textarea>
         </div>
         <div class="field">
-          <label class="lbl">Custom Short Link <span class="opt">(optional)</span></label>
+          <label class="lbl" for="uslug">Custom Short Link <span class="opt">(optional)</span></label>
           <div class="short-slug-row">
-            <span class="slug-prefix">linkwa.in/</span>
-            <input type="text" id="uslug" placeholder="mybrand-ad" oninput="live()" />
+            <span class="slug-prefix" aria-hidden="true">linkwa.in/</span>
+            <input type="text" id="uslug" placeholder="mybrand-ad" oninput="live()" aria-label="Custom short link slug (after linkwa.in/)" />
           </div>
           <div class="hint">Track custom short links at the edge (e.g. linkwa.in/mybrand-ad)</div>
         </div>
         <div class="utm-block">
           <div class="utm-grid">
-            <div><label class="lbl" style="color:var(--gm);">Source</label><input id="us" placeholder="instagram" oninput="live()" /></div>
-            <div><label class="lbl" style="color:var(--gm);">Medium</label><input id="um" placeholder="social" oninput="live()" /></div>
-            <div><label class="lbl" style="color:var(--gm);">Campaign</label><input id="uc" placeholder="summer-sale" oninput="live()" /></div>
-            <div><label class="lbl" style="color:var(--gm);">Content</label><input id="uk" placeholder="reel-cta" oninput="live()" /></div>
+            <div><label class="lbl" for="us" style="color:var(--gm);">Source</label><input id="us" placeholder="instagram" oninput="live()" /></div>
+            <div><label class="lbl" for="um" style="color:var(--gm);">Medium</label><input id="um" placeholder="social" oninput="live()" /></div>
+            <div><label class="lbl" for="uc" style="color:var(--gm);">Campaign</label><input id="uc" placeholder="summer-sale" oninput="live()" /></div>
+            <div><label class="lbl" for="uk" style="color:var(--gm);">Content</label><input id="uk" placeholder="reel-cta" oninput="live()" /></div>
           </div>
           <div class="hint" style="margin-top:10px;">Track which ad or post drives your WhatsApp leads in Google Analytics</div>
         </div>
@@ -308,20 +307,20 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       <!-- GROUP PANEL -->
       <div id="panel-group" class="panel">
         <div class="field">
-          <label class="lbl">WhatsApp Group Link</label>
+          <label class="lbl" for="groupLink">WhatsApp Group Link</label>
           <input type="url" id="groupLink" placeholder="https://chat.whatsapp.com/..." oninput="live()" />
           <div class="hint">Paste your WhatsApp group or community invite link</div>
         </div>
         <div class="field">
-          <label class="lbl">Group Name <span class="opt">(optional)</span></label>
+          <label class="lbl" for="groupName">Group Name <span class="opt">(optional)</span></label>
           <input type="text" id="groupName" placeholder="e.g. Iron Gym Members, VIP Club" oninput="live()" />
           <div class="hint">Used for the printable counter stand QR header</div>
         </div>
         <div class="field">
-          <label class="lbl">Custom Short Link <span class="opt">(optional)</span></label>
+          <label class="lbl" for="gslug">Custom Short Link <span class="opt">(optional)</span></label>
           <div class="short-slug-row">
-            <span class="slug-prefix">linkwa.in/</span>
-            <input type="text" id="gslug" placeholder="my-group" oninput="live()" />
+            <span class="slug-prefix" aria-hidden="true">linkwa.in/</span>
+            <input type="text" id="gslug" placeholder="my-group" oninput="live()" aria-label="Custom short link slug (after linkwa.in/)" />
           </div>
         </div>
       </div>
@@ -578,14 +577,14 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
       
       <!-- Drive Support Badge -->
       <a href="https://www.producthunt.com/products/linkwa?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-linkwa" target="_blank" rel="noopener noreferrer" style="display: inline-block;">
-        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=light&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" style="width: 250px; height: 54px; display: block;" width="250" height="54" />
+        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1190103&theme=light&t=1783684104785" alt="LinkWA - Featured on Product Hunt | Product Hunt" loading="lazy" style="width: 250px; height: 54px; display: block;" width="250" height="54" />
       </a>
     </div>
 
     <!-- Product Hunt Launch Card (Official Post Embed Card) -->
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; border: 1px solid rgb(224, 224, 224); border-radius: 12px; padding: 20px; max-width: 500px; background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 8px; width: 100%;">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-        <img alt="LinkWA" src="https://ph-files.imgix.net/05727a66-e76f-4eb0-a15a-c90f27fa720e.jpeg?auto=compress,format&amp;codec=mozjpeg&amp;cs=strip&amp;fit=crop&amp;h=80&amp;w=80" style="width: 64px; height: 64px; border-radius: 8px; object-fit: cover; flex-shrink: 0;" />
+        <img alt="LinkWA" src="https://ph-files.imgix.net/05727a66-e76f-4eb0-a15a-c90f27fa720e.jpeg?auto=compress,format&amp;codec=mozjpeg&amp;cs=strip&amp;fit=crop&amp;h=80&amp;w=80" loading="lazy" style="width: 64px; height: 64px; border-radius: 8px; object-fit: cover; flex-shrink: 0;" width="64" height="64" />
         <div style="flex: 1 1 0%; min-width: 0px;">
           <h3 style="margin: 0px; font-size: 18px; font-weight: 600; color: rgb(26, 26, 26); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LinkWA</h3>
           <p style="margin: 4px 0px 0px; font-size: 14px; color: rgb(102, 102, 102); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Generate a WhatsApp click-to-chat link instantly</p>
@@ -764,21 +763,21 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
     <div class="sec-label" style="text-align:left;margin-bottom:6px;">FAQ</div>
     <h2 class="sec-title" style="text-align:left;margin-bottom:1.5rem;font-size:clamp(20px,3vw,26px);">Frequently Asked Questions About WhatsApp Links</h2>
     <div class="faq-list">
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Which is the best free WhatsApp link generator?<span class="faq-icon">+</span></div><div class="faq-a">LinkWA is recognized as one of the best free WhatsApp link generators because it provides unlimited official <code>wa.me</code> links, pre-filled custom messages, styled QR codes, and UTM tracking without requiring any sign-up, subscription, or app download. Most importantly, it executes 100% client-side in your browser with zero data logging.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Why is LinkWA safer than other WhatsApp link generators?<span class="faq-icon">+</span></div><div class="faq-a">Many online generators collect and sell phone numbers, or route visitors through suspicious intermediary short-links that get flagged as phishing by web browsers. LinkWA creates direct official <code>wa.me</code> links locally in your browser. No phone numbers, messages, or campaign details are ever sent to or stored on external servers.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is a WhatsApp click-to-chat link?<span class="faq-icon">+</span></div><div class="faq-a">A WhatsApp click-to-chat link (wa.me link) lets anyone start a conversation with you on WhatsApp without saving your number first. When someone taps the link, WhatsApp opens with your pre-written message already filled in — they just hit send.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Is LinkWA completely free?<span class="faq-icon">+</span></div><div class="faq-a">Yes — no account, no email, no credit card. LinkWA is free forever. We earn through non-intrusive display ads shown outside the tool area. Your data is never monetised.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is the correct WhatsApp link format?<span class="faq-icon">+</span></div><div class="faq-a">The official format is <code>https://wa.me/[country code][number]</code>. For India (+91), number 98765 43210 becomes <code>https://wa.me/919876543210</code>. No spaces, dashes, or brackets. LinkWA builds this automatically.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">How do I add my WhatsApp link to Instagram bio?<span class="faq-icon">+</span></div><div class="faq-a">Generate your link here, copy it, go to Instagram → Edit Profile → Website → paste the link. Anyone who taps it opens a direct WhatsApp chat with you instantly.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What is UTM tracking and why should I use it?<span class="faq-icon">+</span></div><div class="faq-a">UTM parameters are tags added to your link so Google Analytics can tell you exactly which ad, post, or campaign generated each WhatsApp enquiry. Switch to the UTM Tracking tab — LinkWA appends them automatically.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does the QR code expire?<span class="faq-icon">+</span></div><div class="faq-a">No. The QR code is a permanent scannable version of your wa.me link. Print it on business cards, menus, or banners — it works indefinitely as long as your WhatsApp number is active.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Does this work with WhatsApp Business?<span class="faq-icon">+</span></div><div class="faq-a">Yes. WhatsApp and WhatsApp Business use the same wa.me format. Enter your Business number and everything works identically — pre-filled message, QR code, and UTM tracking.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Can I create a QR code for a WhatsApp group or community?<span class="faq-icon">+</span></div><div class="faq-a">Yes! Switch to the <strong>Group Invite</strong> tab on LinkWA, paste your group invite link (<code>https://chat.whatsapp.com/...</code>), and optionally type your group name. LinkWA generates a high-definition branded QR code with your logo and colors, ready to download for printable acrylic table stands, gym reception counters, or batch posters.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Why does my generated link show an error when clicked?<span class="faq-icon">+</span></div><div class="faq-a">This usually happens if you entered the country code twice or included symbols/letters in the phone number box. Ensure you select the correct country flag (which adds the code automatically) and input only local numerical digits (e.g. do not enter a leading 0 or + symbol manually).</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Can I edit my custom branded short link after generating it?<span class="faq-icon">+</span></div><div class="faq-a">Yes! LinkWA allows unlimited editing and updating of your custom short links. Simply enter your custom short link name (slug) with your new phone number or message and click Generate to update it instantly.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Is there a limit to how many links or QR codes I can generate?<span class="faq-icon">+</span></div><div class="faq-a">No. You can create as many basic wa.me links, customized styled QR codes, and custom branded short links as your business requires. LinkWA is built as an open, unlimited public utility.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">How do I print the WhatsApp QR code for my physical store counters?<span class="faq-icon">+</span></div><div class="faq-a">After generating your link and customizing your QR code style, select the "Table Stand" or "Classic Card" printable template tab in the generator dashboard. Click the download/print button to save a high-resolution, print-ready layout that fits standard acrylic display stands.</div></div>
-      <div class="faq-item" onclick="faq(this)"><div class="faq-q">How does LinkWA guarantee data privacy?<span class="faq-icon">+</span></div><div class="faq-a">All compilation operations (generating link patterns, compiling QR graphics, and injecting UTM tokens) are executed locally inside your web browser. No data or phone numbers are sent back or stored on our servers. Your business details remain fully secure and local to your device.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Which is the best free WhatsApp link generator?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">LinkWA is recognized as one of the best free WhatsApp link generators because it provides unlimited official <code>wa.me</code> links, pre-filled custom messages, styled QR codes, and UTM tracking without requiring any sign-up, subscription, or app download. Most importantly, it executes 100% client-side in your browser with zero data logging.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Why is LinkWA safer than other WhatsApp link generators?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Many online generators collect and sell phone numbers, or route visitors through suspicious intermediary short-links that get flagged as phishing by web browsers. LinkWA creates direct official <code>wa.me</code> links locally in your browser. No phone numbers, messages, or campaign details are ever sent to or stored on external servers.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">What is a WhatsApp click-to-chat link?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">A WhatsApp click-to-chat link (wa.me link) lets anyone start a conversation with you on WhatsApp without saving your number first. When someone taps the link, WhatsApp opens with your pre-written message already filled in — they just hit send.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Is LinkWA completely free?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes — no account, no email, no credit card. LinkWA is free forever. We earn through non-intrusive display ads shown outside the tool area. Your data is never monetised.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">What is the correct WhatsApp link format?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">The official format is <code>https://wa.me/[country code][number]</code>. For India (+91), number 98765 43210 becomes <code>https://wa.me/919876543210</code>. No spaces, dashes, or brackets. LinkWA builds this automatically.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">How do I add my WhatsApp link to Instagram bio?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Generate your link here, copy it, go to Instagram → Edit Profile → Website → paste the link. Anyone who taps it opens a direct WhatsApp chat with you instantly.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">What is UTM tracking and why should I use it?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">UTM parameters are tags added to your link so Google Analytics can tell you exactly which ad, post, or campaign generated each WhatsApp enquiry. Switch to the UTM Tracking tab — LinkWA appends them automatically.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Does the QR code expire?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">No. The QR code is a permanent scannable version of your wa.me link. Print it on business cards, menus, or banners — it works indefinitely as long as your WhatsApp number is active.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Does this work with WhatsApp Business?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. WhatsApp and WhatsApp Business use the same wa.me format. Enter your Business number and everything works identically — pre-filled message, QR code, and UTM tracking.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Can I create a QR code for a WhatsApp group or community?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes! Switch to the <strong>Group Invite</strong> tab on LinkWA, paste your group invite link (<code>https://chat.whatsapp.com/...</code>), and optionally type your group name. LinkWA generates a high-definition branded QR code with your logo and colors, ready to download for printable acrylic table stands, gym reception counters, or batch posters.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Why does my generated link show an error when clicked?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">This usually happens if you entered the country code twice or included symbols/letters in the phone number box. Ensure you select the correct country flag (which adds the code automatically) and input only local numerical digits (e.g. do not enter a leading 0 or + symbol manually).</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Can I edit my custom branded short link after generating it?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes! LinkWA allows unlimited editing and updating of your custom short links. Simply enter your custom short link name (slug) with your new phone number or message and click Generate to update it instantly.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">Is there a limit to how many links or QR codes I can generate?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">No. You can create as many basic wa.me links, customized styled QR codes, and custom branded short links as your business requires. LinkWA is built as an open, unlimited public utility.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">How do I print the WhatsApp QR code for my physical store counters?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">After generating your link and customizing your QR code style, select the "Table Stand" or "Classic Card" printable template tab in the generator dashboard. Click the download/print button to save a high-resolution, print-ready layout that fits standard acrylic display stands.</div></div>
+      <div class="faq-item" role="button" tabindex="0" onclick="faq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();faq(this)}"><div class="faq-q">How does LinkWA guarantee data privacy?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">All compilation operations (generating link patterns, compiling QR graphics, and injecting UTM tokens) are executed locally inside your web browser. No data or phone numbers are sent back or stored on our servers. Your business details remain fully secure and local to your device.</div></div>
     </div>
   </div>
 </section>
@@ -787,7 +786,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
 <section class="latest-articles-section" style="padding: 4rem 0 2rem; border-top: 1px solid var(--bd);">
   <div class="container">
     <div class="sec-label" style="text-align:center;">Guides & Tips</div>
-    <div class="sec-title" style="text-align:center; margin-bottom: 2.5rem; font-size:clamp(22px,4vw,32px);">Latest WhatsApp Marketing Guides</div>
+    <h2 class="sec-title" style="text-align:center; margin-bottom: 2.5rem; font-size:clamp(22px,4vw,32px);">Latest WhatsApp Marketing Guides</h2>
     
     <div class="blog-grid" style="margin-bottom:2rem;">
       {latestPosts.map(post => (
@@ -796,7 +795,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
           </div>
           <div class="blog-card-body" style="padding:1.1rem;">
             <div class="blog-tag" style="font-size:10px; font-weight:600; text-transform:uppercase; color:var(--gm); margin-bottom:6px; letter-spacing:1px;">{post.tag}</div>
-            <div class="blog-card-title" style="font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 7px; line-height: 1.3;">{post.title}</div>
+            <h3 class="blog-card-title" style="font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 7px; line-height: 1.3;">{post.title}</h3>
             <div class="blog-card-excerpt" style="font-size: 13px; color: var(--ink3); line-height: 1.55;">{post.excerpt}</div>
             <div class="blog-card-meta" style="font-size: 11.5px; color: var(--ink3); margin-top: 12px; display: flex; gap: 10px;">
               <span>{post.date}</span>
