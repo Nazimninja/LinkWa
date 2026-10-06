@@ -16,6 +16,51 @@ export const authorInfo = {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'whatsapp-message-yourself-link-guide',
+    title: 'How to Message Yourself on WhatsApp: Create a Personal Chat Link (2026 Guide)',
+    excerpt: 'Turn WhatsApp into your personal cloud notebook and file transfer bridge. Step-by-step tutorial on creating a one-click link to message your own number.',
+    tag: 'Productivity',
+    readTime: '5 min read',
+    date: 'Oct 6, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-link-email-signature-guide',
+    title: 'How to Add a Click-to-WhatsApp Button in Email Signatures (Gmail, Outlook & Apple Mail)',
+    excerpt: 'Speed up client replies by 30%. Complete tutorial on embedding a clickable WhatsApp chat button or styled badge directly into your professional email signature.',
+    tag: 'Email & B2B',
+    readTime: '6 min read',
+    date: 'Oct 6, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'whatsapp-web-qr-code-not-working-fix',
+    title: 'WhatsApp Web QR Code Not Loading or Scanning? 8 Ways to Fix It Fast (2026)',
+    excerpt: 'Troubleshoot and fix WhatsApp Web QR code connection errors, blurry camera scans, browser extensions blocking WebSockets, and phone number bypass login.',
+    tag: 'Troubleshooting',
+    readTime: '6 min read',
+    date: 'Oct 6, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'how-to-add-clickable-link-whatsapp-status',
+    title: 'How to Add Clickable Links to WhatsApp Status & Stories (2026 Tutorial)',
+    excerpt: 'Stop posting unclickable links in photo captions. Master how to post live, clickable hyperlinks with rich link preview cards on WhatsApp Status updates.',
+    tag: 'Marketing',
+    readTime: '5 min read',
+    date: 'Oct 6, 2026',
+    author: authorInfo.name
+  },
+  {
+    slug: 'click-to-whatsapp-ads-vs-lead-forms-comparison',
+    title: 'Click to WhatsApp Ads vs. Lead Forms: Which Converts Better in 2026? (Cost & ROAS Benchmark)',
+    excerpt: 'Detailed comparison of Meta Instant Lead Forms vs Click-to-WhatsApp (CTWA) ads. Analyze speed to lead, 100% verified numbers, CPL benchmarks, and close rates.',
+    tag: 'Paid Ads',
+    readTime: '7 min read',
+    date: 'Oct 6, 2026',
+    author: authorInfo.name
+  },
+  {
     slug: 'whatsapp-group-qr-code-standee-guide',
     title: 'How to Create a WhatsApp Group QR Code Standee for Gyms, Cafes & Stores (2026 Guide)',
     excerpt: 'Turn physical footfall into active community members. Step-by-step tutorial on generating high-resolution, branded WhatsApp Group QR code table standees for local businesses.',
