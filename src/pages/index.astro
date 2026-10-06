@@ -168,7 +168,7 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
               <option value="92">🇵🇰 +92</option>
               <option value="55">🇧🇷 +55</option>
             </select>
-            <input type="tel" id="phone" placeholder="98765 43210" oninput="live()" />
+            <input type="tel" id="phone" placeholder="98765 43210" oninput="live()" autofocus />
           </div>
           <div class="hint">Without country code or spaces</div>
         </div>
@@ -183,6 +183,12 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
             <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'msg')" aria-label="Insert sparkles emoji">✨</button>
             <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'msg')" aria-label="Insert check mark emoji">✅</button>
             <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'msg')" aria-label="Insert thumbs up emoji">👍</button>
+          </div>
+          
+          <div class="template-pills" style="display:flex; flex-wrap:wrap; gap:6px; margin: 6px 0 8px 0;">
+            <button type="button" class="pill-btn" onclick="applyTemplate('Hi! I saw your post and want to inquire about your services.')" style="background:rgba(255,255,255,0.06); border:1px solid var(--bd2); border-radius:14px; padding:3px 9px; font-size:11px; color:var(--ink2); cursor:pointer;">⚡ General Inquiry</button>
+            <button type="button" class="pill-btn" onclick="applyTemplate('Hi! Can you please share your latest pricing and catalog?')" style="background:rgba(255,255,255,0.06); border:1px solid var(--bd2); border-radius:14px; padding:3px 9px; font-size:11px; color:var(--ink2); cursor:pointer;">🛍️ Pricing &amp; Catalog</button>
+            <button type="button" class="pill-btn" onclick="applyTemplate('Hi! I would like to book an appointment or consultation.')" style="background:rgba(255,255,255,0.06); border:1px solid var(--bd2); border-radius:14px; padding:3px 9px; font-size:11px; color:var(--ink2); cursor:pointer;">📅 Book Consultation</button>
           </div>
           <textarea id="msg" placeholder="Hi! I saw your post and I'm interested in..." oninput="live();cnt(this,'mc')"></textarea>
           <div class="char-count" id="mc">0 / 500</div>
@@ -1253,6 +1259,19 @@ function genMulti() {
     renderQR(first);
   }
   toast(html ? 'Multi-number links generated!' : 'Enter at least one number');
+}
+
+
+function applyTemplate(text, targetId = 'msg') {
+  const el = document.getElementById(targetId);
+  if (el) {
+    el.value = text;
+    el.focus();
+    live();
+    if (targetId === 'msg') {
+      cnt(el, 'mc');
+    }
+  }
 }
 
 function insertEmoji(emoji, targetId) {
