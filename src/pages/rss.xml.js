@@ -5,7 +5,7 @@ export async function GET() {
 
   const itemsXml = posts
     .map((post) => {
-      const postUrl = `${siteUrl}/blog/${post.slug}`;
+      const postUrl = `${siteUrl}/blog/${post.slug}/`;
       const pubDate = new Date(post.date).toUTCString();
       return `    <item>
       <title><![CDATA[${post.title}]]></title>
@@ -23,7 +23,7 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>LinkWA Blog – WhatsApp Marketing, Tools &amp; Automation Guides</title>
-    <link>${siteUrl}/blog</link>
+    <link>${siteUrl}/blog/</link>
     <description>Guides, tutorials, and best practices for WhatsApp click-to-chat links, QR codes, marketing, and business automation by Social Ninja's.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

@@ -15,7 +15,7 @@ async function submitIndexNow() {
     'https://linkwa.in/robots.txt',
     'https://linkwa.in/llms.txt',
     'https://linkwa.in/llms-full.txt',
-    'https://linkwa.in/blog'
+    'https://linkwa.in/blog/'
   ];
 
   if (fs.existsSync(sitemapPath)) {

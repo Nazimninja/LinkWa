@@ -9,7 +9,16 @@ interface Props {
 }
 
 const { title, description, canonical, ogImage = '/og-image.png' } = Astro.props;
-const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+
+// Ensure canonical URL always ends with a trailing slash for directory routes
+let rawCanonical = canonical || new URL(Astro.url.pathname, Astro.site || 'https://linkwa.in').toString();
+if (!rawCanonical.endsWith('/')) {
+  const lastPathSegment = rawCanonical.split('/').pop() || '';
+  if (!lastPathSegment.includes('.')) {
+    rawCanonical = rawCanonical + '/';
+  }
+}
+const canonicalURL = rawCanonical;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
