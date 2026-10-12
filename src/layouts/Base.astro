@@ -6,9 +6,10 @@ interface Props {
   description: string;
   canonical?: string;
   ogImage?: string;
+  lang?: string;
 }
 
-const { title, description, canonical, ogImage = '/og-image.png' } = Astro.props;
+const { title, description, canonical, ogImage = '/og-image.png', lang = 'en' } = Astro.props;
 
 // Ensure canonical URL always ends with a trailing slash for directory routes
 let rawCanonical = canonical || new URL(Astro.url.pathname, Astro.site || 'https://linkwa.in').toString();
@@ -23,8 +24,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
+  <!-- Multilingual alternate links (hreflang) -->
+  <link rel="alternate" hreflang="en" href="https://linkwa.in/" />
+  <link rel="alternate" hreflang="es" href="https://linkwa.in/es/" />
+  <link rel="alternate" hreflang="pt" href="https://linkwa.in/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://linkwa.in/" />
   <!-- Google tag (gtag.js) dataLayer stub -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
@@ -212,14 +218,18 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   </a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="/" class={currentPath === '/' ? 'active' : ''}>Tool</a>
-      <a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
-      <a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
-      <a href="/blog" class={Astro.url.pathname.startsWith('/blog') ? 'active' : ''}>Blog</a>
-      <a href="/privacy" class={currentPath === '/privacy' ? 'active' : ''}>Privacy</a>
-      <a href="/terms" class={currentPath === '/terms' ? 'active' : ''}>Terms</a>
+      <a href="/" class={currentPath === '/' ? 'active' : ''}>Link Generator</a>
+      <a href="/whatsapp-auto-reply/" class={currentPath === '/whatsapp-auto-reply' ? 'active' : ''}>Auto-Reply Tool</a>
+      <a href="/blog/" class={Astro.url.pathname.startsWith('/blog') ? 'active' : ''}>Blog Guides</a>
+      <a href="/about/" class={currentPath === '/about' ? 'active' : ''}>About</a>
+      <a href="/contact/" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
     </div>
     <div class="nav-live"><span class="dot"></span> No data stored</div>
+    <div class="lang-switch" style="display: flex; gap: 3px; font-size: 11.5px; font-weight: 700; background: var(--bgl); padding: 3px 6px; border-radius: 8px; border: 1px solid var(--bd2);">
+      <a href="/" title="English" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/' ? 'var(--gl)' : 'transparent'};`}>EN</a>
+      <a href="/es/" title="Español" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/es' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/es' ? 'var(--gl)' : 'transparent'};`}>ES</a>
+      <a href="/pt/" title="Português" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/pt' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/pt' ? 'var(--gl)' : 'transparent'};`}>PT</a>
+    </div>
     <span class="nav-pill">Free</span>
     
     <!-- Mobile Hamburger Toggle -->
@@ -236,8 +246,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 <!-- Mobile Sliding Drawer -->
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="drawer-links">
-    <a href="/" class={currentPath === '/' ? 'active' : ''}>Home Tool</a>
-    <a href="/about" class={currentPath === '/about' ? 'active' : ''}>About Us</a>
+    <a href="/" class={currentPath === '/' ? 'active' : ''}>Link Generator</a>
+    <a href="/whatsapp-auto-reply/" class={currentPath === '/whatsapp-auto-reply' ? 'active' : ''}>Auto-Reply Generator</a>
+    <a href="/blog/" class={Astro.url.pathname.startsWith('/blog') ? 'active' : ''}>Blog Guides</a>
+    <a href="/about/" class={currentPath === '/about' ? 'active' : ''}>About Us</a>
     <a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact Us</a>
     <a href="/blog" class={Astro.url.pathname.startsWith('/blog') ? 'active' : ''}>Blog Guides</a>
     <a href="/privacy" class={currentPath === '/privacy' ? 'active' : ''}>Privacy Policy</a>
@@ -393,19 +405,31 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <!-- Cross Promo Column -->
     <div class="ft-col" style="display: flex; flex-direction: column; gap: 10px;">
       <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 4px;">Free Ninja Tools</h4>
-      <a href="https://linkwa.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">WhatsApp Link Generator</a>
+      <a href="https://linkwa.in/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">WhatsApp Link Generator</a>
+      <a href="/whatsapp-auto-reply/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">WhatsApp Auto-Reply Generator</a>
       <a href="https://salary.socialninjas.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">US Salary Tax Calculator</a>
       <a href="https://mortgage.socialninjas.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Mortgage Pay Calculator</a>
       <a href="https://fit.socialninjas.in" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Fit Ninja Fitness Planner</a>
     </div>
 
-    <!-- Links Column -->
+    <!-- Popular Guides Column (Internal linking boost) -->
+    <div class="ft-col" style="display: flex; flex-direction: column; gap: 10px;">
+      <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 4px;">Popular Guides</h4>
+      <a href="/blog/wa-me-link-explained/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">wa.me Links Explained</a>
+      <a href="/blog/utm-tracking-whatsapp/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">UTM Tracking for WhatsApp</a>
+      <a href="/blog/track-whatsapp-clicks-facebook-pixel/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Track WhatsApp in Meta Pixel</a>
+      <a href="/blog/whatsapp-business-auto-reply-setup/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">WhatsApp Auto-Reply Setup</a>
+      <a href="/blog/whatsapp-meta-ai-voice-photo-mode-update/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Meta AI Voice & Photo Mode</a>
+    </div>
+
+    <!-- Company Column -->
     <div class="ft-col" style="display: flex; flex-direction: column; gap: 10px;">
       <h4 style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #fff; margin-bottom: 4px;">Company</h4>
-      <a href="/about" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">About Us</a>
-      <a href="/contact" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Contact Us</a>
-      <a href="/blog" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Blog Guides</a>
-      <a href="/privacy" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Privacy Policy</a>
+      <a href="/about/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">About Us</a>
+      <a href="/contact/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Contact Us</a>
+      <a href="/blog/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Blog Guides</a>
+      <a href="/privacy/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Privacy Policy</a>
+      <a href="/terms/" style="font-size: 13px; color: #5a7570; text-decoration: none; transition: color 0.14s;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='#5a7570'">Terms of Service</a>
     </div>
 
     <!-- Badges Column -->

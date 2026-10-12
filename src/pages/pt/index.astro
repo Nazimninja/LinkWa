@@ -1,0 +1,463 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const faqs = [
+  {
+    q: "Como criar um link de WhatsApp com mensagem personalizada?",
+    a: "Digite o seu número de telefone com o código do país (ex: +55 para o Brasil, com DDD e o 9), escreva a mensagem personalizada de saudação que deseja receber e clique em 'Gerar Link do WhatsApp'. Em seguida, copie o link gerado ou baixe o QR Code!"
+  },
+  {
+    q: "O gerador de link do WhatsApp é realmente gratuito?",
+    a: "Sim, o LinkWA é 100% gratuito, sem necessidade de cadastro, sem limites de uso e sem cobranças ocultas. Você também pode baixar o QR Code em alta resolução (1000px) para impressão."
+  },
+  {
+    q: "Como funciona um link wa.me?",
+    a: "O wa.me é o formato oficial de link direto do WhatsApp (Click to Chat). Ele permite que qualquer pessoa inicie uma conversa com você com apenas um clique, sem precisar salvar o seu número na agenda de contatos."
+  },
+  {
+    q: "Posso colocar meu logotipo no QR Code do WhatsApp?",
+    a: "Sim! O estúdio de QR Code do LinkWA gera códigos nítidos que você pode salvar em alta definição para utilizar em cardápios, cartões de visita, balcões e materiais gráficos."
+  },
+  {
+    q: "Meus números de telefone ou mensagens ficam salvos?",
+    a: "Não. O LinkWA funciona 100% do lado do cliente (no seu próprio navegador). Não armazenamos, rastreamos nem compartilhamos nenhum número de telefone ou mensagem de texto."
+  }
+];
+---
+
+<Base
+  title="Gerador de Link do WhatsApp com QR Code Grátis | LinkWA"
+  description="Crie links diretos do WhatsApp (wa.me) com mensagem pronta e código QR grátis. Rápido, sem cadastro e 100% seguro e privado."
+  canonical="https://linkwa.in/pt/"
+  lang="pt-BR"
+>
+
+<!-- JSON-LD FAQ Schema -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+})} />
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-header-badges">
+    <div class="hero-chip"><span class="hero-chip-dot"></span> 100% Grátis · Sem Cadastro</div>
+  </div>
+  <h1>Gerador de <strong>Link do WhatsApp</strong> com QR Code</h1>
+  <p class="hero-sub">Crie links diretos wa.me com mensagens personalizadas e código QR instantâneo para impressão. Grátis, rápido e seguro.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">2B+</div><div class="hstat-l">Usuários globais</div></div>
+    <div class="hstat"><div class="hstat-n">wa.me</div><div class="hstat-l">Formato oficial</div></div>
+    <div class="hstat"><div class="hstat-n">Grátis</div><div class="hstat-l">Para sempre</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-wrap">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('basic',this)">Link Direto</button>
+    <button class="tab" onclick="switchTab('utm',this)">Rastreamento UTM</button>
+    <button class="tab" onclick="switchTab('group',this)">QR Code de Grupo</button>
+  </div>
+</div>
+
+<!-- TOOL GRID -->
+<div class="tool-grid">
+
+  <!-- LEFT: INPUT -->
+  <div>
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <div>
+          <div class="ch-title" id="formCardTitle">Seus dados</div>
+          <div class="ch-sub" id="formCardSub">Digite o seu número e a mensagem padrão</div>
+        </div>
+      </div>
+
+      <!-- BASIC PANEL -->
+      <div id="panel-basic" class="panel active">
+        <div class="field">
+          <label class="lbl" for="phone">Número de WhatsApp (com DDD)</label>
+          <div class="row">
+            <select id="cc" aria-label="Código do país">
+              <option value="55">🇧🇷 +55 (Brasil)</option>
+              <option value="351">🇵🇹 +351 (Portugal)</option>
+              <option value="244">🇦🇴 +244 (Angola)</option>
+              <option value="258">🇲🇿 +258 (Moçambique)</option>
+              <option value="1">🇺🇸 +1 (EUA)</option>
+              <option value="34">🇪🇸 +34 (Espanha)</option>
+            </select>
+            <input type="tel" id="phone" placeholder="11 98765 4321" oninput="live()" />
+          </div>
+          <div class="hint">Apenas números (sem código do país, parênteses ou traços)</div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="msg">Mensagem personalizada <span class="opt">(opcional)</span></label>
+          <div class="emoji-toolbar">
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👋', 'msg')" aria-label="Inserir emoji">👋</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('😊', 'msg')" aria-label="Inserir emoji">😊</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('💬', 'msg')" aria-label="Inserir emoji">💬</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('🛍️', 'msg')" aria-label="Inserir emoji">🛍️</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('📞', 'msg')" aria-label="Inserir emoji">📞</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✨', 'msg')" aria-label="Inserir emoji">✨</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('✅', 'msg')" aria-label="Inserir emoji">✅</button>
+            <button type="button" class="emoji-btn" onclick="insertEmoji('👍', 'msg')" aria-label="Inserir emoji">👍</button>
+          </div>
+          
+          <div class="template-pills" style="display:flex; flex-wrap:wrap; gap:6px; margin: 6px 0 8px 0;">
+            <button type="button" class="pill-btn" onclick="applyTemplate('Olá! Vi sua publicação e gostaria de tirar uma dúvida.')" style="background:rgba(255,255,255,0.06); border:1px solid var(--bd2); border-radius:14px; padding:4px 10px; font-size:11px; color:var(--ink2); cursor:pointer;">⚡ Dúvida Geral</button>
+            <button type="button" class="pill-btn" onclick="applyTemplate('Olá! Gostaria de saber os preços e receber o catálogo.')" style="background:rgba(255,255,255,0.06); border:1px solid var(--bd2); border-radius:14px; padding:4px 10px; font-size:11px; color:var(--ink2); cursor:pointer;">🛍️ Preços e Catálogo</button>
+            <button type="button" class="pill-btn" onclick="applyTemplate('Olá! Gostaria de agendar um horário ou consulta.')" style="background:rgba(255,255,255,0.06); border:1px solid var(--bd2); border-radius:14px; padding:4px 10px; font-size:11px; color:var(--ink2); cursor:pointer;">📅 Agendar Horário</button>
+          </div>
+          <textarea id="msg" placeholder="Olá! Gostaria de mais informações sobre..." oninput="live();cnt(this,'mc')"></textarea>
+          <div class="char-count" id="mc">0 / 500</div>
+          <div class="hint">O cliente verá esta mensagem pronta ao clicar no seu link · <a href="/whatsapp-auto-reply/" style="color: var(--gm); font-weight: 600; text-decoration: none;">Ver modelos de resposta automática →</a></div>
+        </div>
+      </div>
+
+      <!-- UTM PANEL -->
+      <div id="panel-utm" class="panel">
+        <div class="field">
+          <label class="lbl" for="uphone">Número de WhatsApp</label>
+          <div class="row">
+            <select id="ucc" aria-label="Código do país">
+              <option value="55">🇧🇷 +55</option>
+              <option value="351">🇵🇹 +351</option>
+              <option value="1">🇺🇸 +1</option>
+            </select>
+            <input type="tel" id="uphone" placeholder="11 98765 4321" oninput="live()" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="umsg">Mensagem personalizada <span class="opt">(opcional)</span></label>
+          <textarea id="umsg" placeholder="Olá! Vim através do anúncio no Instagram..." oninput="live()" style="min-height:68px;"></textarea>
+        </div>
+        <div class="utm-block">
+          <div class="utm-grid">
+            <div><label class="lbl" for="us" style="color:var(--gm);">Origem (Source)</label><input id="us" placeholder="instagram" oninput="live()" /></div>
+            <div><label class="lbl" for="um" style="color:var(--gm);">Mídia (Medium)</label><input id="um" placeholder="stories" oninput="live()" /></div>
+            <div><label class="lbl" for="uc" style="color:var(--gm);">Campanha</label><input id="uc" placeholder="promocao-marco" oninput="live()" /></div>
+            <div><label class="lbl" for="uk" style="color:var(--gm);">Conteúdo</label><input id="uk" placeholder="anuncio-1" oninput="live()" /></div>
+          </div>
+          <div class="hint" style="margin-top:10px;">Acompanhe exatamente qual anúncio gerou suas vendas no Google Analytics e Meta Ads</div>
+        </div>
+      </div>
+
+      <!-- GROUP PANEL -->
+      <div id="panel-group" class="panel">
+        <div class="field">
+          <label class="lbl" for="groupLink">Link de convite do grupo</label>
+          <input type="url" id="groupLink" placeholder="https://chat.whatsapp.com/..." oninput="live()" />
+          <div class="hint">Cole o link de convite do seu grupo ou comunidade do WhatsApp</div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="groupName">Nome do grupo <span class="opt">(opcional)</span></label>
+          <input type="text" id="groupName" placeholder="Ex: Clientes VIP, Alunos Academia" oninput="live()" />
+        </div>
+      </div>
+
+      <button class="btn-gen" id="btnGen" onclick="generate()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span>Gerar Link do WhatsApp</span>
+      </button>
+
+      <!-- INLINE OUTPUT (FOR MOBILE) -->
+      <div id="inline-output" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--bd2); text-align: left;">
+        <div class="card-head" style="border-bottom:none; margin-bottom:10px; padding-bottom:0; display: flex; align-items: center; gap: 10px;">
+          <div class="ch-icon" style="background:var(--gl); border-radius:10px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2.5" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="ch-title" style="color: var(--gm); font-weight: 700; font-size:14px; margin-bottom: 2px;">Link Criado com Sucesso!</div>
+            <div class="ch-sub" style="font-size:11.5px; color:var(--ink3);">Copie o link abaixo para compartilhar</div>
+          </div>
+        </div>
+        
+        <div id="inline-single-area">
+          <div class="result-wrap" style="background: var(--gl); border: 2.5px solid var(--g); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; min-height: 52px; box-shadow: 0 4px 12px rgba(37,211,102,0.08);">
+            <span class="result-url" id="inline-rurl" style="flex:1; font-family:var(--font-mono); font-size:13.5px; color:var(--gd); word-break:break-all; font-weight:600; line-height:1.4;"></span>
+            <button class="copy-btn" id="inline-cpbtn" onclick="copyInlineLink()" style="background: var(--g); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: background 0.15s; font-family: var(--font-body); min-height: 44px; font-size:13.5px; flex-shrink:0;" aria-label="Copiar link">Copiar</button>
+          </div>
+
+          <div class="act-row" style="display: flex; gap: 10px; margin-top: 8px;">
+            <button class="act-btn" onclick="testInlineLink()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:1.5px solid var(--bd2); border-radius:10px; background:transparent; font-family:var(--font-body); font-size:12.5px; font-weight:600; color:var(--ink2); cursor:pointer;">
+              Testar Link ↗
+            </button>
+            <button class="act-btn" onclick="shareInlineLink()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:1.5px solid var(--bd2); border-radius:10px; background:transparent; font-family:var(--font-body); font-size:12.5px; font-weight:600; color:var(--ink2); cursor:pointer;">
+              Compartilhar 📲
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: OUTPUT & QR STUDIO -->
+  <div>
+    <div class="card desktop-only-card">
+      <div class="card-head">
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        </div>
+        <div>
+          <div class="ch-title" id="desktopCardTitle">Seu link do WhatsApp</div>
+          <div class="ch-sub" id="desktopCardSub">Pronto para copiar e compartilhar</div>
+        </div>
+      </div>
+      
+      <div id="desktop-single-area">
+        <div class="result-wrap">
+          <span class="result-url empty" id="rurl">Seu link aparecerá aqui após clicar em gerar...</span>
+          <button class="copy-btn" id="cpbtn" onclick="copyLink()" aria-label="Copiar link">Copiar</button>
+        </div>
+        <div class="act-row">
+          <button class="act-btn" onclick="testLink()" aria-label="Testar link">Testar link ↗</button>
+          <button class="act-btn" onclick="shareLink()" aria-label="Compartilhar link">Compartilhar 📲</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR CODE STUDIO CARD -->
+    <div class="card">
+      <div class="card-head" style="justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 11px;">
+          <div class="ch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path stroke-linecap="round" d="M14 14h1m2 0h2m-2 2v2m2-2v4m-4 0h2"/></svg>
+          </div>
+          <div>
+            <div class="ch-title">Estúdio de QR Code</div>
+            <div class="ch-sub">Pronto para imprimir em cardápios e balcões</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-area">
+        <div class="qr-frame" id="qrFrame">
+          <p class="qr-ph" id="qrPh">Gere um link para visualizar seu QR code</p>
+          <div id="qr-target"></div>
+          <div class="qr-center-logo" id="qrLogo">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.07 21.5l4.432-1.343A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 12 2zm0 18.182a8.173 8.173 0 01-4.168-1.143l-.3-.178-3.1.939.892-3.232-.196-.315A8.18 8.18 0 013.818 12c0-4.513 3.669-8.182 8.182-8.182 4.512 0 8.181 3.669 8.181 8.182 0 4.513-3.669 8.182-8.182 8.182z"/></svg>
+          </div>
+        </div>
+        <button class="btn-dl" id="dlBtn" onclick="downloadQR()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Baixar QR Code (HD 1000px)
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ SECTION -->
+<section class="container faq-section" style="max-width: 760px; margin: 3.5rem auto 1rem; padding: 0 12px;">
+  <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 24px; color: var(--ink);">
+    Perguntas Frequentes
+  </h2>
+  {faqs.map(f => (
+    <div class="faq-item" style="border-bottom: 1px solid var(--bd); padding: 14px 0;">
+      <div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')" style="font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--ink);">
+        <span>{f.q}</span>
+        <span style="font-size: 18px; color: var(--gm); font-weight: 700;">+</span>
+      </div>
+      <div class="faq-a" style="font-size: 13.5px; color: var(--ink2); line-height: 1.6; margin-top: 8px;">
+        {f.a}
+      </div>
+    </div>
+  ))}
+</section>
+
+<script is:inline src="/qrcode.min.js"></script>
+<script is:inline>
+let tab = 'basic', curUrl = '';
+
+function switchTab(t, btn) {
+  tab = t;
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + t).classList.add('active');
+  btn.classList.add('active');
+  live();
+}
+
+function buildUrl() {
+  if (tab === 'basic') {
+    const c = document.getElementById('cc').value;
+    const p = document.getElementById('phone').value.replace(/\D/g,'');
+    const m = document.getElementById('msg').value.trim();
+    if (!p) return '';
+    let u = 'https://wa.me/' + c + p;
+    if (m) u += '?text=' + encodeURIComponent(m);
+    return u;
+  }
+  if (tab === 'utm') {
+    const c = document.getElementById('ucc').value;
+    const p = document.getElementById('uphone').value.replace(/\D/g,'');
+    let m = document.getElementById('umsg').value.trim();
+    if (!p) return '';
+    const us = (document.getElementById('us').value||'').trim();
+    const um = (document.getElementById('um').value||'').trim();
+    const uc = (document.getElementById('uc').value||'').trim();
+    const uk = (document.getElementById('uk').value||'').trim();
+    let tags = [];
+    if (us) tags.push('utm_source=' + encodeURIComponent(us));
+    if (um) tags.push('utm_medium=' + encodeURIComponent(um));
+    if (uc) tags.push('utm_campaign=' + encodeURIComponent(uc));
+    if (uk) tags.push('utm_content=' + encodeURIComponent(uk));
+    let u = 'https://wa.me/' + c + p;
+    if (m) u += '?text=' + encodeURIComponent(m);
+    if (tags.length) u += (m ? '&' : '?') + tags.join('&');
+    return u;
+  }
+  if (tab === 'group') {
+    const raw = (document.getElementById('groupLink')?.value || '').trim();
+    if (!raw) return '';
+    return raw.startsWith('http') ? raw : 'https://' + raw;
+  }
+  return '';
+}
+
+function live() {
+  const url = buildUrl();
+  curUrl = url;
+  const el = document.getElementById('rurl');
+  if (url) { el.className = 'result-url'; el.textContent = url; }
+  else { el.className = 'result-url empty'; el.textContent = 'Seu link aparecerá aqui após clicar em gerar...'; }
+}
+
+function cnt(el, id) { document.getElementById(id).textContent = el.value.length + ' / 500'; }
+
+function insertEmoji(em, targetId) {
+  const input = document.getElementById(targetId);
+  if (!input) return;
+  input.value += em;
+  live();
+}
+
+function applyTemplate(txt) {
+  const msgInput = document.getElementById('msg');
+  if (msgInput) {
+    msgInput.value = txt;
+    cnt(msgInput, 'mc');
+    live();
+  }
+}
+
+function showInlineSingle(url) {
+  const inlineOut = document.getElementById('inline-output');
+  const inlineUrl = document.getElementById('inline-rurl');
+  if (inlineOut && inlineUrl && url) {
+    inlineUrl.textContent = url;
+    inlineOut.style.display = 'block';
+    if (window.innerWidth <= 768) {
+      inlineOut.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+}
+
+function copyLink() {
+  if (!curUrl) return;
+  navigator.clipboard.writeText(curUrl).then(() => {
+    const btn = document.getElementById('cpbtn');
+    if (btn) btn.textContent = 'Copiado! ✓';
+    if (window.toast) window.toast('Link copiado para a área de transferência!');
+    setTimeout(() => { if (btn) btn.textContent = 'Copiar'; }, 2000);
+  });
+}
+
+function copyInlineLink() {
+  if (!curUrl) return;
+  navigator.clipboard.writeText(curUrl).then(() => {
+    const btn = document.getElementById('inline-cpbtn');
+    if (btn) btn.textContent = 'Copiado! ✓';
+    if (window.toast) window.toast('Link copiado para a área de transferência!');
+    setTimeout(() => { if (btn) btn.textContent = 'Copiar'; }, 2000);
+  });
+}
+
+function testLink() { if (curUrl) window.open(curUrl, '_blank'); }
+function testInlineLink() { if (curUrl) window.open(curUrl, '_blank'); }
+
+function shareLink() {
+  if (!curUrl) return;
+  if (navigator.share) { navigator.share({ title: 'Meu Link do WhatsApp', url: curUrl }); }
+  else { copyLink(); }
+}
+function shareInlineLink() {
+  if (!curUrl) return;
+  if (navigator.share) { navigator.share({ title: 'Meu Link do WhatsApp', url: curUrl }); }
+  else { copyInlineLink(); }
+}
+
+function renderQR(url) {
+  const frame = document.getElementById('qrFrame');
+  const target = document.getElementById('qr-target');
+  const logo = document.getElementById('qrLogo');
+  const dl = document.getElementById('dlBtn');
+  const ph = document.getElementById('qrPh');
+  if (!url) {
+    target.style.display = 'none';
+    logo.style.display = 'none';
+    dl.style.display = 'none';
+    ph.style.display = 'block';
+    frame.className = 'qr-frame';
+    return;
+  }
+  target.innerHTML = '';
+  new QRCode(target, {
+    text: url,
+    width: 152,
+    height: 152,
+    colorDark: '#080f0d',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  target.style.display = 'block';
+  logo.style.display = 'flex';
+  ph.style.display = 'none';
+  frame.className = 'qr-frame ready';
+  dl.style.display = 'inline-flex';
+}
+
+function downloadQR() {
+  if (!curUrl) return;
+  const offscreen = document.createElement('div');
+  new QRCode(offscreen, {
+    text: curUrl,
+    width: 1000,
+    height: 1000,
+    colorDark: '#080f0d',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  setTimeout(() => {
+    const canvas = offscreen.querySelector('canvas');
+    if (!canvas) return;
+    const link = document.createElement('a');
+    link.download = 'whatsapp-qr-linkwa.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }, 100);
+}
+
+function generate() {
+  live();
+  if (!curUrl) {
+    alert(tab === 'group' ? 'Por favor, insira o link do seu grupo' : 'Por favor, digite um número de WhatsApp');
+    return;
+  }
+  renderQR(curUrl);
+  showInlineSingle(curUrl);
+}
+</script>

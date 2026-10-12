@@ -1,0 +1,517 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const categories = [
+  { id: 'away', name: '🌙 Away & After Hours', count: 6 },
+  { id: 'greeting', name: '👋 Welcome & Greeting', count: 6 },
+  { id: 'pricing', name: '🛍️ Pricing & Catalog', count: 5 },
+  { id: 'booking', name: '📅 Appointments & Booking', count: 5 },
+  { id: 'support', name: '🛠️ Customer Support', count: 5 },
+  { id: 'holiday', name: '🎉 Holiday & Vacation', count: 5 },
+];
+
+const faqs = [
+  {
+    q: "How do I set up an auto reply on WhatsApp Business?",
+    a: "Open WhatsApp Business on your phone > Tap the three dots (Android) or Settings (iPhone) > Tap 'Business tools' > Tap 'Away message' or 'Greeting message' > Toggle it ON > Paste your customized message from this generator > Set your schedule and recipients > Tap Save."
+  },
+  {
+    q: "Can I set an auto-reply on personal WhatsApp?",
+    a: "WhatsApp does not officially offer automated replies on regular personal accounts. To set automated away or welcome messages, you must upgrade to the free WhatsApp Business app or use an official WhatsApp Business API provider."
+  },
+  {
+    q: "What is the difference between an Away Message and a Greeting Message?",
+    a: "A Greeting Message is sent automatically to customers when they message you for the very first time, or after 14 days of no communication. An Away Message is sent only outside your designated business operating hours or when you are unavailable."
+  },
+  {
+    q: "Are these WhatsApp auto-reply templates free to use?",
+    a: "Yes! All 30+ message templates on LinkWA are 100% free, ready to copy, and customizable for any business, agency, freelancer, clinic, or online store."
+  },
+  {
+    q: "Can I create a WhatsApp click-to-chat link with an auto-reply pre-filled?",
+    a: "Yes! Use the 'Create WhatsApp Link' button on any template below. It transfers your chosen message directly into LinkWA's free link & QR generator so customers can start chatting with one tap."
+  }
+];
+---
+
+<Base
+  title="WhatsApp Business Auto Reply Generator (30+ Free Templates) | LinkWA"
+  description="Free WhatsApp Business auto-reply generator. 30+ copy-paste away messages, greeting messages, appointment booking, and customer support templates."
+  canonical="https://linkwa.in/whatsapp-auto-reply/"
+>
+
+<!-- JSON-LD FAQ Schema for Google Search Rich Snippets -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+})} />
+
+<!-- JSON-LD SoftwareApplication Schema -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LinkWA WhatsApp Auto Reply Generator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://linkwa.in/whatsapp-auto-reply/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free generator for WhatsApp Business automated replies, greeting messages, and after-hours away messages."
+})} />
+
+<main class="container" style="max-width: 900px; padding: 2rem 1rem 4rem;">
+  
+  <!-- HERO SECTION -->
+  <header style="text-align: center; margin-bottom: 2.5rem;">
+    <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--gl); color: var(--gm); border: 1px solid rgba(37,211,102,0.25); border-radius: 20px; padding: 4px 14px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px;">
+      ⚡ 100% Free · 30+ Tested Business Templates
+    </div>
+    <h1 style="font-family: var(--font-display); font-size: clamp(26px, 4.5vw, 42px); font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; color: var(--ink);">
+      WhatsApp Business <strong style="color: var(--gm);">Auto Reply Generator</strong>
+    </h1>
+    <p style="font-size: 15.5px; color: var(--ink3); max-width: 620px; margin: 0 auto; line-height: 1.6;">
+      Create professional, high-converting WhatsApp away messages, greeting replies, and customer service templates in seconds. Customize with your business details and copy with one tap.
+    </p>
+  </header>
+
+  <!-- CUSTOMIZER FORM BAR -->
+  <section style="background: var(--surf); border: 1px solid var(--bd2); border-radius: 16px; padding: 20px; margin-bottom: 24px; box-shadow: var(--sh);">
+    <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gm); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+      <span>⚙️ Auto-Fill Your Business Details (Optional)</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+      <div>
+        <label class="lbl" for="bizName" style="font-size: 11px;">Business / Brand Name</label>
+        <input type="text" id="bizName" placeholder="e.g. Apex Dental Care" oninput="renderTemplates()" style="font-size: 14px; padding: 8px 12px;" />
+      </div>
+      <div>
+        <label class="lbl" for="bizHours" style="font-size: 11px;">Working Hours</label>
+        <input type="text" id="bizHours" placeholder="e.g. 9:00 AM – 6:00 PM (Mon-Sat)" oninput="renderTemplates()" style="font-size: 14px; padding: 8px 12px;" />
+      </div>
+      <div>
+        <label class="lbl" for="bizWebsite" style="font-size: 11px;">Website / Catalog Link</label>
+        <input type="text" id="bizWebsite" placeholder="e.g. linkwa.in or yourstore.com" oninput="renderTemplates()" style="font-size: 14px; padding: 8px 12px;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY PILLS -->
+  <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
+    {categories.map((c, i) => (
+      <button
+        type="button"
+        class={`cat-pill ${i === 0 ? 'active' : ''}`}
+        data-cat={c.id}
+        onclick={`filterCat('${c.id}', this)`}
+        style="white-space: nowrap; padding: 8px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--bd2); background: var(--surf); color: var(--ink2); transition: all 0.15s;"
+      >
+        {c.name}
+      </button>
+    ))}
+  </div>
+
+  <!-- TEMPLATES CONTAINER -->
+  <div id="templatesList" style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px;">
+    <!-- Rendered dynamically by client-side JS -->
+  </div>
+
+  <!-- STEP-BY-STEP SETUP GUIDE -->
+  <section style="background: var(--surf); border: 1px solid var(--bd); border-radius: 18px; padding: 28px; margin-bottom: 36px; box-shadow: var(--sh);">
+    <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 16px; color: var(--ink);">
+      How to Set Up Auto-Reply in WhatsApp Business (3 Minutes)
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+      <div style="background: var(--bgl); padding: 16px; border-radius: 12px; border: 1px solid var(--bd);">
+        <div style="font-size: 18px; font-weight: 800; color: var(--gm); margin-bottom: 6px;">1. Open Settings</div>
+        <p style="font-size: 13px; color: var(--ink3); line-height: 1.5; margin: 0;">Open WhatsApp Business, tap the three dots (Android) or Settings (iOS), then select <strong>Business tools</strong>.</p>
+      </div>
+      <div style="background: var(--bgl); padding: 16px; border-radius: 12px; border: 1px solid var(--bd);">
+        <div style="font-size: 18px; font-weight: 800; color: var(--gm); margin-bottom: 6px;">2. Choose Message Type</div>
+        <p style="font-size: 13px; color: var(--ink3); line-height: 1.5; margin: 0;">Tap <strong>Away message</strong> (for outside work hours) or <strong>Greeting message</strong> (for first-time customer inquiries).</p>
+      </div>
+      <div style="background: var(--bgl); padding: 16px; border-radius: 12px; border: 1px solid var(--bd);">
+        <div style="font-size: 18px; font-weight: 800; color: var(--gm); margin-bottom: 6px;">3. Paste &amp; Save</div>
+        <p style="font-size: 13px; color: var(--ink3); line-height: 1.5; margin: 0;">Toggle the feature ON, paste your customized message from this tool, set your schedule, and tap <strong>Save</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL NINJA'S AGENCY UPGRADE BANNER -->
+  <section style="background: linear-gradient(135deg, #090d16 0%, #04070e 100%); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 26px; color: #fff; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div style="max-width: 580px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #38bdf8; background: rgba(56,189,248,0.12); padding: 4px 10px; border-radius: 6px; display: inline-block; margin-bottom: 8px;">
+          ⚡ Upgrade Beyond Basic Auto-Replies
+        </span>
+        <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #fff;">
+          Need a 24/7 AI Chatbot That Qualifies Leads &amp; Closes Sales?
+        </h3>
+        <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+          Basic WhatsApp auto-replies only say hello. <strong>Social Ninja's</strong> designs autonomous AI WhatsApp sales reps that answer product questions, book calendar appointments, and collect payments directly in chat.
+        </p>
+      </div>
+      <a href="https://socialninjas.in/contact?ref=linkwa_autoreply" target="_blank" rel="noopener" style="padding: 12px 22px; background: #1F4B99; color: #fff; border-radius: 10px; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(31,75,153,0.4); transition: transform 0.15s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        Get Free AI Automation Audit →
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section style="margin-bottom: 40px;">
+    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 20px; color: var(--ink); text-align: center;">
+      Frequently Asked Questions
+    </h2>
+    <div class="faq-list" style="max-width: 720px; margin: 0 auto;">
+      {faqs.map((f, i) => (
+        <div class="faq-item" style="border-bottom: 1px solid var(--bd); padding: 14px 0;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--ink);">
+            <span>{f.q}</span>
+            <span style="font-size: 18px; color: var(--gm); font-weight: 700;">+</span>
+          </div>
+          <div class="faq-a" style="display: none; font-size: 13.5px; color: var(--ink2); line-height: 1.6; margin-top: 8px;">
+            {f.a}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FOOTER RETURN -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="/" style="display: inline-flex; align-items: center; gap: 6px; color: var(--gm); font-weight: 700; font-size: 14px; text-decoration: none;">
+      ← Back to Free WhatsApp Link &amp; QR Generator
+    </a>
+  </div>
+
+</main>
+
+<style>
+.cat-pill.active {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-color: var(--ink) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.template-card {
+  background: var(--surf);
+  border: 1px solid var(--bd2);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--sh);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.template-card:hover {
+  box-shadow: var(--sh-lg);
+  transform: translateY(-2px);
+}
+</style>
+
+<script is:inline>
+const RAW_TEMPLATES = [
+  // AWAY / AFTER HOURS
+  {
+    cat: 'away',
+    title: 'Standard After-Hours Away Message',
+    badge: 'Popular',
+    text: "Hi there! 👋 Thanks for reaching out to {BUSINESS_NAME}. We are currently away from our desks. Our business hours are {HOURS}. We will respond to your message first thing tomorrow morning. Have a great day!"
+  },
+  {
+    cat: 'away',
+    title: 'Weekend Closed Notice with Self-Service Link',
+    badge: 'High Conversion',
+    text: "Hello! We are currently closed for the weekend 🌴. Our team will be back on Monday during normal operating hours ({HOURS}). In the meantime, you can browse our catalog or book online here: {WEBSITE}. Thank you!"
+  },
+  {
+    cat: 'away',
+    title: 'Emergency Contact Away Message',
+    badge: 'Urgent',
+    text: "Thank you for contacting {BUSINESS_NAME}. Our office is currently closed ({HOURS}). If your inquiry is urgent, please call our emergency hotline or visit {WEBSITE} for immediate assistance."
+  },
+  {
+    cat: 'away',
+    title: 'Short & Minimalist Away Notice',
+    badge: 'Clean',
+    text: "👋 Hi! We received your message, but our office is currently closed ({HOURS}). We will review your message and reply as soon as we open!"
+  },
+  {
+    cat: 'away',
+    title: 'High Inquiry Volume / Delayed Response',
+    badge: 'Support',
+    text: "Hello! We are currently experiencing high message volume. Our team is working through replies as fast as possible. Expect a response within 1-2 hours during our regular hours ({HOURS}). Thank you for your patience! 🙏"
+  },
+  {
+    cat: 'away',
+    title: 'Quick Reply with FAQ & Price List',
+    badge: 'Sales',
+    text: "Hi! Thanks for messaging {BUSINESS_NAME}. We are offline right now, but you can check our instant pricing guide and FAQs here: {WEBSITE}. We'll follow up with you shortly!"
+  },
+
+  // GREETING & WELCOME
+  {
+    cat: 'greeting',
+    title: 'Warm Welcome & Instant Menu',
+    badge: 'Most Popular',
+    text: "Welcome to {BUSINESS_NAME}! 🎉 How can we help you today? Please reply with:\n1️⃣ Service Pricing\n2️⃣ Book an Appointment\n3️⃣ Speak with a Human\nOr visit {WEBSITE} to see our full offerings!"
+  },
+  {
+    cat: 'greeting',
+    title: 'Casual & Friendly First Greeting',
+    badge: 'Friendly',
+    text: "Hi there! 👋 Thanks for getting in touch with {BUSINESS_NAME}. Tell us what you're looking for, and one of our specialists will jump in to help you shortly."
+  },
+  {
+    cat: 'greeting',
+    title: 'B2B Professional Introduction',
+    badge: 'B2B / Agency',
+    text: "Hello, thank you for contacting {BUSINESS_NAME}. Please share your project details, company name, and requirements so we can assign the best team member to assist you."
+  },
+  {
+    cat: 'greeting',
+    title: 'Welcome with Free Consultation / Audit',
+    badge: 'Lead Gen',
+    text: "Welcome to {BUSINESS_NAME}! 🚀 We offer free initial consultations to help you scale. Drop your name and primary question, and our lead strategist will respond during our operating hours ({HOURS})."
+  },
+  {
+    cat: 'greeting',
+    title: 'Local Store / Clinic Greeting',
+    badge: 'Local Retail',
+    text: "Hi! Thanks for messaging {BUSINESS_NAME}. We are open {HOURS}. How can we assist you today? Let us know if you need location directions, slot availability, or price estimates!"
+  },
+  {
+    cat: 'greeting',
+    title: 'Direct Product / Catalog Sharing',
+    badge: 'E-Commerce',
+    text: "Hello! Welcome to {BUSINESS_NAME} 🛍️. Check out our latest products and promotional discounts on our catalog: {WEBSITE}. Let us know which item caught your eye!"
+  },
+
+  // PRICING & CATALOG
+  {
+    cat: 'pricing',
+    title: 'Instant Catalog Request Auto-Reply',
+    badge: 'Catalog',
+    text: "Hi! Thanks for inquiring about our pricing at {BUSINESS_NAME}. You can download our latest catalog and price list directly here: {WEBSITE}. Let us know if you would like a custom quote!"
+  },
+  {
+    cat: 'pricing',
+    title: 'Service Quote Questionnaire',
+    badge: 'High Value',
+    text: "Hello! We would love to provide you with an exact quote. Please reply with:\n• Type of service needed\n• Timeline or target date\n• Any specific preferences or budget\nOur team at {BUSINESS_NAME} will calculate an estimate for you!"
+  },
+  {
+    cat: 'pricing',
+    title: 'Wholesale & Bulk Orders Inquiry',
+    badge: 'Wholesale',
+    text: "Hi! Thanks for your bulk order inquiry for {BUSINESS_NAME}. Our wholesale pricing tiers and minimum order quantities are available at {WEBSITE}. Please let us know your required quantity!"
+  },
+  {
+    cat: 'pricing',
+    title: 'Special Discount / Coupon Code Message',
+    badge: 'Promo',
+    text: "Hey! Thanks for messaging {BUSINESS_NAME} 🎁. Use code WELCOME10 on our website {WEBSITE} for 10% off your first order! Let us know if you need help selecting products."
+  },
+  {
+    cat: 'pricing',
+    title: 'Software & Subscription Pricing Info',
+    badge: 'SaaS',
+    text: "Hi there! Our subscription tiers and package details are outlined on our plans page: {WEBSITE}. Would you like to schedule a 10-minute demo with our team?"
+  },
+
+  // BOOKING & APPOINTMENTS
+  {
+    cat: 'booking',
+    title: 'Calendar Booking Link Auto-Reply',
+    badge: 'Automated',
+    text: "Hi! To book your appointment with {BUSINESS_NAME} without waiting, pick your preferred date and time directly on our calendar: {WEBSITE}. We look forward to meeting you!"
+  },
+  {
+    cat: 'booking',
+    title: 'Clinic / Doctor Slot Request',
+    badge: 'Healthcare',
+    text: "Hello, thanks for contacting {BUSINESS_NAME}. To schedule an appointment, please send us:\n1. Patient Full Name\n2. Preferred Date & Time\n3. Doctor or Specialty\nWe will confirm your appointment slot shortly!"
+  },
+  {
+    cat: 'booking',
+    title: 'Salon & Spa Slot Request',
+    badge: 'Salon',
+    text: "Hey gorgeous! 💇 Welcome to {BUSINESS_NAME}. Please tell us which services you'd like to book and your preferred date/time. We are open {HOURS} and will confirm your slot right away!"
+  },
+  {
+    cat: 'booking',
+    title: 'Table Reservation for Restaurant',
+    badge: 'Dining',
+    text: "Thank you for contacting {BUSINESS_NAME}! 🍽️ To reserve a table, please tell us the number of guests, date, and time. We will reply with confirmation in minutes!"
+  },
+  {
+    cat: 'booking',
+    title: 'Reschedule or Cancel Appointment',
+    badge: 'Scheduling',
+    text: "Hi! Need to modify an existing appointment with {BUSINESS_NAME}? Please reply with your booking name and phone number, and we will update your schedule."
+  },
+
+  // CUSTOMER SUPPORT
+  {
+    cat: 'support',
+    title: 'Support Ticket Acknowledgement',
+    badge: 'Ticket',
+    text: "Hello! Your support inquiry has been received by {BUSINESS_NAME}. Please reply with your Order ID or Account Email so our support agents can resolve this promptly during {HOURS}."
+  },
+  {
+    cat: 'support',
+    title: 'Order Tracking & Delivery Status',
+    badge: 'Tracking',
+    text: "Hi! Looking for an update on your package? You can track your shipment live at {WEBSITE}/track. For manual assistance, send us your 6-digit Order ID!"
+  },
+  {
+    cat: 'support',
+    title: 'Refund & Exchange Policy Info',
+    badge: 'Returns',
+    text: "Thanks for messaging {BUSINESS_NAME} customer service. Our return window is 7 days from delivery. You can initiate an exchange or view our policy here: {WEBSITE}."
+  },
+  {
+    cat: 'support',
+    title: 'Technical Issue Quick Check',
+    badge: 'Tech',
+    text: "Hi, thank you for alerting {BUSINESS_NAME} support. Please share a screenshot or screen recording of the error you're seeing so our technical engineers can debug it quickly!"
+  },
+  {
+    cat: 'support',
+    title: 'Feedback & Review Request',
+    badge: 'Reviews',
+    text: "Thanks for choosing {BUSINESS_NAME}! We hope you had a fantastic experience. Could you spare 30 seconds to leave us a quick review? We'd love your feedback: {WEBSITE}"
+  },
+
+  // HOLIDAYS & VACATIONS
+  {
+    cat: 'holiday',
+    title: 'National Holiday Closure Notice',
+    badge: 'Holiday',
+    text: "Warm greetings from {BUSINESS_NAME}! 🎊 Our office is closed today in celebration of the holiday. We will reopen tomorrow during our normal hours ({HOURS}). Best wishes to you and your family!"
+  },
+  {
+    cat: 'holiday',
+    title: 'New Year / Festive Season Notice',
+    badge: 'Festive',
+    text: "Happy Holidays from the entire team at {BUSINESS_NAME}! ✨ Please note our shipping and response times may be slightly delayed during the festive season. Check {WEBSITE} for updates."
+  },
+  {
+    cat: 'holiday',
+    title: 'Annual Team Retreat / Maintenance',
+    badge: 'Notice',
+    text: "Hello! The {BUSINESS_NAME} team is currently on an annual team retreat. We will return and process all incoming messages on Monday morning. Thank you for your understanding!"
+  },
+  {
+    cat: 'holiday',
+    title: 'Black Friday / Cyber Monday Sale Support',
+    badge: 'Black Friday',
+    text: "Hi! Welcome to {BUSINESS_NAME}'s Mega Sale! 🛍️ Due to massive order volumes, responses may take 15-30 minutes. You can claim deals and checkout directly at {WEBSITE}!"
+  },
+  {
+    cat: 'holiday',
+    title: 'Summer Vacation Closure',
+    badge: 'Vacation',
+    text: "Hello! {BUSINESS_NAME} is on summer break from our studio. We will reopen on our regular schedule ({HOURS}). For urgent matters, email us or visit {WEBSITE}."
+  }
+];
+
+let activeCategory = 'away';
+
+function filterCat(catId, btn) {
+  activeCategory = catId;
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTemplates();
+}
+
+function getReplacedText(rawText) {
+  const bName = (document.getElementById('bizName')?.value || '').trim() || 'Our Team';
+  const bHours = (document.getElementById('bizHours')?.value || '').trim() || '9:00 AM – 6:00 PM';
+  const bWeb = (document.getElementById('bizWebsite')?.value || '').trim() || 'our website';
+
+  return rawText
+    .replace(/\{BUSINESS_NAME\}/g, bName)
+    .replace(/\{HOURS\}/g, bHours)
+    .replace(/\{WEBSITE\}/g, bWeb);
+}
+
+function copyTemplate(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = 'Copied ✓';
+    btn.style.background = 'var(--gd)';
+    if (window.toast) window.toast('Message copied to clipboard!');
+    setTimeout(() => {
+      btn.innerText = orig;
+      btn.style.background = 'var(--g)';
+    }, 2000);
+  });
+}
+
+function openInLinkGen(text) {
+  const encoded = encodeURIComponent(text);
+  window.open('/?msg=' + encoded, '_blank');
+}
+
+function renderTemplates() {
+  const container = document.getElementById('templatesList');
+  if (!container) return;
+
+  const filtered = RAW_TEMPLATES.filter(t => t.cat === activeCategory);
+
+  let html = '';
+  filtered.forEach((t, idx) => {
+    const msg = getReplacedText(t.text);
+    html += `
+      <div class="template-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; gap:8px;">
+          <div>
+            <span style="font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--gm); background:var(--gl); padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:4px;">${t.badge}</span>
+            <h3 style="font-size:15px; font-weight:700; color:var(--ink); margin:0;">${t.title}</h3>
+          </div>
+        </div>
+        
+        <div style="background:var(--bgl); border:1.5px solid var(--bd2); border-radius:10px; padding:14px; font-family:var(--font-body); font-size:13.5px; line-height:1.6; color:var(--ink); white-space:pre-wrap; word-break:break-word; margin-bottom:12px;">${msg}</div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" onclick="copyTemplate(\`${msg.replace(/`/g, '\\`').replace(/"/g, '&quot;')}\`, this)" style="flex:1; min-width:140px; padding:10px 16px; background:var(--g); color:#fff; border:none; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; transition:background 0.15s;">
+            📋 Copy Message
+          </button>
+          <button type="button" onclick="openInLinkGen(\`${msg.replace(/`/g, '\\`').replace(/"/g, '&quot;')}\`)" style="flex:1; min-width:180px; padding:10px 16px; background:transparent; color:var(--ink); border:1.5px solid var(--bd2); border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--gm)'" onmouseout="this.style.borderColor='var(--bd2)'">
+            🔗 Create Link with this Message →
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const icon = el.querySelector('span:last-child');
+  if (answer.style.display === 'block') {
+    answer.style.display = 'none';
+    icon.textContent = '+';
+  } else {
+    answer.style.display = 'block';
+    icon.textContent = '✕';
+  }
+}
+
+// Initial render
+document.addEventListener('DOMContentLoaded', () => {
+  renderTemplates();
+});
+renderTemplates();
+</script>

@@ -29,11 +29,14 @@
 ## Key Resources & Documentation
 
 - [LinkWA Generator Homepage](https://linkwa.in/): The primary free WhatsApp link generator and QR studio.
-- [Blog & Guides](https://linkwa.in/blog): In-depth tutorials on WhatsApp marketing, automation, and QR code usage.
+- [WhatsApp Auto Reply Generator](https://linkwa.in/whatsapp-auto-reply/): Free interactive generator with 30+ ready-to-use away messages, welcome greetings, and customer support templates for WhatsApp Business.
+- [Generador de Enlaces de WhatsApp en Español](https://linkwa.in/es/): Versión completa en español para España y Latinoamérica.
+- [Gerador de Link do WhatsApp em Português](https://linkwa.in/pt/): Versão completa em português para o Brasil e Portugal.
+- [Blog & Guides](https://linkwa.in/blog/): In-depth tutorials on WhatsApp marketing, automation, and QR code usage.
 - [RSS Feed](https://linkwa.in/rss.xml): Real-time syndication feed for news and educational articles.
-- [About LinkWA & Social Ninja's](https://linkwa.in/about): Background on the founders, company mission, and privacy-first engineering philosophy.
-- [Privacy Policy](https://linkwa.in/privacy): Official zero-data-collection privacy statement.
-- [Terms of Service](https://linkwa.in/terms): Open access and usage terms.
+- [About LinkWA & Social Ninja's](https://linkwa.in/about/): Background on the founders, company mission, and privacy-first engineering philosophy.
+- [Privacy Policy](https://linkwa.in/privacy/): Official zero-data-collection privacy statement.
+- [Terms of Service](https://linkwa.in/terms/): Open access and usage terms.
 
 ## High-Impact Guides
 
