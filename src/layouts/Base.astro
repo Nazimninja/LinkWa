@@ -219,13 +219,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   </a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="/" class={currentPath === '/' ? 'active' : ''}>Link Generator</a>
-      <a href="/whatsapp-auto-reply/" class={currentPath === '/whatsapp-auto-reply' ? 'active' : ''}>Auto-Reply Tool</a>
-      <a href="/blog/" class={Astro.url.pathname.startsWith('/blog') ? 'active' : ''}>Blog Guides</a>
-      <a href="/about/" class={currentPath === '/about' ? 'active' : ''}>About</a>
-      <a href="/contact/" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
+      <a href="/" id="navLinkGen" class={currentPath === '/' ? 'active' : ''}>Link Generator</a>
+      <a href="/whatsapp-auto-reply/" id="navLinkAuto" class={currentPath === '/whatsapp-auto-reply' ? 'active' : ''}>Auto-Reply Tool</a>
+      <a href="/blog/" id="navLinkBlog" class={Astro.url.pathname.startsWith('/blog') ? 'active' : ''}>Blog Guides</a>
+      <a href="/about/" id="navLinkAbout" class={currentPath === '/about' ? 'active' : ''}>About</a>
+      <a href="/contact/" id="navLinkContact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
     </div>
-    <div class="nav-live"><span class="dot"></span> No data stored</div>
+    <div class="nav-live" id="navLive"><span class="dot"></span> No data stored</div>
     <div class="lang-dropdown-wrap" style="position: relative;">
       <button type="button" id="langMenuBtn" onclick="toggleLangDropdown(event)" class="lang-dropdown-btn" aria-label="Select Language" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; background: var(--bgl); padding: 5px 9px; border-radius: 8px; border: 1px solid var(--bd2); color: var(--ink); cursor: pointer; transition: all 0.15s;">
         <span id="currentLangFlag">🌐</span>
@@ -522,6 +522,229 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     tr: { name: 'TR', flag: '🇹🇷' }
   };
 
+  const I18N_DICTIONARY = {
+    en: {
+      flag: '🇺🇸', name: 'EN', cc: '1',
+      navGen: 'Link Generator', navAuto: 'Auto-Reply Tool', navBlog: 'Blog Guides', navAbout: 'About', navContact: 'Contact', navLive: 'No data stored',
+      heroChip: 'Trusted by 10,000+ businesses',
+      heroTitle: 'Free <strong>WhatsApp Link Generator</strong> with QR Code',
+      heroSub: 'Create custom wa.me links with pre-filled messages and instant WhatsApp QR codes. 100% free, no account needed, instant setup.',
+      stat1L: 'WA users globally', stat2L: 'Official format', stat3N: 'Free', stat3L: 'Always & forever',
+      tabBasic: 'Single Link', tabUtm: 'UTM Tracking', tabMulti: 'Multi-Number', tabGroup: 'Group Invite',
+      formTitle: 'Your Details', formSub: 'Enter your number and message',
+      phoneLbl: 'Phone number', phoneHint: 'Without country code or spaces',
+      msgLbl: 'Pre-filled message <span class="opt">(optional)</span>',
+      msgPh: "Hi! I saw your post and I'm interested in...",
+      tplInquiry: '⚡ General Inquiry', tplInquiryText: "Hi! I saw your post and want to inquire about your services.",
+      tplPricing: '🛍️ Pricing & Catalog', tplPricingText: "Hi! Can you please share your latest pricing and catalog?",
+      tplBooking: '📅 Book Consultation', tplBookingText: "Hi! I would like to book an appointment or consultation.",
+      slugLbl: 'Custom Short Link <span class="opt">(optional)</span>',
+      btnGen: 'Generate WhatsApp Link',
+      deskTitle: 'Your WhatsApp link', deskSub: 'Ready to copy and share',
+      cpbtn: 'Copy', testbtn: 'Open Chat ↗', sharebtn: 'Share',
+      studioTitle: 'QR Code Studio', studioSub: 'Print on cards, banners & menus',
+      dlbtn: 'Download Print-Ready QR (1000px)'
+    },
+    es: {
+      flag: '🇪🇸', name: 'ES', cc: '34',
+      navGen: 'Generador de Enlaces', navAuto: 'Respuestas Automáticas', navBlog: 'Guías y Blog', navAbout: 'Nosotros', navContact: 'Contacto', navLive: 'Sin registro ni datos',
+      heroChip: 'Elegido por más de 10,000 empresas',
+      heroTitle: 'Generador Gratis de <strong>Enlaces de WhatsApp</strong> con Código QR',
+      heroSub: 'Crea enlaces directos wa.me con mensajes personalizados y códigos QR instantáneos. 100% gratis, sin registro y listo al instante.',
+      stat1L: 'Usuarios globales', stat2L: 'Formato oficial', stat3N: 'Gratis', stat3L: 'Para siempre',
+      tabBasic: 'Enlace Directo', tabUtm: 'Rastreo UTM', tabMulti: 'Varios Números', tabGroup: 'Código QR Grupo',
+      formTitle: 'Tus datos', formSub: 'Ingresa tu número y mensaje predefinido',
+      phoneLbl: 'Número de teléfono', phoneHint: 'Sin el código de país ni espacios',
+      msgLbl: 'Mensaje predeterminado <span class="opt">(opcional)</span>',
+      msgPh: '¡Hola! Me gustaría más información sobre tus servicios...',
+      tplInquiry: '⚡ Consulta General', tplInquiryText: '¡Hola! Vi su publicación y me gustaría solicitar información.',
+      tplPricing: '🛍️ Catálogo y Precios', tplPricingText: '¡Hola! ¿Podrían compartirme su lista de precios y catálogo?',
+      tplBooking: '📅 Agendar Cita', tplBookingText: '¡Hola! Me gustaría agendar una cita o consulta.',
+      slugLbl: 'Enlace Corto Personalizado <span class="opt">(opcional)</span>',
+      btnGen: 'Generar Enlace de WhatsApp',
+      deskTitle: 'Tu enlace de WhatsApp', deskSub: 'Listo para copiar y compartir',
+      cpbtn: 'Copiar', testbtn: 'Abrir Chat ↗', sharebtn: 'Compartir',
+      studioTitle: 'Estudio de Códigos QR HD', studioSub: 'Listo para imprimir en volantes, cartas y stands',
+      dlbtn: 'Descargar QR de Alta Definición (1000px)'
+    },
+    pt: {
+      flag: '🇧🇷', name: 'PT', cc: '55',
+      navGen: 'Gerador de Links', navAuto: 'Respostas Automáticas', navBlog: 'Guias e Blog', navAbout: 'Sobre', navContact: 'Contato', navLive: 'Sem cadastro ou dados',
+      heroChip: 'Mais de 10.000 empresas utilizam',
+      heroTitle: 'Gerador Grátis de <strong>Link do WhatsApp</strong> com QR Code',
+      heroSub: 'Crie links diretos wa.me com mensagens personalizadas e código QR instantâneo para impressão. 100% gratuito e seguro.',
+      stat1L: 'Usuários no mundo', stat2L: 'Formato oficial', stat3N: 'Grátis', stat3L: 'Para sempre',
+      tabBasic: 'Link Direto', tabUtm: 'Rastreamento UTM', tabMulti: 'Múltiplos Números', tabGroup: 'QR Code de Grupo',
+      formTitle: 'Seus dados', formSub: 'Digite o seu número e a mensagem padrão',
+      phoneLbl: 'Número de WhatsApp (com DDD)', phoneHint: 'Sem o código do país nem espaços',
+      msgLbl: 'Mensagem pronta <span class="opt">(opcional)</span>',
+      msgPh: 'Olá! Vi seu anúncio e gostaria de saber mais...',
+      tplInquiry: '⚡ Contato Geral', tplInquiryText: 'Olá! Vi sua publicação e gostaria de tirar algumas dúvidas.',
+      tplPricing: '🛍️ Preços e Catálogo', tplPricingText: 'Olá! Poderia me enviar o catálogo e a tabela de preços atualizada?',
+      tplBooking: '📅 Agendar Horário', tplBookingText: 'Olá! Gostaria de agendar um horário ou atendimento.',
+      slugLbl: 'Link Curto Personalizado <span class="opt">(opcional)</span>',
+      btnGen: 'Gerar Link do WhatsApp',
+      deskTitle: 'Seu link do WhatsApp', deskSub: 'Pronto para copiar e compartilhar',
+      cpbtn: 'Copiar', testbtn: 'Abrir Conversa ↗', sharebtn: 'Compartilhar',
+      studioTitle: 'Estúdio de QR Code HD', studioSub: 'Pronto para impressão em cardápios, cartões e banners',
+      dlbtn: 'Baixar QR Code em Alta Resolução (1000px)'
+    },
+    fr: {
+      flag: '🇫🇷', name: 'FR', cc: '33',
+      navGen: 'Générateur de Lien', navAuto: 'Réponses Automatiques', navBlog: 'Blog & Guides', navAbout: 'À propos', navContact: 'Contact', navLive: 'Aucune donnée stockée',
+      heroChip: 'Utilisé par plus de 10 000 entreprises',
+      heroTitle: 'Générateur Gratuit de <strong>Lien WhatsApp</strong> avec QR Code',
+      heroSub: 'Créez des liens wa.me personnalisés avec message prêt et code QR instantané. 100% gratuit, sans inscription.',
+      stat1L: 'Utilisateurs mondiaux', stat2L: 'Format officiel', stat3N: 'Gratuit', stat3L: 'Pour toujours',
+      tabBasic: 'Lien Direct', tabUtm: 'Suivi UTM', tabMulti: 'Multi-Numéros', tabGroup: 'QR Groupe',
+      formTitle: 'Vos coordonnées', formSub: 'Entrez votre numéro et votre message',
+      phoneLbl: 'Numéro de téléphone', phoneHint: 'Sans indicatif pays ni espaces',
+      msgLbl: 'Message pré-rempli <span class="opt">(facultatif)</span>',
+      msgPh: "Bonjour ! J'ai vu votre publication et je souhaite me renseigner...",
+      tplInquiry: '⚡ Demande générale', tplInquiryText: "Bonjour ! Je souhaite obtenir plus d'informations sur vos offres.",
+      tplPricing: '🛍️ Tarifs & Catalogue', tplPricingText: "Bonjour ! Pourriez-vous me transmettre votre catalogue et vos tarifs ?",
+      tplBooking: '📅 Réserver un rendez-vous', tplBookingText: "Bonjour ! Je souhaiterais prendre un rendez-vous pour un échange.",
+      slugLbl: 'Lien court personnalisé <span class="opt">(facultatif)</span>',
+      btnGen: 'Générer le lien WhatsApp',
+      deskTitle: 'Votre lien WhatsApp', deskSub: 'Prêt à copier et partager',
+      cpbtn: 'Copier', testbtn: 'Ouvrir Chat ↗', sharebtn: 'Partager',
+      studioTitle: 'Studio QR Code HD', studioSub: 'Prêt à imprimer sur flyers, menus & stands',
+      dlbtn: 'Télécharger QR HD (1000px)'
+    },
+    hi: {
+      flag: '🇮🇳', name: 'HI', cc: '91',
+      navGen: 'लिंक जनरेटर', navAuto: 'ऑटो-रिप्लाई टूल', navBlog: 'ब्लॉग और गाइड', navAbout: 'हमारे बारे में', navContact: 'संपर्क करें', navLive: 'डेटा स्टोर नहीं होता',
+      heroChip: '10,000+ व्यवसायों द्वारा विश्वसनीय',
+      heroTitle: 'मुफ्त <strong>व्हाट्सएप लिंक जनरेटर</strong> और क्यूआर कोड',
+      heroSub: 'अपने संदेश के साथ तुरंत wa.me लिंक और एचडी क्यूआर कोड बनाएं। 100% मुफ्त, बिना किसी साइनअप के।',
+      stat1L: 'ग्लोबल यूजर्स', stat2L: 'आधिकारिक प्रारूप', stat3N: 'मुफ्त', stat3L: 'हमेशा के लिए',
+      tabBasic: 'सीधा लिंक', tabUtm: 'यूटीएम ट्रैकिंग', tabMulti: 'मल्टी-नंबर', tabGroup: 'ग्रुप क्यूआर',
+      formTitle: 'आपका विवरण', formSub: 'फ़ोन नंबर और संदेश दर्ज करें',
+      phoneLbl: 'फ़ोन नंबर', phoneHint: 'बिना देश कोड या स्पेस के',
+      msgLbl: 'पहले से भरा संदेश <span class="opt">(वैकल्पिक)</span>',
+      msgPh: 'नमस्ते! मैंने आपकी पोस्ट देखी और मुझे आपकी सेवाओं में रुचि है...',
+      tplInquiry: '⚡ सामान्य पूछताछ', tplInquiryText: 'नमस्ते! मुझे आपकी सेवाओं के बारे में जानकारी चाहिए।',
+      tplPricing: '🛍️ मूल्य और कैटलॉग', tplPricingText: 'नमस्ते! क्या आप अपना नया कैटलॉग और मूल्य सूची भेज सकते हैं?',
+      tplBooking: '📅 अपॉइंटमेंट बुक करें', tplBookingText: 'नमस्ते! मैं परामर्श के लिए अपॉइंटमेंट बुक करना चाहता हूँ।',
+      slugLbl: 'कस्टम शॉर्ट लिंक <span class="opt">(वैकल्पिक)</span>',
+      btnGen: 'व्हाट्सएप लिंक बनाएं',
+      deskTitle: 'आपका व्हाट्सएप लिंक', deskSub: 'कॉपी और शेयर करने के लिए तैयार',
+      cpbtn: 'कॉपी करें', testbtn: 'चैट खोलें ↗', sharebtn: 'शेयर करें',
+      studioTitle: 'एचडी क्यूआर कोड स्टूडियो', studioSub: 'कार्ड, बैनर और मेनू पर प्रिंट करें',
+      dlbtn: 'प्रिंट-रेडी क्यूआर डाउनलोड करें (1000px)'
+    },
+    id: {
+      flag: '🇮🇩', name: 'ID', cc: '62',
+      navGen: 'Pembuat Tautan', navAuto: 'Balas Otomatis', navBlog: 'Panduan & Blog', navAbout: 'Tentang', navContact: 'Kontak', navLive: 'Tanpa simpan data',
+      heroChip: 'Dipercaya oleh 10.000+ bisnis',
+      heroTitle: 'Pembuat <strong>Tautan WhatsApp</strong> Gratis dengan Kode QR',
+      heroSub: 'Buat tautan wa.me dengan pesan otomatis dan kode QR instan. 100% gratis, tanpa akun.',
+      stat1L: 'Pengguna global', stat2L: 'Format resmi', stat3N: 'Gratis', stat3L: 'Selamanya',
+      tabBasic: 'Tautan Langsung', tabUtm: 'Pelacak UTM', tabMulti: 'Banyak Nomor', tabGroup: 'QR Grup',
+      formTitle: 'Detail Anda', formSub: 'Masukkan nomor dan pesan Anda',
+      phoneLbl: 'Nomor telepon', phoneHint: 'Tanpa kode negara atau spasi',
+      msgLbl: 'Pesan otomatis <span class="opt">(opsional)</span>',
+      msgPh: 'Halo! Saya melihat postingan Anda dan tertarik dengan...',
+      tplInquiry: '⚡ Pertanyaan Umum', tplInquiryText: 'Halo! Saya ingin bertanya tentang layanan Anda.',
+      tplPricing: '🛍️ Harga & Katalog', tplPricingText: 'Halo! Boleh minta daftar harga dan katalog produk terbaru?',
+      tplBooking: '📅 Jadwalkan Konsultasi', tplBookingText: 'Halo! Saya ingin menjadwalkan konsultasi atau janji temu.',
+      slugLbl: 'Tautan Pendek Khusus <span class="opt">(opsional)</span>',
+      btnGen: 'Buat Tautan WhatsApp',
+      deskTitle: 'Tautan WhatsApp Anda', deskSub: 'Siap untuk disalin dan dibagikan',
+      cpbtn: 'Salin', testbtn: 'Buka Chat ↗', sharebtn: 'Bagikan',
+      studioTitle: 'Studio Kode QR HD', studioSub: 'Cetak pada kartu nama, banner & menu',
+      dlbtn: 'Unduh QR Siap Cetak (1000px)'
+    },
+    de: {
+      flag: '🇩🇪', name: 'DE', cc: '49',
+      navGen: 'Link-Generator', navAuto: 'Automatische Antworten', navBlog: 'Ratgeber & Blog', navAbout: 'Über uns', navContact: 'Kontakt', navLive: 'Keine Datenspeicherung',
+      heroChip: 'Von über 10.000 Unternehmen genutzt',
+      heroTitle: 'Kostenloser <strong>WhatsApp Link Generator</strong> mit QR-Code',
+      heroSub: 'Erstellen Sie wa.me Links mit vorgefertigter Nachricht und hochauflösendem QR-Code. 100% kostenlos.',
+      stat1L: 'Nutzer weltweit', stat2L: 'Offizielles Format', stat3N: 'Kostenlos', stat3L: 'Für immer',
+      tabBasic: 'Direktlink', tabUtm: 'UTM-Tracking', tabMulti: 'Mehrere Nummern', tabGroup: 'Gruppen-QR',
+      formTitle: 'Ihre Angaben', formSub: 'Geben Sie Ihre Telefonnummer und Nachricht ein',
+      phoneLbl: 'Telefonnummer', phoneHint: 'Ohne Ländervorwahl oder Leerzeichen',
+      msgLbl: 'Vorgefertigte Nachricht <span class="opt">(optional)</span>',
+      msgPh: 'Hallo! Ich habe Ihren Beitrag gesehen und interessiere mich für...',
+      tplInquiry: '⚡ Allgemeine Anfrage', tplInquiryText: 'Hallo! Ich möchte mich gerne über Ihre Angebote informieren.',
+      tplPricing: '🛍️ Preise & Katalog', tplPricingText: 'Hallo! Können Sie mir bitte Ihre aktuelle Preisliste und den Katalog zusenden?',
+      tplBooking: '📅 Termin vereinbaren', tplBookingText: 'Hallo! Ich würde gerne einen unverbindlichen Beratungstermin vereinbaren.',
+      slugLbl: 'Eigener Kurzlink <span class="opt">(optional)</span>',
+      btnGen: 'WhatsApp-Link erstellen',
+      deskTitle: 'Ihr WhatsApp-Link', deskSub: 'Bereit zum Kopieren und Teilen',
+      cpbtn: 'Kopieren', testbtn: 'Chat öffnen ↗', sharebtn: 'Teilen',
+      studioTitle: 'HD QR-Code Studio', studioSub: 'Druckbereit für Visitenkarten, Flyer & Menüs',
+      dlbtn: 'Druckfähigen QR herunterladen (1000px)'
+    },
+    ar: {
+      flag: '🇸🇦', name: 'AR', cc: '971',
+      navGen: 'مولد الروابط', navAuto: 'الردود التلقائية', navBlog: 'الدليل والمقالات', navAbout: 'عن الموقع', navContact: 'اتصل بنا', navLive: 'بدون تخزين أي بيانات',
+      heroChip: 'موثوق من أكثر من 10,000 شركة',
+      heroTitle: 'مولد <strong>روابط واتساب</strong> المجاني مع رمز QR',
+      heroSub: 'أنشئ روابط wa.me مخصصة مع رسائل معدة مسبقاً ورمز QR للطباعة. مجاني 100% وبدون تسجيل.',
+      stat1L: 'مستخدم حول العالم', stat2L: 'الصيغة الرسمية', stat3N: 'مجاني', stat3L: 'دائماً وأبداً',
+      tabBasic: 'رابط مباشر', tabUtm: 'تتبع UTM', tabMulti: 'أرقام متعددة', tabGroup: 'رمز QR للمجموعة',
+      formTitle: 'بياناتك الشخصية', formSub: 'أدخل رقم الهاتف والرسالة',
+      phoneLbl: 'رقم الهاتف', phoneHint: 'بدون رمز الدولة أو المسافات',
+      msgLbl: 'رسالة تلقائية <span class="opt">(اختياري)</span>',
+      msgPh: 'مرحباً! لقد رأيت إعلانكم وأرغب في الاستفسار عن...',
+      tplInquiry: '⚡ استفسار عام', tplInquiryText: 'مرحباً! أود الاستفسار والحصول على مزيد من التفاصيل عن خدماتكم.',
+      tplPricing: '🛍️ الأسعار والكتالوج', tplPricingText: 'مرحباً! هل بالإمكان إرسال قائمة الأسعار والكتالوج الحديث؟',
+      tplBooking: '📅 حجز موعد استشارة', tplBookingText: 'مرحباً! أرغب في حجز موعد أو استشارة.',
+      slugLbl: 'رابط قصير مخصص <span class="opt">(اختياري)</span>',
+      btnGen: 'إنشاء رابط واتساب',
+      deskTitle: 'رابط واتساب الخاص بك', deskSub: 'جاهز للنسخ والمشاركة فوراً',
+      cpbtn: 'نسخ', testbtn: 'فتح المحادثة ↗', sharebtn: 'مشاركة',
+      studioTitle: 'استوديو رمز QR عالي الدقة', studioSub: 'جاهز للطباعة على البطاقات والقوائم',
+      dlbtn: 'تحميل رمز QR عالي الدقة (1000 بكسل)'
+    },
+    it: {
+      flag: '🇮🇹', name: 'IT', cc: '39',
+      navGen: 'Generatore Link', navAuto: 'Risposte Automatiche', navBlog: 'Guide & Blog', navAbout: 'Chi siamo', navContact: 'Contatti', navLive: 'Nessun dato salvato',
+      heroChip: 'Scelto da oltre 10.000 aziende',
+      heroTitle: 'Generatore Gratuito di <strong>Link WhatsApp</strong> con QR Code',
+      heroSub: 'Crea link wa.me con messaggio predefinito e codice QR immediato. 100% gratis, senza registrazione.',
+      stat1L: 'Utenti nel mondo', stat2L: 'Formato ufficiale', stat3N: 'Gratis', stat3L: 'Per sempre',
+      tabBasic: 'Link Singolo', tabUtm: 'Tracciamento UTM', tabMulti: 'Multi-Numero', tabGroup: 'QR Gruppo',
+      formTitle: 'I tuoi dati', formSub: 'Inserisci il tuo numero e messaggio',
+      phoneLbl: 'Numero di telefono', phoneHint: 'Senza prefisso internazionale né spazi',
+      msgLbl: 'Messaggio preimpostato <span class="opt">(opzionale)</span>',
+      msgPh: 'Ciao! Ho visto il vostro post e vorrei maggiori informazioni...',
+      tplInquiry: '⚡ Richiesta generale', tplInquiryText: 'Ciao! Vorrei ricevere maggiori informazioni sui vostri servizi.',
+      tplPricing: '🛍️ Listino prezzi & Catalogo', tplPricingText: 'Ciao! Potreste inviarmi il catalogo e il listino prezzi aggiornato?',
+      tplBooking: '📅 Prenota consulenza', tplBookingText: 'Ciao! Vorrei prenotare un appuntamento o una consulenza.',
+      slugLbl: 'Link breve personalizzato <span class="opt">(opzionale)</span>',
+      btnGen: 'Genera Link WhatsApp',
+      deskTitle: 'Il tuo Link WhatsApp', deskSub: 'Pronto da copiare e condividere',
+      cpbtn: 'Copia', testbtn: 'Apri Chat ↗', sharebtn: 'Condividi',
+      studioTitle: 'Studio QR Code HD', studioSub: 'Pronto per la stampa su biglietti da visita & menu',
+      dlbtn: 'Scarica QR per la stampa (1000px)'
+    },
+    tr: {
+      flag: '🇹🇷', name: 'TR', cc: '90',
+      navGen: 'Bağlantı Oluşturucu', navAuto: 'Otomatik Yanıtlar', navBlog: 'Rehber & Blog', navAbout: 'Hakkımızda', navContact: 'İletişim', navLive: 'Veri kaydedilmez',
+      heroChip: '10.000+ işletme tarafından tercih edildi',
+      heroTitle: 'Ücretsiz <strong>WhatsApp Bağlantı Oluşturucu</strong> ve QR Kod',
+      heroSub: 'Önceden yazılmış mesajlı wa.me bağlantıları ve anında QR kodları oluşturun. %100 ücretsiz, kayıtsız.',
+      stat1L: 'Dünya çapında kullanıcı', stat2L: 'Resmi format', stat3N: 'Ücretsiz', stat3L: 'Her zaman',
+      tabBasic: 'Tek Bağlantı', tabUtm: 'UTM Takibi', tabMulti: 'Çoklu Numara', tabGroup: 'Grup QR',
+      formTitle: 'Bilgileriniz', formSub: 'Telefon numaranızı ve mesajınızı girin',
+      phoneLbl: 'Telefon numarası', phoneHint: 'Ülke kodu veya boşluk olmadan',
+      msgLbl: 'Hazır mesaj <span class="opt">(isteğe bağlı)</span>',
+      msgPh: 'Merhaba! Paylaşımınızı gördüm ve bilgi almak istiyorum...',
+      tplInquiry: '⚡ Genel Bilgi', tplInquiryText: 'Merhaba! Hizmetleriniz hakkında detaylı bilgi alabilir miyim?',
+      tplPricing: '🛍️ Fiyat & Katalog', tplPricingText: 'Merhaba! Güncel fiyat listenizi ve kataloğunuzu paylaşabilir misiniz?',
+      tplBooking: '📅 Randevu Al', tplBookingText: 'Merhaba! Randevu veya danışmanlık talep etmek istiyorum.',
+      slugLbl: 'Özel Kısa Bağlantı <span class="opt">(isteğe bağlı)</span>',
+      btnGen: 'WhatsApp Bağlantısı Oluştur',
+      deskTitle: 'WhatsApp Bağlantınız', deskSub: 'Kopyalamaya ve paylaşmaya hazır',
+      cpbtn: 'Kopyala', testbtn: 'Sohbeti Aç ↗', sharebtn: 'Paylaş',
+      studioTitle: 'HD QR Kod Stüdyosu', studioSub: 'Kartvizitler ve menüler için baskıya hazır',
+      dlbtn: 'Baskıya Hazır QR İndir (1000px)'
+    }
+  };
+
   function toggleLangDropdown(e) {
     if (e) e.stopPropagation();
     const menu = document.getElementById('langDropdownMenu');
@@ -540,18 +763,92 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     if (arrow) arrow.style.transform = '';
   });
 
+  window.applyUiTranslation = function(code) {
+    const dict = I18N_DICTIONARY[code] || I18N_DICTIONARY.en;
+    if (!dict) return;
+
+    // 1. Navigation links
+    const nGen = document.getElementById('navLinkGen'); if (nGen) nGen.textContent = dict.navGen;
+    const nAuto = document.getElementById('navLinkAuto'); if (nAuto) nAuto.textContent = dict.navAuto;
+    const nBlog = document.getElementById('navLinkBlog'); if (nBlog) nBlog.textContent = dict.navBlog;
+    const nAbout = document.getElementById('navLinkAbout'); if (nAbout) nAbout.textContent = dict.navAbout;
+    const nContact = document.getElementById('navLinkContact'); if (nContact) nContact.textContent = dict.navContact;
+    const nLive = document.getElementById('navLive'); if (nLive) nLive.innerHTML = '<span class="dot"></span> ' + dict.navLive;
+
+    // 2. Hero Section
+    const hChip = document.getElementById('heroChipText'); if (hChip) hChip.textContent = dict.heroChip;
+    const hTitle = document.getElementById('heroTitle'); if (hTitle) hTitle.innerHTML = dict.heroTitle;
+    const hSub = document.getElementById('heroSub'); if (hSub) hSub.textContent = dict.heroSub;
+    const s1L = document.getElementById('stat1L'); if (s1L) s1L.textContent = dict.stat1L;
+    const s2L = document.getElementById('stat2L'); if (s2L) s2L.textContent = dict.stat2L;
+    const s3N = document.getElementById('stat3N'); if (s3N) s3N.textContent = dict.stat3N;
+    const s3L = document.getElementById('stat3L'); if (s3L) s3L.textContent = dict.stat3L;
+
+    // 3. Tabs
+    const tBasic = document.getElementById('tabBtnBasic'); if (tBasic) tBasic.textContent = dict.tabBasic;
+    const tUtm = document.getElementById('tabBtnUtm'); if (tUtm) tUtm.textContent = dict.tabUtm;
+    const tMulti = document.getElementById('tabBtnMulti'); if (tMulti) tMulti.textContent = dict.tabMulti;
+    const tGroup = document.getElementById('tabBtnGroup'); if (tGroup) tGroup.textContent = dict.tabGroup;
+
+    // 4. Form inputs & labels
+    const fTitle = document.getElementById('formCardTitle'); if (fTitle) fTitle.textContent = dict.formTitle;
+    const fSub = document.getElementById('formCardSub'); if (fSub) fSub.textContent = dict.formSub;
+    const pLbl = document.querySelector('label[for="phone"]'); if (pLbl) pLbl.textContent = dict.phoneLbl;
+    const pHint = document.querySelector('#panel-basic .hint'); if (pHint) pHint.textContent = dict.phoneHint;
+    const mLbl = document.querySelector('label[for="msg"]'); if (mLbl) mLbl.innerHTML = dict.msgLbl;
+    const msgInput = document.getElementById('msg'); if (msgInput) msgInput.placeholder = dict.msgPh;
+
+    const pills = document.querySelectorAll('.template-pills .pill-btn');
+    if (pills && pills.length >= 3) {
+      pills[0].textContent = dict.tplInquiry;
+      pills[0].onclick = () => { if (typeof applyTemplate === 'function') applyTemplate(dict.tplInquiryText); };
+      pills[1].textContent = dict.tplPricing;
+      pills[1].onclick = () => { if (typeof applyTemplate === 'function') applyTemplate(dict.tplPricingText); };
+      pills[2].textContent = dict.tplBooking;
+      pills[2].onclick = () => { if (typeof applyTemplate === 'function') applyTemplate(dict.tplBookingText); };
+    }
+
+    const sLbl = document.querySelector('label[for="slug"]'); if (sLbl) sLbl.innerHTML = dict.slugLbl;
+    const bGen = document.getElementById('btnGen'); if (bGen) { const s = bGen.querySelector('span'); if (s) s.textContent = dict.btnGen; }
+
+    // 5. Output Preview Card
+    const dTitle = document.getElementById('desktopCardTitle'); if (dTitle) dTitle.textContent = dict.deskTitle;
+    const dSub = document.getElementById('desktopCardSub'); if (dSub) dSub.textContent = dict.deskSub;
+    const cp = document.getElementById('cpbtn'); if (cp) cp.textContent = dict.cpbtn;
+    const testBtn = document.getElementById('testbtn'); if (testBtn) testBtn.textContent = dict.testbtn;
+    const shareBtn = document.getElementById('sharebtn'); if (shareBtn) shareBtn.textContent = dict.sharebtn;
+
+    // 6. QR Code Studio Card
+    const sTitle = document.getElementById('studioTitle'); if (sTitle) sTitle.textContent = dict.studioTitle;
+    const sSub2 = document.getElementById('studioSub'); if (sSub2) sSub2.textContent = dict.studioSub;
+    const dl = document.getElementById('dlbtn'); if (dl) dl.innerHTML = '<span>📥 ' + dict.dlbtn + '</span>';
+
+    // 7. Auto-switch country code if user hasn't typed a phone number yet
+    const phoneVal = (document.getElementById('phone')?.value || '').trim();
+    if (!phoneVal && dict.cc) {
+      const ccEl = document.getElementById('cc');
+      if (ccEl && [...ccEl.options].some(o => o.value === dict.cc)) ccEl.value = dict.cc;
+      const uccEl = document.getElementById('ucc');
+      if (uccEl && [...uccEl.options].some(o => o.value === dict.cc)) uccEl.value = dict.cc;
+    }
+
+    // 8. Update current flag & label in navbar
+    const curFlag = document.getElementById('currentLangFlag');
+    const curName = document.getElementById('currentLangName');
+    if (curFlag) curFlag.textContent = dict.flag || '🌐';
+    if (curName) curName.textContent = dict.name || code.toUpperCase();
+
+    // 9. Highlight active item in dropdown
+    document.querySelectorAll('.lang-item, .drawer-lang-chip').forEach(el => {
+      el.classList.toggle('active', el.getAttribute('data-lang') === code);
+    });
+
+    if (typeof live === 'function') live();
+  };
+
   function changeSiteLang(langCode) {
     try {
       localStorage.setItem('linkwa_user_lang', langCode);
-      const meta = LANG_META[langCode] || LANG_META.en;
-      const flagEl = document.getElementById('currentLangFlag');
-      const nameEl = document.getElementById('currentLangName');
-      if (flagEl) flagEl.textContent = meta.flag;
-      if (nameEl) nameEl.textContent = meta.name;
-      
-      document.querySelectorAll('.lang-item, .drawer-lang-chip').forEach(el => {
-        el.classList.toggle('active', el.getAttribute('data-lang') === langCode);
-      });
 
       const menu = document.getElementById('langDropdownMenu');
       if (menu) menu.style.display = 'none';
@@ -566,25 +863,23 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       const newUrl = langCode === 'en' ? '/' : '/?lang=' + langCode;
       window.history.replaceState({}, '', newUrl);
 
-      if (typeof window.applyUiTranslation === 'function') {
-        window.applyUiTranslation(langCode);
-      }
+      window.applyUiTranslation(langCode);
     } catch (e) {
       console.error('Lang switch error:', e);
     }
   }
 
-  // Set initial indicator on load
+  // Auto-detect and apply language on initial page load
   document.addEventListener('DOMContentLoaded', function() {
-    const saved = (new URLSearchParams(window.location.search).get('lang')) || localStorage.getItem('linkwa_user_lang') || 'en';
-    const meta = LANG_META[saved] || LANG_META.en;
-    const flagEl = document.getElementById('currentLangFlag');
-    const nameEl = document.getElementById('currentLangName');
-    if (flagEl) flagEl.textContent = meta.flag;
-    if (nameEl) nameEl.textContent = meta.name;
-    document.querySelectorAll('.lang-item, .drawer-lang-chip').forEach(el => {
-      el.classList.toggle('active', el.getAttribute('data-lang') === saved);
-    });
+    let saved = (new URLSearchParams(window.location.search).get('lang')) || localStorage.getItem('linkwa_user_lang');
+    if (!saved && navigator.language) {
+      const navL = navigator.language.toLowerCase();
+      for (const k of Object.keys(I18N_DICTIONARY)) {
+        if (navL.startsWith(k)) { saved = k; break; }
+      }
+    }
+    saved = saved || 'en';
+    window.applyUiTranslation(saved);
   });
 </script>
 </body>
