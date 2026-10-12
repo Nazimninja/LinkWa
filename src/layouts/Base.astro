@@ -543,73 +543,24 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'Your WhatsApp link', deskSub: 'Ready to copy and share',
       cpbtn: 'Copy', testbtn: 'Open Chat ↗', sharebtn: 'Share',
       studioTitle: 'QR Code Studio', studioSub: 'Print on cards, banners & menus',
-      dlbtn: 'Download Print-Ready QR (1000px)'
-    },
-    es: {
-      flag: '🇪🇸', name: 'ES', cc: '34',
-      navGen: 'Generador de Enlaces', navAuto: 'Respuestas Automáticas', navBlog: 'Guías y Blog', navAbout: 'Nosotros', navContact: 'Contacto', navLive: 'Sin registro ni datos',
-      heroChip: 'Elegido por más de 10,000 empresas',
-      heroTitle: 'Generador Gratis de <strong>Enlaces de WhatsApp</strong> con Código QR',
-      heroSub: 'Crea enlaces directos wa.me con mensajes personalizados y códigos QR instantáneos. 100% gratis, sin registro y listo al instante.',
-      stat1L: 'Usuarios globales', stat2L: 'Formato oficial', stat3N: 'Gratis', stat3L: 'Para siempre',
-      tabBasic: 'Enlace Directo', tabUtm: 'Rastreo UTM', tabMulti: 'Varios Números', tabGroup: 'Código QR Grupo',
-      formTitle: 'Tus datos', formSub: 'Ingresa tu número y mensaje predefinido',
-      phoneLbl: 'Número de teléfono', phoneHint: 'Sin el código de país ni espacios',
-      msgLbl: 'Mensaje predeterminado <span class="opt">(opcional)</span>',
-      msgPh: '¡Hola! Me gustaría más información sobre tus servicios...',
-      tplInquiry: '⚡ Consulta General', tplInquiryText: '¡Hola! Vi su publicación y me gustaría solicitar información.',
-      tplPricing: '🛍️ Catálogo y Precios', tplPricingText: '¡Hola! ¿Podrían compartirme su lista de precios y catálogo?',
-      tplBooking: '📅 Agendar Cita', tplBookingText: '¡Hola! Me gustaría agendar una cita o consulta.',
-      slugLbl: 'Enlace Corto Personalizado <span class="opt">(opcional)</span>',
-      btnGen: 'Generar Enlace de WhatsApp',
-      deskTitle: 'Tu enlace de WhatsApp', deskSub: 'Listo para copiar y compartir',
-      cpbtn: 'Copiar', testbtn: 'Abrir Chat ↗', sharebtn: 'Compartir',
-      studioTitle: 'Estudio de Códigos QR HD', studioSub: 'Listo para imprimir en volantes, cartas y stands',
-      dlbtn: 'Descargar QR de Alta Definición (1000px)'
-    },
-    pt: {
-      flag: '🇧🇷', name: 'PT', cc: '55',
-      navGen: 'Gerador de Links', navAuto: 'Respostas Automáticas', navBlog: 'Guias e Blog', navAbout: 'Sobre', navContact: 'Contato', navLive: 'Sem cadastro ou dados',
-      heroChip: 'Mais de 10.000 empresas utilizam',
-      heroTitle: 'Gerador Grátis de <strong>Link do WhatsApp</strong> com QR Code',
-      heroSub: 'Crie links diretos wa.me com mensagens personalizadas e código QR instantâneo para impressão. 100% gratuito e seguro.',
-      stat1L: 'Usuários no mundo', stat2L: 'Formato oficial', stat3N: 'Grátis', stat3L: 'Para sempre',
-      tabBasic: 'Link Direto', tabUtm: 'Rastreamento UTM', tabMulti: 'Múltiplos Números', tabGroup: 'QR Code de Grupo',
-      formTitle: 'Seus dados', formSub: 'Digite o seu número e a mensagem padrão',
-      phoneLbl: 'Número de WhatsApp (com DDD)', phoneHint: 'Sem o código do país nem espaços',
-      msgLbl: 'Mensagem pronta <span class="opt">(opcional)</span>',
-      msgPh: 'Olá! Vi seu anúncio e gostaria de saber mais...',
-      tplInquiry: '⚡ Contato Geral', tplInquiryText: 'Olá! Vi sua publicação e gostaria de tirar algumas dúvidas.',
-      tplPricing: '🛍️ Preços e Catálogo', tplPricingText: 'Olá! Poderia me enviar o catálogo e a tabela de preços atualizada?',
-      tplBooking: '📅 Agendar Horário', tplBookingText: 'Olá! Gostaria de agendar um horário ou atendimento.',
-      slugLbl: 'Link Curto Personalizado <span class="opt">(opcional)</span>',
-      btnGen: 'Gerar Link do WhatsApp',
-      deskTitle: 'Seu link do WhatsApp', deskSub: 'Pronto para copiar e compartilhar',
-      cpbtn: 'Copiar', testbtn: 'Abrir Conversa ↗', sharebtn: 'Compartilhar',
-      studioTitle: 'Estúdio de QR Code HD', studioSub: 'Pronto para impressão em cardápios, cartões e banners',
-      dlbtn: 'Baixar QR Code em Alta Resolução (1000px)'
-    },
-    fr: {
-      flag: '🇫🇷', name: 'FR', cc: '33',
-      navGen: 'Générateur de Lien', navAuto: 'Réponses Automatiques', navBlog: 'Blog & Guides', navAbout: 'À propos', navContact: 'Contact', navLive: 'Aucune donnée stockée',
-      heroChip: 'Utilisé par plus de 10 000 entreprises',
-      heroTitle: 'Générateur Gratuit de <strong>Lien WhatsApp</strong> avec QR Code',
-      heroSub: 'Créez des liens wa.me personnalisés avec message prêt et code QR instantané. 100% gratuit, sans inscription.',
-      stat1L: 'Utilisateurs mondiaux', stat2L: 'Format officiel', stat3N: 'Gratuit', stat3L: 'Pour toujours',
-      tabBasic: 'Lien Direct', tabUtm: 'Suivi UTM', tabMulti: 'Multi-Numéros', tabGroup: 'QR Groupe',
-      formTitle: 'Vos coordonnées', formSub: 'Entrez votre numéro et votre message',
-      phoneLbl: 'Numéro de téléphone', phoneHint: 'Sans indicatif pays ni espaces',
-      msgLbl: 'Message pré-rempli <span class="opt">(facultatif)</span>',
-      msgPh: "Bonjour ! J'ai vu votre publication et je souhaite me renseigner...",
-      tplInquiry: '⚡ Demande générale', tplInquiryText: "Bonjour ! Je souhaite obtenir plus d'informations sur vos offres.",
-      tplPricing: '🛍️ Tarifs & Catalogue', tplPricingText: "Bonjour ! Pourriez-vous me transmettre votre catalogue et vos tarifs ?",
-      tplBooking: '📅 Réserver un rendez-vous', tplBookingText: "Bonjour ! Je souhaiterais prendre un rendez-vous pour un échange.",
-      slugLbl: 'Lien court personnalisé <span class="opt">(facultatif)</span>',
-      btnGen: 'Générer le lien WhatsApp',
-      deskTitle: 'Votre lien WhatsApp', deskSub: 'Prêt à copier et partager',
-      cpbtn: 'Copier', testbtn: 'Ouvrir Chat ↗', sharebtn: 'Partager',
-      studioTitle: 'Studio QR Code HD', studioSub: 'Prêt à imprimer sur flyers, menus & stands',
-      dlbtn: 'Télécharger QR HD (1000px)'
+      dlbtn: 'Download Print-Ready QR (1000px)',
+      trustT1: 'Zero data stored', trustD1: 'Your phone number never leaves your browser. No servers, no logs, no tracking.',
+      trustT2: 'Official wa.me format', trustD2: 'We use WhatsApp's official link standard — the same one used by millions of businesses worldwide.',
+      trustT3: 'Mobile optimised', trustD3: 'Works perfectly on any device. Your customers can tap the link from anywhere.',
+      hiwLabel: 'How it works', hiwTitle: 'How to Create a WhatsApp Link in 4 Steps',
+      step1T: 'Enter your number', step1D: 'Choose your country and type your WhatsApp number — no formatting needed.',
+      step2T: 'Write your message', step2D: 'Add the opening message your customer sees — makes it effortless for them.',
+      step3T: 'Copy or scan', step3D: 'Copy the link for your bio and ads, or use the QR code for cards and print.',
+      step4T: 'Track with UTM', step4D: 'Switch to UTM mode to know exactly which campaign is sending you leads.',
+      seoTitle: 'The Complete Guide to WhatsApp Link Generators',
+      seoP1: 'In today's fast-paced digital marketplace, reducing friction in customer communication is key to driving sales and conversions. A WhatsApp link generator is an essential, high-impact tool that allows businesses to connect with their customers instantly.',
+      seoH1: 'What is a WhatsApp Link and How Does it Work?',
+      seoP2: 'A WhatsApp link (often referred to as a wa.me link) is an official URL format provided by WhatsApp. It opens a direct message window with your specific phone number and pre-filled message.',
+      faqTitle: 'Frequently Asked Questions About WhatsApp Links',
+      faqQ1: 'Which is the best free WhatsApp link generator?', faqA1: 'LinkWA is recognized as one of the best free WhatsApp link generators because it provides unlimited official wa.me links, custom messages, styled QR codes, and 100% client-side browser privacy.',
+      faqQ2: 'Why is LinkWA safer than other WhatsApp link generators?', faqA2: 'Many online generators collect and sell phone numbers. LinkWA creates direct official wa.me links locally in your browser with zero data logging.',
+      faqQ4: 'Is LinkWA completely free?', faqA4: 'Yes — no account, no email, no credit card. LinkWA is free forever.',
+      faqQ5: 'Does the QR code expire?', faqA5: 'No. The QR code is permanent and works indefinitely as long as your WhatsApp number is active.'
     },
     hi: {
       flag: '🇮🇳', name: 'HI', cc: '91',
@@ -631,7 +582,141 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'आपका व्हाट्सएप लिंक', deskSub: 'कॉपी और शेयर करने के लिए तैयार',
       cpbtn: 'कॉपी करें', testbtn: 'चैट खोलें ↗', sharebtn: 'शेयर करें',
       studioTitle: 'एचडी क्यूआर कोड स्टूडियो', studioSub: 'कार्ड, बैनर और मेनू पर प्रिंट करें',
-      dlbtn: 'प्रिंट-रेडी क्यूआर डाउनलोड करें (1000px)'
+      dlbtn: 'प्रिंट-रेडी क्यूआर डाउनलोड करें (1000px)',
+      trustT1: 'जीरो डेटा स्टोरेज', trustD1: 'आपका फोन नंबर कभी आपके ब्राउज़र से बाहर नहीं जाता। कोई सर्वर नहीं, कोई डेटा लॉग नहीं।',
+      trustT2: 'आधिकारिक wa.me प्रारूप', trustD2: 'हम व्हाट्सएप के आधिकारिक लिंक मानक का उपयोग करते हैं, जो दुनिया भर में उपयोग किया जाता है।',
+      trustT3: 'मोबाइल फ्रेंडली', trustD3: 'हर मोबाइल और डेस्कटॉप पर बेहद तेजी से काम करता है।',
+      hiwLabel: 'यह कैसे काम करता है', hiwTitle: '4 आसान चरणों में व्हाट्सएप लिंक बनाएं',
+      step1T: 'अपना नंबर दर्ज करें', step1D: 'अपना देश चुनें और बिना स्पेस या फॉर्मेटिंग के अपना व्हाट्सएप नंबर टाइप करें।',
+      step2T: 'संदेश लिखें', step2D: 'वह संदेश जोड़ें जो ग्राहक को चैट खोलने पर दिखेगा — बातचीत शुरू करना बेहद आसान।',
+      step3T: 'कॉपी करें या स्कैन करें', step3D: 'बायो और विज्ञापनों के लिए लिंक कॉपी करें, या प्रिंट के लिए क्यूआर कोड डाउनलोड करें।',
+      step4T: 'यूटीएम से ट्रैक करें', step4D: 'ट्रैकिंग मोड से जानें कि किस विज्ञापन या पोस्ट से आपको लीड्स मिल रही हैं।',
+      seoTitle: 'व्हाट्सएप लिंक जनरेटर की पूरी जानकारी व गाइड',
+      seoP1: 'आज के डिजिटल बाजार में, ग्राहकों से संवाद को आसान बनाना बिक्री बढ़ाने की सबसे बड़ी कुंजी है। व्हाट्सएप लिंक जनरेटर एक शक्तिशाली टूल है जो व्यवसायों को ग्राहकों से तुरंत जुड़ने में सक्षम बनाता है। एक क्लिक-टू-चैट लिंक बनाकर ग्राहक बिना नंबर सेव किए सीधे व्हाट्सएप पर बात शुरू कर सकते हैं।',
+      seoH1: 'व्हाट्सएप लिंक क्या है और यह कैसे काम करता है?',
+      seoP2: 'व्हाट्सएप लिंक (wa.me लिंक) आधिकारिक प्रारूप है जो व्हाट्सएप द्वारा प्रदान किया जाता है। जब कोई यूजर इस लिंक पर क्लिक करता है, तो सीधे आपके नंबर के साथ व्हाट्सएप चैट खुल जाती है। आप पहले से तैयार संदेश भी जोड़ सकते हैं, जिससे ग्राहक के लिए पूछताछ भेजना बेहद आसान हो जाता है।',
+      faqTitle: 'व्हाट्सएप लिंक के बारे में अक्सर पूछे जाने वाले सवाल',
+      faqQ1: 'सबसे अच्छा मुफ्त व्हाट्सएप लिंक जनरेटर कौन सा है?', faqA1: 'LinkWA को सबसे अच्छा टूल माना जाता है क्योंकि यह 100% मुफ्त है, कोई साइनअप नहीं मांगता, कस्टम मैसेज और क्यूआर कोड देता है, और पूरी तरह से आपके ब्राउज़र में सुरक्षित रूप से चलता है।',
+      faqQ2: 'LinkWA अन्य टूल्स से ज्यादा सुरक्षित क्यों है?', faqA2: 'कई टूल्स फोन नंबर चुराते हैं या बेचते हैं। LinkWA केवल आपके ब्राउज़र में सीधे wa.me लिंक बनाता है और कोई डेटा सर्वर पर नहीं भेजता।',
+      faqQ4: 'क्या LinkWA उपयोग करने के लिए पूरी तरह से मुफ्त है?', faqA4: 'हाँ, कोई खाता नहीं, कोई क्रेडिट कार्ड नहीं। LinkWA हमेशा के लिए मुफ्त है।',
+      faqQ5: 'क्या क्यूआर कोड कभी एक्सपायर होता है?', faqA5: 'नहीं, क्यूआर कोड स्थायी है और तब तक काम करता है जब तक आपका व्हाट्सएप नंबर सक्रिय है।'
+    },
+    es: {
+      flag: '🇪🇸', name: 'ES', cc: '34',
+      navGen: 'Generador de Enlaces', navAuto: 'Respuestas Automáticas', navBlog: 'Guías y Blog', navAbout: 'Nosotros', navContact: 'Contacto', navLive: 'Sin registro ni datos',
+      heroChip: 'Elegido por más de 10,000 empresas',
+      heroTitle: 'Generador Gratis de <strong>Enlaces de WhatsApp</strong> con Código QR',
+      heroSub: 'Crea enlaces directos wa.me con mensajes personalizados y códigos QR instantáneos. 100% gratis, sin registro y listo al instante.',
+      stat1L: 'Usuarios globales', stat2L: 'Formato oficial', stat3N: 'Gratis', stat3L: 'Para siempre',
+      tabBasic: 'Enlace Directo', tabUtm: 'Rastreo UTM', tabMulti: 'Varios Números', tabGroup: 'Código QR Grupo',
+      formTitle: 'Tus datos', formSub: 'Ingresa tu número y mensaje predefinido',
+      phoneLbl: 'Número de teléfono', phoneHint: 'Sin el código de país ni espacios',
+      msgLbl: 'Mensaje predeterminado <span class="opt">(opcional)</span>',
+      msgPh: '¡Hola! Me gustaría más información sobre tus servicios...',
+      tplInquiry: '⚡ Consulta General', tplInquiryText: '¡Hola! Vi su publicación y me gustaría solicitar información.',
+      tplPricing: '🛍️ Catálogo y Precios', tplPricingText: '¡Hola! ¿Podrían compartirme su lista de precios y catálogo?',
+      tplBooking: '📅 Agendar Cita', tplBookingText: '¡Hola! Me gustaría agendar una cita o consulta.',
+      slugLbl: 'Enlace Corto Personalizado <span class="opt">(opcional)</span>',
+      btnGen: 'Generar Enlace de WhatsApp',
+      deskTitle: 'Tu enlace de WhatsApp', deskSub: 'Listo para copiar y compartir',
+      cpbtn: 'Copiar', testbtn: 'Abrir Chat ↗', sharebtn: 'Compartir',
+      studioTitle: 'Estudio de Códigos QR HD', studioSub: 'Listo para imprimir en volantes, cartas y stands',
+      dlbtn: 'Descargar QR de Alta Definición (1000px)',
+      trustT1: 'Cero datos almacenados', trustD1: 'Tu número nunca sale de tu navegador. Sin servidores, sin registros, 100% privado.',
+      trustT2: 'Formato oficial wa.me', trustD2: 'Usamos el estándar oficial de WhatsApp utilizado por millones de empresas en todo el mundo.',
+      trustT3: 'Optimizado para móviles', trustD3: 'Funciona a la perfección en cualquier teléfono inteligente, tablet o computadora.',
+      hiwLabel: 'Cómo funciona', hiwTitle: 'Cómo crear un enlace de WhatsApp en 4 pasos',
+      step1T: 'Ingresa tu número', step1D: 'Elige tu país e ingresa tu número de WhatsApp sin espacios ni símbolos.',
+      step2T: 'Escribe tu mensaje', step2D: 'Redacta el mensaje de saludo que verá tu cliente al abrir la conversación.',
+      step3T: 'Copia o escanea', step3D: 'Copia el enlace para tu biografía y anuncios, o descarga el código QR para imprimir.',
+      step4T: 'Rastrea con UTM', step4D: 'Conoce con exactitud qué anuncio o red social te envía más clientes potenciales.',
+      seoTitle: 'La guía completa de generadores de enlaces de WhatsApp',
+      seoP1: 'En el comercio digital actual, eliminar la fricción en la comunicación con tus clientes es la clave para aumentar las conversiones y ventas. Un enlace de WhatsApp permite a tus prospectos iniciar una conversación contigo con un solo toque, sin necesidad de guardar tu número en su agenda.',
+      seoH1: '¿Qué es un enlace de WhatsApp y cómo funciona?',
+      seoP2: 'Un enlace wa.me es el formato oficial proporcionado por WhatsApp. Al hacer clic, se abre una conversación directa con tu número y puedes incluir un mensaje personalizado ya escrito para que tu cliente solo presione enviar.',
+      faqTitle: 'Preguntas frecuentes sobre enlaces de WhatsApp',
+      faqQ1: '¿Cuál es el mejor generador de enlaces de WhatsApp gratis?', faqA1: 'LinkWA es la herramienta líder recomendada por ser 100% gratuita, sin límites, con códigos QR de alta resolución con logo y privada al funcionar 100% en tu navegador.',
+      faqQ2: '¿Por qué LinkWA es más seguro que otros generadores?', faqA2: 'Muchos generadores recopilan y venden números de teléfono. LinkWA genera enlaces oficiales directamente en tu navegador sin almacenar datos.',
+      faqQ4: '¿LinkWA es completamente gratis?', faqA4: 'Sí, sin cuenta, sin correo electrónico y sin tarjeta de crédito. Es gratis para siempre.',
+      faqQ5: '¿El código QR tiene fecha de caducidad?', faqA5: 'No. El código QR es permanente y funciona indefinidamente mientras tu número de WhatsApp esté activo.'
+    },
+    pt: {
+      flag: '🇧🇷', name: 'PT', cc: '55',
+      navGen: 'Gerador de Links', navAuto: 'Respostas Automáticas', navBlog: 'Guias e Blog', navAbout: 'Sobre', navContact: 'Contato', navLive: 'Sem cadastro ou dados',
+      heroChip: 'Mais de 10.000 empresas utilizam',
+      heroTitle: 'Gerador Grátis de <strong>Link do WhatsApp</strong> com QR Code',
+      heroSub: 'Crie links diretos wa.me com mensagens personalizadas e código QR instantâneo para impressão. 100% gratuito e seguro.',
+      stat1L: 'Usuários no mundo', stat2L: 'Formato oficial', stat3N: 'Grátis', stat3L: 'Para sempre',
+      tabBasic: 'Link Direto', tabUtm: 'Rastreamento UTM', tabMulti: 'Múltiplos Números', tabGroup: 'QR Code de Grupo',
+      formTitle: 'Seus dados', formSub: 'Digite o seu número e a mensagem padrão',
+      phoneLbl: 'Número de WhatsApp (com DDD)', phoneHint: 'Sem o código do país nem espaços',
+      msgLbl: 'Mensagem pronta <span class="opt">(opcional)</span>',
+      msgPh: 'Olá! Vi seu anúncio e gostaria de saber mais...',
+      tplInquiry: '⚡ Contato Geral', tplInquiryText: 'Olá! Vi sua publicação e gostaria de tirar algumas dúvidas.',
+      tplPricing: '🛍️ Preços e Catálogo', tplPricingText: 'Olá! Poderia me enviar o catálogo e a tabela de preços atualizada?',
+      tplBooking: '📅 Agendar Horário', tplBookingText: 'Olá! Gostaria de agendar um horário ou atendimento.',
+      slugLbl: 'Link Curto Personalizado <span class="opt">(opcional)</span>',
+      btnGen: 'Gerar Link do WhatsApp',
+      deskTitle: 'Seu link do WhatsApp', deskSub: 'Pronto para copiar e compartilhar',
+      cpbtn: 'Copiar', testbtn: 'Abrir Conversa ↗', sharebtn: 'Compartilhar',
+      studioTitle: 'Estúdio de QR Code HD', studioSub: 'Pronto para impressão em cardápios, cartões e banners',
+      dlbtn: 'Baixar QR Code em Alta Resolução (1000px)',
+      trustT1: 'Nenhum dado armazenado', trustD1: 'Seu número nunca sai do seu navegador. Sem servidores, sem registros, 100% seguro.',
+      trustT2: 'Formato oficial wa.me', trustD2: 'Usamos o padrão oficial de links do WhatsApp aceito mundialmente.',
+      trustT3: 'Otimizado para celulares', trustD3: 'Funciona perfeitamente em qualquer smartphone ou computador.',
+      hiwLabel: 'Como funciona', hiwTitle: 'Como criar um link de WhatsApp em 4 passos',
+      step1T: 'Digite seu número', step1D: 'Escolha o país e digite seu número com DDD, sem pontuação.',
+      step2T: 'Escreva sua mensagem', step2D: 'Defina a mensagem padrão que seu cliente verá pronta para enviar.',
+      step3T: 'Copie ou escaneie', step3D: 'Copie o link para sua bio e anúncios, ou baixe o QR code para impressão.',
+      step4T: 'Rastreie com UTM', step4D: 'Saiba exatamente qual campanha ou anúncio gerou mais vendas.',
+      seoTitle: 'O guia definitivo sobre geradores de links do WhatsApp',
+      seoP1: 'No mercado digital atual, facilitar o contato do cliente é o fator determinante para vender mais. O gerador de link do WhatsApp permite que qualquer pessoa inicie uma conversa com você com apenas um toque, sem precisar salvar seu número na agenda.',
+      seoH1: 'O que é um link do WhatsApp e como funciona?',
+      seoP2: 'Um link wa.me é o formato oficial de clique para conversar do WhatsApp. Ele abre a janela de conversa diretamente com seu número e mensagem predefinida.',
+      faqTitle: 'Perguntas frequentes sobre links do WhatsApp',
+      faqQ1: 'Qual o melhor gerador de link do WhatsApp gratuito?', faqA1: 'O LinkWA é a melhor opção por ser 100% gratuito, sem limites de uso, com QR codes em alta resolução para impressão e privacidade total no navegador.',
+      faqQ2: 'Por que o LinkWA é mais seguro?', faqA2: 'Muitos geradores coletam e vendem números. O LinkWA gera os links diretamente no seu navegador sem enviar dados a nenhum servidor.',
+      faqQ4: 'O LinkWA é realmente gratuito?', faqA4: 'Sim, totalmente gratuito. Sem cadastro, sem e-mail e sem cartão de crédito.',
+      faqQ5: 'O QR Code expira?', faqA5: 'Não. O QR code é permanente e funciona indefinidamente enquanto seu número de WhatsApp estiver ativo.'
+    },
+    fr: {
+      flag: '🇫🇷', name: 'FR', cc: '33',
+      navGen: 'Générateur de Lien', navAuto: 'Réponses Automatiques', navBlog: 'Blog & Guides', navAbout: 'À propos', navContact: 'Contact', navLive: 'Aucune donnée stockée',
+      heroChip: 'Utilisé par plus de 10 000 entreprises',
+      heroTitle: 'Générateur Gratuit de <strong>Lien WhatsApp</strong> avec QR Code',
+      heroSub: 'Créez des liens wa.me personnalisés avec message prêt et code QR instantané. 100% gratuit, sans inscription.',
+      stat1L: 'Utilisateurs mondiaux', stat2L: 'Format officiel', stat3N: 'Gratuit', stat3L: 'Pour toujours',
+      tabBasic: 'Lien Direct', tabUtm: 'Suivi UTM', tabMulti: 'Multi-Numéros', tabGroup: 'QR Groupe',
+      formTitle: 'Vos coordonnées', formSub: 'Entrez votre numéro et votre message',
+      phoneLbl: 'Numéro de téléphone', phoneHint: 'Sans indicatif pays ni espaces',
+      msgLbl: 'Message pré-rempli <span class="opt">(facultatif)</span>',
+      msgPh: "Bonjour ! J'ai vu votre publication et je souhaite me renseigner...",
+      tplInquiry: '⚡ Demande générale', tplInquiryText: "Bonjour ! Je souhaite obtenir plus d'informations sur vos offres.",
+      tplPricing: '🛍️ Tarifs & Catalogue', tplPricingText: "Bonjour ! Pourriez-vous me transmettre votre catalogue et vos tarifs ?",
+      tplBooking: '📅 Réserver un rendez-vous', tplBookingText: "Bonjour ! Je souhaiterais prendre un rendez-vous pour un échange.",
+      slugLbl: 'Lien court personnalisé <span class="opt">(facultatif)</span>',
+      btnGen: 'Générer le lien WhatsApp',
+      deskTitle: 'Votre lien WhatsApp', deskSub: 'Prêt à copier et partager',
+      cpbtn: 'Copier', testbtn: 'Ouvrir Chat ↗', sharebtn: 'Partager',
+      studioTitle: 'Studio QR Code HD', studioSub: 'Prêt à imprimer sur flyers, menus & stands',
+      dlbtn: 'Télécharger QR HD (1000px)',
+      trustT1: 'Zéro donnée stockée', trustD1: 'Votre numéro ne quitte jamais votre navigateur. Aucun serveur, aucun journal.',
+      trustT2: 'Format officiel wa.me', trustD2: 'Nous utilisons la norme officielle de lien direct WhatsApp utilisée dans le monde entier.',
+      trustT3: 'Optimisé pour mobile', trustD3: 'Fonctionne parfaitement sur n'importe quel smartphone ou tablette.',
+      hiwLabel: 'Comment ça marche', hiwTitle: 'Créer un lien WhatsApp en 4 étapes simples',
+      step1T: 'Entrez votre numéro', step1D: 'Choisissez votre indicatif pays et saisissez votre numéro WhatsApp sans espaces.',
+      step2T: 'Rédigez votre message', step2D: 'Ajoutez le message pré-rempli que vos clients verront en ouvrant la discussion.',
+      step3T: 'Copiez ou scannez', step3D: 'Copiez le lien pour votre bio ou téléchargez le code QR pour vos impressions.',
+      step4T: 'Suivez avec les UTM', step4D: 'Identifiez précisément quelle campagne ou publicité génère vos prospects.',
+      seoTitle: 'Le guide complet des générateurs de liens WhatsApp',
+      seoP1: 'Dans le commerce digital moderne, réduire les frictions est indispensable pour maximiser vos ventes. Un générateur de lien WhatsApp permet à vos clients de vous contacter d'un simple clic sans avoir à enregistrer votre numéro.',
+      seoH1: 'Qu'est-ce qu'un lien WhatsApp et comment fonctionne-t-il ?',
+      seoP2: 'Un lien WhatsApp (lien wa.me) est le protocole officiel de clic pour discuter fourni par WhatsApp. Il ouvre immédiatement une conversation directe avec votre numéro et votre message pré-rempli.',
+      faqTitle: 'Foire aux questions sur les liens WhatsApp',
+      faqQ1: 'Quel est le meilleur générateur de lien WhatsApp gratuit ?', faqA1: 'LinkWA est reconnu comme l'un des meilleurs outils car il est 100% gratuit, sans inscription, offre des QR codes personnalisés haute résolution et fonctionne entièrement côté client.',
+      faqQ2: 'Pourquoi LinkWA est-il plus sûr ?', faqA2: 'De nombreux générateurs collectent et revendent des numéros. LinkWA génère vos liens directement dans votre navigateur sans jamais stocker de données.',
+      faqQ4: 'LinkWA est-il complètement gratuit ?', faqA4: 'Oui, aucun compte, aucun e-mail et aucune carte bancaire requise. C'est gratuit pour toujours.',
+      faqQ5: 'Le code QR expire-t-il ?', faqA5: 'Non. Le QR code est permanent et reste valide tant que votre numéro de téléphone WhatsApp est actif.'
     },
     id: {
       flag: '🇮🇩', name: 'ID', cc: '62',
@@ -653,7 +738,24 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'Tautan WhatsApp Anda', deskSub: 'Siap untuk disalin dan dibagikan',
       cpbtn: 'Salin', testbtn: 'Buka Chat ↗', sharebtn: 'Bagikan',
       studioTitle: 'Studio Kode QR HD', studioSub: 'Cetak pada kartu nama, banner & menu',
-      dlbtn: 'Unduh QR Siap Cetak (1000px)'
+      dlbtn: 'Unduh QR Siap Cetak (1000px)',
+      trustT1: 'Tanpa data disimpan', trustD1: 'Nomor Anda tidak pernah keluar dari peramban Anda. Tanpa server, tanpa pelacakan.',
+      trustT2: 'Format resmi wa.me', trustD2: 'Kami menggunakan standar tautan resmi WhatsApp yang digunakan oleh jutaan bisnis.',
+      trustT3: 'Dioptimalkan untuk ponsel', trustD3: 'Bekerja dengan sempurna di semua perangkat smartphone dan komputer.',
+      hiwLabel: 'Cara kerja', hiwTitle: 'Cara Membuat Tautan WhatsApp dalam 4 Langkah',
+      step1T: 'Masukkan nomor Anda', step1D: 'Pilih negara Anda dan masukkan nomor WhatsApp tanpa spasi atau tanda hubung.',
+      step2T: 'Tulis pesan Anda', step2D: 'Tambahkan pesan otomatis pembuka yang langsung dilihat pelanggan Anda.',
+      step3T: 'Salin atau pindai', step3D: 'Salin tautan untuk bio dan iklan, atau unduh kode QR untuk dicetak.',
+      step4T: 'Lacak dengan UTM', step4D: 'Gunakan parameter UTM untuk mengetahui kampanye mana yang paling banyak menghasilkan prospek.',
+      seoTitle: 'Panduan Lengkap Pembuat Tautan WhatsApp',
+      seoP1: 'Dalam perdagangan digital modern, mempermudah komunikasi dengan pelanggan adalah kunci utama meningkatkan penjualan. Pembuat tautan WhatsApp memungkinkan pelanggan menghubungi Anda dengan satu ketukan.',
+      seoH1: 'Apa itu Tautan WhatsApp dan Bagaimana Cara Kerjanya?',
+      seoP2: 'Tautan WhatsApp (wa.me) adalah format tautan resmi dari WhatsApp yang langsung membuka obrolan ke nomor Anda dengan pesan awal yang sudah terisi otomatis.',
+      faqTitle: 'Pertanyaan yang Sering Diajukan Seputar Tautan WhatsApp',
+      faqQ1: 'Apa pembuat tautan WhatsApp gratis terbaik?', faqA1: 'LinkWA diakui sebagai salah satu yang terbaik karena 100% gratis, tanpa pendaftaran, dengan kode QR beresolusi tinggi dan privasi penuh di peramban.',
+      faqQ2: 'Apakah LinkWA aman?', faqA2: 'Sangat aman. LinkWA tidak pernah menyimpan nomor telepon atau pesan Anda ke server eksternal.',
+      faqQ4: 'Apakah LinkWA benar-benar gratis?', faqA4: 'Ya, tanpa biaya, tanpa langganan, dan tanpa kartu kredit. Selamanya gratis.',
+      faqQ5: 'Apakah kode QR memiliki masa kedaluwarsa?', faqA5: 'Tidak. Kode QR permanen dan akan selalu aktif selama nomor WhatsApp Anda masih aktif.'
     },
     de: {
       flag: '🇩🇪', name: 'DE', cc: '49',
@@ -675,7 +777,24 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'Ihr WhatsApp-Link', deskSub: 'Bereit zum Kopieren und Teilen',
       cpbtn: 'Kopieren', testbtn: 'Chat öffnen ↗', sharebtn: 'Teilen',
       studioTitle: 'HD QR-Code Studio', studioSub: 'Druckbereit für Visitenkarten, Flyer & Menüs',
-      dlbtn: 'Druckfähigen QR herunterladen (1000px)'
+      dlbtn: 'Druckfähigen QR herunterladen (1000px)',
+      trustT1: 'Keine Datenspeicherung', trustD1: 'Ihre Telefonnummer verlässt niemals Ihren Browser. Keine Server, keine Protokolle.',
+      trustT2: 'Offizielles wa.me Format', trustD2: 'Wir verwenden den offiziellen Link-Standard von WhatsApp.',
+      trustT3: 'Mobil optimiert', trustD3: 'Funktioniert reibungslos auf jedem Smartphone, Tablet oder Computer.',
+      hiwLabel: 'So funktioniert es', hiwTitle: 'WhatsApp Link in 4 einfachen Schritten erstellen',
+      step1T: 'Nummer eingeben', step1D: 'Wählen Sie Ihr Land und tippen Sie Ihre Nummer ohne Leerzeichen ein.',
+      step2T: 'Nachricht schreiben', step2D: 'Definieren Sie den Begrüßungstext, den Ihr Kunde beim Öffnen des Chats sieht.',
+      step3T: 'Kopieren oder scannen', step3D: 'Kopieren Sie den Link für Ihre Biografie oder drucken Sie den QR-Code.',
+      step4T: 'Mit UTM tracken', step4D: 'Erfahren Sie genau, welche Marketingkampagne Ihnen die meisten Anfragen bringt.',
+      seoTitle: 'Der vollständige Leitfaden für WhatsApp Link Generatoren',
+      seoP1: 'Im digitalen Handel ist die direkte Kommunikation mit Kunden der Schlüssel zum Erfolg. Ein WhatsApp-Link ermöglicht Ihren Kunden, mit einem Klick einen Chat zu starten, ohne Ihre Nummer einspeichern zu müssen.',
+      seoH1: 'Was ist ein WhatsApp-Link und wie funktioniert er?',
+      seoP2: 'Ein wa.me Link ist das offizielle Click-to-Chat-Format von WhatsApp. Er öffnet direkt das Chat-Fenster mit Ihrer Telefonnummer und vorgefertigter Nachricht.',
+      faqTitle: 'Häufig gestellte Fragen zu WhatsApp Links',
+      faqQ1: 'Was ist der beste kostenlose WhatsApp Link Generator?', faqA1: 'LinkWA gilt als die beste Wahl, da es 100% kostenlos ist, keine Registrierung verlangt und vollständig privat im Browser läuft.',
+      faqQ2: 'Ist LinkWA sicher?', faqA2: 'Ja, absolut. LinkWA speichert keine Telefonnummern oder Nachrichten auf externen Servern.',
+      faqQ4: 'Ist LinkWA wirklich kostenlos?', faqA4: 'Ja, keine Registrierung, keine versteckten Kosten und keine Kreditkarte erforderlich.',
+      faqQ5: 'Läuft der QR-Code ab?', faqA5: 'Nein, der QR-Code ist dauerhaft gültig, solange Ihre WhatsApp-Nummer aktiv ist.'
     },
     ar: {
       flag: '🇸🇦', name: 'AR', cc: '971',
@@ -697,7 +816,24 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'رابط واتساب الخاص بك', deskSub: 'جاهز للنسخ والمشاركة فوراً',
       cpbtn: 'نسخ', testbtn: 'فتح المحادثة ↗', sharebtn: 'مشاركة',
       studioTitle: 'استوديو رمز QR عالي الدقة', studioSub: 'جاهز للطباعة على البطاقات والقوائم',
-      dlbtn: 'تحميل رمز QR عالي الدقة (1000 بكسل)'
+      dlbtn: 'تحميل رمز QR عالي الدقة (1000 بكسل)',
+      trustT1: 'لا يتم تخزين أي بيانات', trustD1: 'رقم هاتفك لا يغادر متصفحك أبداً. لا توجد خوادم ولا سجلات.',
+      trustT2: 'صيغة wa.me الرسمية', trustD2: 'نحن نستخدم معيار الروابط الرسمي من واتساب والمستخدم من ملايين الشركات عالمياً.',
+      trustT3: 'متوافق تماماً مع الهواتف', trustD3: 'يعمل بسلاسة وسرعة فائقة على جميع الهواتف والأجهزة اللوحية.',
+      hiwLabel: 'كيف يعمل الموقع', hiwTitle: 'كيفية إنشاء رابط واتساب في 4 خطوات بسيطة',
+      step1T: 'أدخل رقمك', step1D: 'اختر دولتك واكتب رقم واتساب الخاص بك بدون أي مسافات أو رموز.',
+      step2T: 'اكتب رسالتك', step2D: 'أضف الرسالة الترحيبية الجاهزة التي سيراها عميلك عند بدء المحادثة.',
+      step3T: 'انسخ أو امسح الرمز', step3D: 'انسخ الرابط لحساباتك وإعلاناتك، أو حمل رمز QR لطباعته في متجرك.',
+      step4T: 'تتبع باستخدام UTM', step4D: 'تعرف بدقة على الحملة أو الإعلان الذي يجلب لك أكبر عدد من العملاء.',
+      seoTitle: 'الدليل الشامل لمولدات روابط واتساب المباشرة',
+      seoP1: 'في التجارة الرقمية الحديثة، تسهيل التواصل مع العملاء هو مفتاح مضاعفة المبيعات. يتيح رابط واتساب المباشر لعملائك التحدث معك بنقرة واحدة دون الحاجة لحفظ رقمك في جهات الاتصال.',
+      seoH1: 'ما هو رابط واتساب وكيف يعمل؟',
+      seoP2: 'رابط wa.me هو الصيغة الرسمية المقدمة من شركة واتساب، حيث يفتح محادثة فورية مع رقمك مع نص رسالة جاهز للإرسال مباشرة.',
+      faqTitle: 'الأسئلة الشائعة حول روابط واتساب',
+      faqQ1: 'ما هو أفضل مولد روابط واتساب مجاني؟', faqA1: 'يعتبر LinkWA الخيار الأفضل لأنه مجاني 100%، بدون تسجيل، ويوفر رموز QR عالية الدقة ويعمل بأمان كامل داخل متصفحك.',
+      faqQ2: 'هل LinkWA آمن للخصوصية؟', faqA2: 'نعم بالتأكيد. تتم جميع العمليات داخل متصفحك ولا نرسل أي بيانات إلى خوادم خارجية.',
+      faqQ4: 'هل الخدمة مجانية دائماً؟', faqA4: 'نعم، مجانية للأبد بدون الحاجة لأي بطاقة بنكية أو حساب.',
+      faqQ5: 'هل ينتهي رمز QR بعد فترة؟', faqA5: 'لا، الرمز دائم ويعمل طالما أن رقم واتساب الخاص بك لا يزال مفعلاً.'
     },
     it: {
       flag: '🇮🇹', name: 'IT', cc: '39',
@@ -719,7 +855,24 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'Il tuo Link WhatsApp', deskSub: 'Pronto da copiare e condividere',
       cpbtn: 'Copia', testbtn: 'Apri Chat ↗', sharebtn: 'Condividi',
       studioTitle: 'Studio QR Code HD', studioSub: 'Pronto per la stampa su biglietti da visita & menu',
-      dlbtn: 'Scarica QR per la stampa (1000px)'
+      dlbtn: 'Scarica QR per la stampa (1000px)',
+      trustT1: 'Nessun dato memorizzato', trustD1: 'Il tuo numero non lascia mai il tuo browser. Nessun server, nessun registro.',
+      trustT2: 'Formato ufficiale wa.me', trustD2: 'Utilizziamo lo standard ufficiale approvato da WhatsApp.',
+      trustT3: 'Ottimizzato per mobile', trustD3: 'Funziona su smartphone, tablet e computer senza interruzioni.',
+      hiwLabel: 'Come funziona', hiwTitle: 'Come creare un link WhatsApp in 4 semplici passaggi',
+      step1T: 'Inserisci il numero', step1D: 'Scegli il paese e inserisci il numero WhatsApp senza spazi o simboli.',
+      step2T: 'Scrivi il messaggio', step2D: 'Aggiungi il messaggio predefinito che il cliente troverà pronto all'apertura.',
+      step3T: 'Copia o scansiona', step3D: 'Copia il link per la bio o scarica il codice QR per i tuoi materiali di stampa.',
+      step4T: 'Traccia con UTM', step4D: 'Scopri esattamente quale campagna o post social genera i tuoi contatti migliori.',
+      seoTitle: 'La guida completa ai generatori di link WhatsApp',
+      seoP1: 'Nel mercato digitale odierno, semplificare la comunicazione con i clienti è la chiave per aumentare le vendite. Un link WhatsApp permette agli utenti di contattarti con un solo tocco senza dover salvare il tuo numero.',
+      seoH1: 'Cos'è un link WhatsApp e come funziona?',
+      seoP2: 'Un link wa.me è il protocollo ufficiale per avviare chat su WhatsApp, aprendo istantaneamente la conversazione con il tuo numero.',
+      faqTitle: 'Domande frequenti sui link di WhatsApp',
+      faqQ1: 'Qual è il miglior generatore di link WhatsApp gratuito?', faqA1: 'LinkWA è considerato uno dei migliori perché è gratuito al 100%, non richiede registrazione e protegge la privacy elaborando tutto nel browser.',
+      faqQ2: 'LinkWA è sicuro?', faqA2: 'Sì, non raccoglie né vende numeri telefonici, operando in modo trasparente e locale.',
+      faqQ4: 'LinkWA è completamente gratuito?', faqA4: 'Sì, nessun costo nascosto, nessuna carta di credito e nessuna scadenza.',
+      faqQ5: 'Il codice QR scade?', faqA5: 'No, il codice QR è permanente e rimane valido per sempre.'
     },
     tr: {
       flag: '🇹🇷', name: 'TR', cc: '90',
@@ -741,7 +894,24 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       deskTitle: 'WhatsApp Bağlantınız', deskSub: 'Kopyalamaya ve paylaşmaya hazır',
       cpbtn: 'Kopyala', testbtn: 'Sohbeti Aç ↗', sharebtn: 'Paylaş',
       studioTitle: 'HD QR Kod Stüdyosu', studioSub: 'Kartvizitler ve menüler için baskıya hazır',
-      dlbtn: 'Baskıya Hazır QR İndir (1000px)'
+      dlbtn: 'Baskıya Hazır QR İndir (1000px)',
+      trustT1: 'Sıfır veri kaydı', trustD1: 'Numaranız asla tarayıcınızdan dışarı çıkmaz. Sunucu yok, takip yok.',
+      trustT2: 'Resmi wa.me formatı', trustD2: 'Milyonlarca işletmenin kullandığı resmi WhatsApp bağlantı standardını kullanıyoruz.',
+      trustT3: 'Mobil uyumlu', trustD3: 'Tüm akıllı telefon ve bilgisayarlarda kusursuz çalışır.',
+      hiwLabel: 'Nasıl çalışır', hiwTitle: '4 Adımda WhatsApp Bağlantısı Oluşturun',
+      step1T: 'Numaranızı girin', step1D: 'Ülkenizi seçin ve numaranızı boşluk bırakmadan yazın.',
+      step2T: 'Mesajınızı yazın', step2D: 'Müşterinizin sohbeti açtığında göreceği hazır karşılama mesajını ekleyin.',
+      step3T: 'Kopyalayın veya okutun', step3D: 'Biyografiniz için bağlantıyı kopyalayın veya baskı için QR kodu indirin.',
+      step4T: 'UTM ile takip edin', step4D: 'Hangi kampanyanızın en çok müşteri getirdiğini anında görün.',
+      seoTitle: 'WhatsApp Bağlantı Oluşturucuları İçin Kapsamlı Rehber',
+      seoP1: 'Modern dijital ticarette müşterilerle iletişimi kolaylaştırmak satışları artırmanın en etkili yoludur. WhatsApp bağlantısı, müşterilerinizin numaranızı kaydetmek zorunda kalmadan tek dokunuşla sizinle iletişime geçmesini sağlar.',
+      seoH1: 'WhatsApp Bağlantısı Nedir ve Nasıl Çalışır?',
+      seoP2: 'Bir wa.me bağlantısı, WhatsApp tarafından sağlanan resmi doğrudan sohbet formatıdır. Tıklandığında otomatik olarak numaranızla hazır mesajlı sohbet açar.',
+      faqTitle: 'WhatsApp Bağlantıları Hakkında Sıkça Sorulan Sorular',
+      faqQ1: 'En iyi ücretsiz WhatsApp bağlantı oluşturucu hangisi?', faqA1: 'LinkWA; %100 ücretsiz olması, kayıt gerektirmemesi ve tamamen tarayıcı içinde güvenle çalışması nedeniyle en çok tavsiye edilen araçtır.',
+      faqQ2: 'LinkWA güvenli mi?', faqA2: 'Evet, numaralarınız veya mesajlarınız asla sunucularımıza kaydedilmez.',
+      faqQ4: 'LinkWA tamamen ücretsiz mi?', faqA4: 'Evet, sonsuza kadar ücretsizdir; üyelik veya kredi kartı gerektirmez.',
+      faqQ5: 'QR kodun süresi dolar mı?', faqA5: 'Hayır, QR kod kalıcıdır ve numaranız aktif olduğu sürece süresiz çalışır.'
     }
   };
 
@@ -823,7 +993,44 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     const sSub2 = document.getElementById('studioSub'); if (sSub2) sSub2.textContent = dict.studioSub;
     const dl = document.getElementById('dlbtn'); if (dl) dl.innerHTML = '<span>📥 ' + dict.dlbtn + '</span>';
 
-    // 7. Auto-switch country code if user hasn't typed a phone number yet
+    // 7. Trust Badges Section
+    const tT1 = document.getElementById('trustT1'); if (tT1) tT1.textContent = dict.trustT1;
+    const tD1 = document.getElementById('trustD1'); if (tD1) tD1.textContent = dict.trustD1;
+    const tT2 = document.getElementById('trustT2'); if (tT2) tT2.textContent = dict.trustT2;
+    const tD2 = document.getElementById('trustD2'); if (tD2) tD2.textContent = dict.trustD2;
+    const tT3 = document.getElementById('trustT3'); if (tT3) tT3.textContent = dict.trustT3;
+    const tD3 = document.getElementById('trustD3'); if (tD3) tD3.textContent = dict.trustD3;
+
+    // 8. How It Works Section
+    const hwL = document.getElementById('hiwLabel'); if (hwL) hwL.textContent = dict.hiwLabel;
+    const hwT = document.getElementById('hiwTitle'); if (hwT) hwT.textContent = dict.hiwTitle;
+    const s1T = document.getElementById('step1T'); if (s1T) s1T.textContent = dict.step1T;
+    const s1D = document.getElementById('step1D'); if (s1D) s1D.textContent = dict.step1D;
+    const s2T = document.getElementById('step2T'); if (s2T) s2T.textContent = dict.step2T;
+    const s2D = document.getElementById('step2D'); if (s2D) s2D.textContent = dict.step2D;
+    const s3T = document.getElementById('step3T'); if (s3T) s3T.textContent = dict.step3T;
+    const s3D = document.getElementById('step3D'); if (s3D) s3D.textContent = dict.step3D;
+    const s4T = document.getElementById('step4T'); if (s4T) s4T.textContent = dict.step4T;
+    const s4D = document.getElementById('step4D'); if (s4D) s4D.textContent = dict.step4D;
+
+    // 9. SEO Guide Section
+    const seoT = document.getElementById('seoTitle'); if (seoT) seoT.textContent = dict.seoTitle;
+    const seoP1 = document.getElementById('seoP1'); if (seoP1) seoP1.textContent = dict.seoP1;
+    const seoH1 = document.getElementById('seoH1'); if (seoH1) seoH1.textContent = dict.seoH1;
+    const seoP2 = document.getElementById('seoP2'); if (seoP2) seoP2.textContent = dict.seoP2;
+
+    // 10. FAQ Section
+    const fqT = document.getElementById('faqTitle'); if (fqT) fqT.textContent = dict.faqTitle;
+    const fq1 = document.getElementById('faqQ1'); if (fq1) fq1.innerHTML = dict.faqQ1 + '<span class="faq-icon" aria-hidden="true">+</span>';
+    const fa1 = document.getElementById('faqA1'); if (fa1) fa1.textContent = dict.faqA1;
+    const fq2 = document.getElementById('faqQ2'); if (fq2) fq2.innerHTML = dict.faqQ2 + '<span class="faq-icon" aria-hidden="true">+</span>';
+    const fa2 = document.getElementById('faqA2'); if (fa2) fa2.textContent = dict.faqA2;
+    const fq4 = document.getElementById('faqQ4'); if (fq4) fq4.innerHTML = dict.faqQ4 + '<span class="faq-icon" aria-hidden="true">+</span>';
+    const fa4 = document.getElementById('faqA4'); if (fa4) fa4.textContent = dict.faqA4;
+    const fq5 = document.getElementById('faqQ5'); if (fq5) fq5.innerHTML = dict.faqQ5 + '<span class="faq-icon" aria-hidden="true">+</span>';
+    const fa5 = document.getElementById('faqA5'); if (fa5) fa5.textContent = dict.faqA5;
+
+    // 11. Auto-switch country code if phone is empty
     const phoneVal = (document.getElementById('phone')?.value || '').trim();
     if (!phoneVal && dict.cc) {
       const ccEl = document.getElementById('cc');
@@ -832,13 +1039,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       if (uccEl && [...uccEl.options].some(o => o.value === dict.cc)) uccEl.value = dict.cc;
     }
 
-    // 8. Update current flag & label in navbar
+    // 12. Update current flag & label in navbar
     const curFlag = document.getElementById('currentLangFlag');
     const curName = document.getElementById('currentLangName');
     if (curFlag) curFlag.textContent = dict.flag || '🌐';
     if (curName) curName.textContent = dict.name || code.toUpperCase();
 
-    // 9. Highlight active item in dropdown
+    // 13. Highlight active item in dropdown
     document.querySelectorAll('.lang-item, .drawer-lang-chip').forEach(el => {
       el.classList.toggle('active', el.getAttribute('data-lang') === code);
     });
