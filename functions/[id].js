@@ -8,6 +8,14 @@ export async function onRequest(context) {
     return context.next();
   }
 
+  // 301 Redirect legacy language paths to the unified master page with lang parameter
+  if (cleanId === 'es') {
+    return Response.redirect(new URL("/?lang=es", context.request.url), 301);
+  }
+  if (cleanId === 'pt') {
+    return Response.redirect(new URL("/?lang=pt", context.request.url), 301);
+  }
+
   // Bypass dynamic KV redirection for static files (containing a dot) and standard Astro pages
   const staticRoutes = new Set([
     'about',
@@ -19,8 +27,6 @@ export async function onRequest(context) {
     'sitemap',
     'rss',
     'api',
-    'es',
-    'pt',
     'whatsapp-auto-reply',
     'whatsapp-link'
   ]);
