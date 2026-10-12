@@ -507,25 +507,121 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 <div class="toast" id="toast"></div>
 <canvas id="exportCanvas"></canvas>
 
-<!-- UNIVERSAL TRANSLATE MODAL (On-Demand, Zero Initial TBT) -->
-<div id="translateModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center; padding:16px;">
-  <div style="background:var(--surf); border:1.5px solid var(--bd2); border-radius:18px; max-width:440px; width:100%; padding:24px; box-shadow:var(--sh-lg); position:relative; box-sizing:border-box;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-      <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; margin:0; color:var(--ink);">🌐 Translate LinkWA</h3>
-      <button type="button" onclick="closeTranslateModal()" style="background:none; border:none; font-size:20px; color:var(--ink3); cursor:pointer; line-height:1;" aria-label="Close modal">✕</button>
+<!-- CLEAN NATIVE LANGUAGE SELECTOR MODAL (100% In-App, Zero External Scripts) -->
+<div id="translateModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.72); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:var(--surf); border:1.5px solid var(--bd2); border-radius:20px; max-width:520px; width:100%; padding:24px; box-shadow:0 20px 50px rgba(0,0,0,0.5); position:relative; box-sizing:border-box; max-height:90vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; margin:0; color:var(--ink);">Select Your Language</h3>
+      </div>
+      <button type="button" onclick="closeTranslateModal()" style="background:var(--bgl); border:1px solid var(--bd2); width:32px; height:32px; border-radius:50%; font-size:16px; color:var(--ink2); cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1; transition:background 0.15s;" aria-label="Close modal">✕</button>
     </div>
-    <p style="font-size:13px; color:var(--ink2); line-height:1.5; margin-bottom:16px;">
-      Select your preferred language. Native fast versions are available for English, Spanish, and Portuguese, or translate instantly to 100+ languages:
+    <p style="font-size:13px; color:var(--ink3); line-height:1.5; margin:0 0 18px 0;">
+      Choose your native language. LinkWA works 100% in-browser with zero tracking.
     </p>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px;">
-      <a href="/" data-lang="en" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; text-align:center;">🇺🇸 English</a>
-      <a href="/es/" data-lang="es" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; text-align:center;">🇪🇸 Español</a>
-      <a href="/pt/" data-lang="pt" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; text-align:center;">🇧🇷 Português</a>
-      <button type="button" onclick="initGoogleTranslateWidget()" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--g); background:var(--gl); color:var(--gd); font-size:13px; font-weight:700; cursor:pointer;">🌍 100+ More</button>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:10px;">
+      <!-- English -->
+      <a href="/" data-lang="en" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); text-decoration:none; transition:all 0.15s;">
+        <span style="font-size:24px;">🇺🇸</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">English</div>
+          <div style="font-size:11px; color:var(--ink3);">Global · Default</div>
+        </div>
+      </a>
+
+      <!-- Spanish -->
+      <a href="/es/" data-lang="es" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); text-decoration:none; transition:all 0.15s;">
+        <span style="font-size:24px;">🇪🇸</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Español</div>
+          <div style="font-size:11px; color:var(--ink3);">España y Latinoamérica</div>
+        </div>
+      </a>
+
+      <!-- Portuguese -->
+      <a href="/pt/" data-lang="pt" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); text-decoration:none; transition:all 0.15s;">
+        <span style="font-size:24px;">🇧🇷</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Português</div>
+          <div style="font-size:11px; color:var(--ink3);">Brasil e Portugal</div>
+        </div>
+      </a>
+
+      <!-- Hindi -->
+      <button type="button" onclick="selectInPlaceLang('hi')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇮🇳</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">हिन्दी (Hindi)</div>
+          <div style="font-size:11px; color:var(--ink3);">भारत (India)</div>
+        </div>
+      </button>
+
+      <!-- Bahasa Indonesia -->
+      <button type="button" onclick="selectInPlaceLang('id')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇮🇩</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Bahasa Indonesia</div>
+          <div style="font-size:11px; color:var(--ink3);">Indonesia</div>
+        </div>
+      </button>
+
+      <!-- French -->
+      <button type="button" onclick="selectInPlaceLang('fr')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇫🇷</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Français</div>
+          <div style="font-size:11px; color:var(--ink3);">France & Afrique</div>
+        </div>
+      </button>
+
+      <!-- German -->
+      <button type="button" onclick="selectInPlaceLang('de')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇩🇪</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Deutsch</div>
+          <div style="font-size:11px; color:var(--ink3);">Deutschland & Österreich</div>
+        </div>
+      </button>
+
+      <!-- Arabic -->
+      <button type="button" onclick="selectInPlaceLang('ar')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇸🇦</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">العربية (Arabic)</div>
+          <div style="font-size:11px; color:var(--ink3);">الشرق الأوسط</div>
+        </div>
+      </button>
+
+      <!-- Italian -->
+      <button type="button" onclick="selectInPlaceLang('it')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇮🇹</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Italiano</div>
+          <div style="font-size:11px; color:var(--ink3);">Italia</div>
+        </div>
+      </button>
+
+      <!-- Turkish -->
+      <button type="button" onclick="selectInPlaceLang('tr')" class="lang-option-card" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); cursor:pointer; text-align:left; transition:all 0.15s;">
+        <span style="font-size:24px;">🇹🇷</span>
+        <div>
+          <div style="font-size:13.5px; font-weight:700;">Türkçe</div>
+          <div style="font-size:11px; color:var(--ink3);">Türkiye</div>
+        </div>
+      </button>
     </div>
-    <div id="google_translate_element" style="min-height:24px; text-align:center;"></div>
   </div>
 </div>
+
+<style>
+.lang-option-card:hover {
+  border-color: var(--gm) !important;
+  background: var(--gl) !important;
+  transform: translateY(-1px);
+}
+</style>
 
 <script is:inline>
   function openTranslateModal() {
@@ -548,6 +644,20 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       var notice = document.getElementById('autoShiftNotice');
       if (notice) notice.style.display = 'none';
     } catch (e) {}
+  }
+
+  function selectInPlaceLang(code) {
+    setExplicitLang(code);
+    closeTranslateModal();
+    if (window.location.pathname !== '/' && window.location.pathname !== '') {
+      window.location.href = '/?lang=' + code;
+      return;
+    }
+    if (typeof window.applyUiTranslation === 'function') {
+      window.applyUiTranslation(code);
+    } else {
+      window.location.reload();
+    }
   }
 
   // Bind click handlers for explicit language selection
@@ -574,27 +684,15 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         }
       }
     } catch (e) {}
-  });
 
-  // On-demand Google Translate (Loaded ONLY upon user interaction - Zero TBT penalty)
-  var gTranslateLoaded = false;
-  function initGoogleTranslateWidget() {
-    var container = document.getElementById('google_translate_element');
-    if (container) container.innerHTML = '<span style="font-size:12px; color:var(--ink3);">Loading languages...</span>';
-    if (!gTranslateLoaded) {
-      gTranslateLoaded = true;
-      window.googleTranslateElementInit = function() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false
-        }, 'google_translate_element');
-      };
-      var s = document.createElement('script');
-      s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      document.body.appendChild(s);
+    // Close modal on click outside
+    var modal = document.getElementById('translateModal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeTranslateModal();
+      });
     }
-  }
+  });
 </script>
 </body>
 </html>

@@ -116,6 +116,180 @@ if (document.readyState === 'loading') {
   initFromUrlParams();
 }
 
+
+// Client-side instant translation dictionary for native language shifting
+const UI_TRANSLATIONS = {
+  hi: {
+    formTitle: 'आपका विवरण',
+    formSub: 'फ़ोन नंबर और संदेश दर्ज करें',
+    btnGen: 'व्हाट्सएप लिंक बनाएं',
+    deskTitle: 'आपका व्हाट्सएप लिंक',
+    deskSub: 'कॉपी और शेयर करने के लिए तैयार',
+    phoneLbl: 'फ़ोन नंबर',
+    phoneHint: 'बिना देश कोड या स्पेस के',
+    msgLbl: 'पहले से भरा संदेश (वैकल्पिक)',
+    msgPh: 'नमस्ते! मैंने आपकी पोस्ट देखी और मुझे आपकी सेवाओं में रुचि है...',
+    slugLbl: 'कस्टम शॉर्ट लिंक (वैकल्पिक)',
+    cpbtn: 'कॉपी करें',
+    testbtn: 'चैट खोलें ↗',
+    sharebtn: 'शेयर करें',
+    dlbtn: 'प्रिंट-रेडी क्यूआर डाउनलोड करें (1000px)'
+  },
+  id: {
+    formTitle: 'Detail Anda',
+    formSub: 'Masukkan nomor dan pesan Anda',
+    btnGen: 'Buat Tautan WhatsApp',
+    deskTitle: 'Tautan WhatsApp Anda',
+    deskSub: 'Siap untuk disalin dan dibagikan',
+    phoneLbl: 'Nomor telepon',
+    phoneHint: 'Tanpa kode negara atau spasi',
+    msgLbl: 'Pesan otomatis (opsional)',
+    msgPh: 'Halo! Saya melihat postingan Anda dan tertarik dengan...',
+    slugLbl: 'Tautan Pendek Khusus (opsional)',
+    cpbtn: 'Salin',
+    testbtn: 'Buka Chat ↗',
+    sharebtn: 'Bagikan',
+    dlbtn: 'Unduh QR Siap Cetak (1000px)'
+  },
+  fr: {
+    formTitle: 'Vos coordonnées',
+    formSub: 'Entrez votre numéro et votre message',
+    btnGen: 'Générer le lien WhatsApp',
+    deskTitle: 'Votre lien WhatsApp',
+    deskSub: 'Prêt à copier et partager',
+    phoneLbl: 'Numéro de téléphone',
+    phoneHint: 'Sans indicatif pays ni espaces',
+    msgLbl: 'Message pré-rempli (facultatif)',
+    msgPh: 'Bonjour ! J\'ai vu votre publication et je souhaite me renseigner...',
+    slugLbl: 'Lien court personnalisé (facultatif)',
+    cpbtn: 'Copier',
+    testbtn: 'Ouvrir Chat ↗',
+    sharebtn: 'Partager',
+    dlbtn: 'Télécharger QR HD (1000px)'
+  },
+  de: {
+    formTitle: 'Ihre Angaben',
+    formSub: 'Geben Sie Ihre Telefonnummer und Nachricht ein',
+    btnGen: 'WhatsApp-Link erstellen',
+    deskTitle: 'Ihr WhatsApp-Link',
+    deskSub: 'Bereit zum Kopieren und Teilen',
+    phoneLbl: 'Telefonnummer',
+    phoneHint: 'Ohne Ländervorwahl oder Leerzeichen',
+    msgLbl: 'Vorgefertigte Nachricht (optional)',
+    msgPh: 'Hallo! Ich habe Ihren Beitrag gesehen und interessiere mich für...',
+    slugLbl: 'Eigener Kurzlink (optional)',
+    cpbtn: 'Kopieren',
+    testbtn: 'Chat öffnen ↗',
+    sharebtn: 'Teilen',
+    dlbtn: 'Druckfähigen QR herunterladen (1000px)'
+  },
+  ar: {
+    formTitle: 'بياناتك الشخصية',
+    formSub: 'أدخل رقم الهاتف والرسالة',
+    btnGen: 'إنشاء رابط واتساب',
+    deskTitle: 'رابط واتساب الخاص بك',
+    deskSub: 'جاهز للنسخ والمشاركة فوراً',
+    phoneLbl: 'رقم الهاتف',
+    phoneHint: 'بدون رمز الدولة أو المسافات',
+    msgLbl: 'رسالة تلقائية (اختياري)',
+    msgPh: 'مرحباً! لقد رأيت إعلانكم وأرغب في الاستفسار...',
+    slugLbl: 'رابط قصير مخصص (اختياري)',
+    cpbtn: 'نسخ',
+    testbtn: 'فتح المحادثة ↗',
+    sharebtn: 'مشاركة',
+    dlbtn: 'تحميل رمز QR عالي الدقة (1000 بكسل)'
+  },
+  it: {
+    formTitle: 'I tuoi dati',
+    formSub: 'Inserisci il tuo numero e messaggio',
+    btnGen: 'Genera Link WhatsApp',
+    deskTitle: 'Il tuo Link WhatsApp',
+    deskSub: 'Pronto da copiare e condividere',
+    phoneLbl: 'Numero di telefono',
+    phoneHint: 'Senza prefisso internazionale né spazi',
+    msgLbl: 'Messaggio preimpostato (opzionale)',
+    msgPh: 'Ciao! Ho visto il vostro post e vorrei maggiori informazioni...',
+    slugLbl: 'Link breve personalizzato (opzionale)',
+    cpbtn: 'Copia',
+    testbtn: 'Apri Chat ↗',
+    sharebtn: 'Condividi',
+    dlbtn: 'Scarica QR per la stampa (1000px)'
+  },
+  tr: {
+    formTitle: 'Bilgileriniz',
+    formSub: 'Telefon numaranızı ve mesajınızı girin',
+    btnGen: 'WhatsApp Bağlantısı Oluştur',
+    deskTitle: 'WhatsApp Bağlantınız',
+    deskSub: 'Kopyalamaya ve paylaşmaya hazır',
+    phoneLbl: 'Telefon numarası',
+    phoneHint: 'Ülke kodu veya boşluk olmadan',
+    msgLbl: 'Hazır mesaj (isteğe bağlı)',
+    msgPh: 'Merhaba! Paylaşımınızı gördüm ve bilgi almak istiyorum...',
+    slugLbl: 'Özel Kısa Bağlantı (isteğe bağlı)',
+    cpbtn: 'Kopyala',
+    testbtn: 'Sohbeti Aç ↗',
+    sharebtn: 'Paylaş',
+    dlbtn: 'Baskıya Hazır QR İndir (1000px)'
+  }
+};
+
+window.applyUiTranslation = function(code) {
+  const dict = UI_TRANSLATIONS[code];
+  if (!dict) return;
+
+  const fTitle = document.getElementById('formCardTitle');
+  if (fTitle) fTitle.textContent = dict.formTitle;
+  const fSub = document.getElementById('formCardSub');
+  if (fSub) fSub.textContent = dict.formSub;
+
+  const bGen = document.getElementById('btnGen');
+  if (bGen) { const s = bGen.querySelector('span'); if (s) s.textContent = dict.btnGen; }
+
+  const dTitle = document.getElementById('desktopCardTitle');
+  if (dTitle) dTitle.textContent = dict.deskTitle;
+  const dSub = document.getElementById('desktopCardSub');
+  if (dSub) dSub.textContent = dict.deskSub;
+
+  const pLbl = document.querySelector('label[for="phone"]');
+  if (pLbl) pLbl.textContent = dict.phoneLbl;
+
+  const pHint = document.querySelector('#panel-basic .hint');
+  if (pHint) pHint.textContent = dict.phoneHint;
+
+  const mLbl = document.querySelector('label[for="msg"]');
+  if (mLbl) mLbl.innerHTML = dict.msgLbl;
+
+  const msgInput = document.getElementById('msg');
+  if (msgInput) msgInput.placeholder = dict.msgPh;
+
+  const sLbl = document.querySelector('label[for="slug"]');
+  if (sLbl) sLbl.innerHTML = dict.slugLbl;
+
+  const cp = document.getElementById('cpbtn');
+  if (cp) cp.textContent = dict.cpbtn;
+
+  const dl = document.getElementById('dlbtn');
+  if (dl) dl.innerHTML = '<span>📥 ' + dict.dlbtn + '</span>';
+
+  if (window.toast) {
+    window.toast('Language updated: ' + (code.toUpperCase()));
+  }
+};
+
+// Check on load if visitor has a preferred language or ?lang= param
+(function() {
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const storedLang = localStorage.getItem('linkwa_user_lang');
+  const activeLang = urlLang || storedLang;
+  if (activeLang && UI_TRANSLATIONS[activeLang]) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => window.applyUiTranslation(activeLang));
+    } else {
+      window.applyUiTranslation(activeLang);
+    }
+  }
+})();
+
 </script>
 <script type="application/ld+json">
 {
