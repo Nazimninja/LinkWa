@@ -444,22 +444,47 @@ function getReplacedText(rawText) {
     .replace(/\{WEBSITE\}/g, bWeb);
 }
 
+let currentFilteredMessages = [];
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function copyTemplate(text, btn) {
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.innerText;
-    btn.innerText = 'Copied ✓';
-    btn.style.background = 'var(--gd)';
-    if (window.toast) window.toast('Message copied to clipboard!');
-    setTimeout(() => {
-      btn.innerText = orig;
-      btn.style.background = 'var(--g)';
-    }, 2000);
-  });
+  if (!navigator.clipboard) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  } else {
+    navigator.clipboard.writeText(text);
+  }
+  const orig = btn.innerText;
+  btn.innerText = 'Copied ✓';
+  btn.style.background = 'var(--gd)';
+  if (window.toast) window.toast('Message copied to clipboard!');
+  setTimeout(() => {
+    btn.innerText = orig;
+    btn.style.background = 'var(--g)';
+  }, 2000);
 }
 
 function openInLinkGen(text) {
   const encoded = encodeURIComponent(text);
-  window.open('/?msg=' + encoded, '_blank');
+  let lang = 'en';
+  try {
+    lang = localStorage.getItem('linkwa_user_lang') || 'en';
+  } catch (e) {}
+  const targetPath = lang === 'es' ? '/es/' : (lang === 'pt' ? '/pt/' : '/');
+  window.open(targetPath + '?msg=' + encoded, '_blank');
 }
 
 function renderTemplates() {
@@ -467,26 +492,28 @@ function renderTemplates() {
   if (!container) return;
 
   const filtered = RAW_TEMPLATES.filter(t => t.cat === activeCategory);
+  currentFilteredMessages = [];
 
   let html = '';
   filtered.forEach((t, idx) => {
     const msg = getReplacedText(t.text);
+    currentFilteredMessages.push(msg);
     html += `
       <div class="template-card">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; gap:8px;">
           <div>
-            <span style="font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--gm); background:var(--gl); padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:4px;">${t.badge}</span>
-            <h3 style="font-size:15px; font-weight:700; color:var(--ink); margin:0;">${t.title}</h3>
+            <span style="font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--gm); background:var(--gl); padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:4px;">${escapeHtml(t.badge)}</span>
+            <h3 style="font-size:15px; font-weight:700; color:var(--ink); margin:0;">${escapeHtml(t.title)}</h3>
           </div>
         </div>
         
-        <div style="background:var(--bgl); border:1.5px solid var(--bd2); border-radius:10px; padding:14px; font-family:var(--font-body); font-size:13.5px; line-height:1.6; color:var(--ink); white-space:pre-wrap; word-break:break-word; margin-bottom:12px;">${msg}</div>
+        <div style="background:var(--bgl); border:1.5px solid var(--bd2); border-radius:10px; padding:14px; font-family:var(--font-body); font-size:13.5px; line-height:1.6; color:var(--ink); white-space:pre-wrap; word-break:break-word; margin-bottom:12px;">${escapeHtml(msg)}</div>
 
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button type="button" onclick="copyTemplate(\`${msg.replace(/`/g, '\\`').replace(/"/g, '&quot;')}\`, this)" style="flex:1; min-width:140px; padding:10px 16px; background:var(--g); color:#fff; border:none; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; transition:background 0.15s;">
+          <button type="button" class="btn-copy-template" data-idx="${idx}" style="flex:1; min-width:140px; padding:10px 16px; background:var(--g); color:#fff; border:none; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; transition:background 0.15s;">
             📋 Copy Message
           </button>
-          <button type="button" onclick="openInLinkGen(\`${msg.replace(/`/g, '\\`').replace(/"/g, '&quot;')}\`)" style="flex:1; min-width:180px; padding:10px 16px; background:transparent; color:var(--ink); border:1.5px solid var(--bd2); border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--gm)'" onmouseout="this.style.borderColor='var(--bd2)'">
+          <button type="button" class="btn-gen-link" data-idx="${idx}" style="flex:1; min-width:180px; padding:10px 16px; background:transparent; color:var(--ink); border:1.5px solid var(--bd2); border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--gm)'" onmouseout="this.style.borderColor='var(--bd2)'">
             🔗 Create Link with this Message →
           </button>
         </div>
@@ -496,6 +523,29 @@ function renderTemplates() {
 
   container.innerHTML = html;
 }
+
+// Event delegation for template buttons
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('templatesList');
+  if (container) {
+    container.addEventListener('click', (e) => {
+      const copyBtn = e.target.closest('.btn-copy-template');
+      if (copyBtn) {
+        const idx = parseInt(copyBtn.getAttribute('data-idx'), 10);
+        const text = currentFilteredMessages[idx];
+        if (text) copyTemplate(text, copyBtn);
+        return;
+      }
+      const genBtn = e.target.closest('.btn-gen-link');
+      if (genBtn) {
+        const idx = parseInt(genBtn.getAttribute('data-idx'), 10);
+        const text = currentFilteredMessages[idx];
+        if (text) openInLinkGen(text);
+        return;
+      }
+    });
+  }
+});
 
 function toggleFaq(el) {
   const answer = el.nextElementSibling;

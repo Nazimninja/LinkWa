@@ -70,6 +70,52 @@ const categoryMeta: Record<string, { gradient: string; svg: string }> = {
   "url": "https://linkwa.in",
   "author": { "@type": "Organization", "name": "LinkWA" }
 }
+
+// Read URL query parameters to auto-fill inputs (?msg=..., ?text=..., ?phone=..., ?cc=...)
+function initFromUrlParams() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const msg = params.get('msg') || params.get('text');
+    const phone = params.get('phone') || params.get('number');
+    const cc = params.get('cc');
+
+    if (msg) {
+      const msgEl = document.getElementById('msg');
+      if (msgEl) {
+        msgEl.value = msg;
+        cnt(msgEl, 'mc');
+      }
+      const umsgEl = document.getElementById('umsg');
+      if (umsgEl) umsgEl.value = msg;
+    }
+    if (phone) {
+      const cleanPhone = phone.replace(/\D/g, '');
+      const phoneEl = document.getElementById('phone');
+      if (phoneEl) phoneEl.value = cleanPhone;
+      const uphoneEl = document.getElementById('uphone');
+      if (uphoneEl) uphoneEl.value = cleanPhone;
+    }
+    if (cc) {
+      const ccEl = document.getElementById('cc');
+      if (ccEl && [...ccEl.options].some(o => o.value === cc)) ccEl.value = cc;
+      const uccEl = document.getElementById('ucc');
+      if (uccEl && [...uccEl.options].some(o => o.value === cc)) uccEl.value = cc;
+    }
+    live();
+    if (phone) {
+      generate();
+    }
+  } catch (e) {
+    console.debug('URL params init error:', e);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFromUrlParams);
+} else {
+  initFromUrlParams();
+}
+
 </script>
 <script type="application/ld+json">
 {

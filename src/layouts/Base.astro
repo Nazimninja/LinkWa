@@ -31,6 +31,44 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   <link rel="alternate" hreflang="es" href="https://linkwa.in/es/" />
   <link rel="alternate" hreflang="pt" href="https://linkwa.in/pt/" />
   <link rel="alternate" hreflang="x-default" href="https://linkwa.in/" />
+  <!-- Smart Native Language Auto-Detection (Client-Side, zero-redirect on search crawlers) -->
+  <script is:inline>
+    (function() {
+      try {
+        if (/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) return;
+        var saved = localStorage.getItem('linkwa_user_lang');
+        var path = window.location.pathname;
+        var isHome = (path === '/' || path === '');
+        if (isHome) {
+          if (saved === 'es') {
+            window.location.replace('/es/' + window.location.search);
+            return;
+          } else if (saved === 'pt') {
+            window.location.replace('/pt/' + window.location.search);
+            return;
+          } else if (saved === 'en') {
+            return;
+          }
+          var navLangs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || navigator.userLanguage || ''];
+          var match = '';
+          for (var i = 0; i < navLangs.length; i++) {
+            var l = (navLangs[i] || '').toLowerCase();
+            if (l.startsWith('es')) { match = 'es'; break; }
+            if (l.startsWith('pt')) { match = 'pt'; break; }
+          }
+          if (match === 'es') {
+            localStorage.setItem('linkwa_user_lang', 'es');
+            sessionStorage.setItem('linkwa_auto_shifted', 'es');
+            window.location.replace('/es/' + window.location.search);
+          } else if (match === 'pt') {
+            localStorage.setItem('linkwa_user_lang', 'pt');
+            sessionStorage.setItem('linkwa_auto_shifted', 'pt');
+            window.location.replace('/pt/' + window.location.search);
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
   <!-- Google tag (gtag.js) dataLayer stub -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
@@ -202,6 +240,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 </head>
 <body>
 
+<!-- AUTO-SHIFT NOTIFICATION BANNER (Dismissible, only shown when browser auto-shifted) -->
+<div id="autoShiftNotice" style="display:none; background: #0c1a17; border-bottom: 1px solid rgba(37, 211, 102, 0.25); color: #d1fae5; font-size: 12.5px; padding: 8px 16px; text-align: center; font-weight: 500;">
+  <span id="autoShiftNoticeText"></span>
+  <button type="button" onclick="dismissAutoShiftNotice()" style="background:none; border:none; color: rgba(255,255,255,0.6); cursor:pointer; font-size:14px; margin-left:12px; vertical-align:middle;" aria-label="Dismiss notice">✕</button>
+</div>
+
 <!-- TOP AGENCY PROMO BANNER -->
 <div style="background: #0f172a; border-bottom: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.85); text-align: center; font-size: 13px; padding: 10px 16px; font-weight: 500; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; z-index: 1000; position: relative;">
   <span>Brought to you by <strong style="font-weight: 700; color: #fff;"><a href="https://socialninjas.in/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none;">Social Ninja's</a></strong> — Need help automating or scaling your business?</span>
@@ -225,10 +269,11 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       <a href="/contact/" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
     </div>
     <div class="nav-live"><span class="dot"></span> No data stored</div>
-    <div class="lang-switch" style="display: flex; gap: 3px; font-size: 11.5px; font-weight: 700; background: var(--bgl); padding: 3px 6px; border-radius: 8px; border: 1px solid var(--bd2);">
-      <a href="/" title="English" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/' ? 'var(--gl)' : 'transparent'};`}>EN</a>
-      <a href="/es/" title="Español" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/es' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/es' ? 'var(--gl)' : 'transparent'};`}>ES</a>
-      <a href="/pt/" title="Português" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/pt' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/pt' ? 'var(--gl)' : 'transparent'};`}>PT</a>
+    <div class="lang-switch" style="display: flex; align-items: center; gap: 3px; font-size: 11.5px; font-weight: 700; background: var(--bgl); padding: 3px 6px; border-radius: 8px; border: 1px solid var(--bd2);">
+      <a href="/" data-lang="en" title="English" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/' ? 'var(--gl)' : 'transparent'};`}>EN</a>
+      <a href="/es/" data-lang="es" title="Español" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/es' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/es' ? 'var(--gl)' : 'transparent'};`}>ES</a>
+      <a href="/pt/" data-lang="pt" title="Português" style={`text-decoration:none; padding: 2px 5px; border-radius: 4px; color: ${currentPath === '/pt' ? 'var(--gm)' : 'var(--ink3)'}; background: ${currentPath === '/pt' ? 'var(--gl)' : 'transparent'};`}>PT</a>
+      <button type="button" onclick="openTranslateModal()" title="Translate to 100+ languages" style="background:transparent; border:none; cursor:pointer; padding:2px 4px; font-size:12px; color:var(--ink3); display:inline-flex; align-items:center;" aria-label="More languages">🌐</button>
     </div>
     <span class="nav-pill">Free</span>
     
@@ -256,6 +301,16 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <a href="/terms" class={currentPath === '/terms' ? 'active' : ''}>Terms of Service</a>
   </div>
   
+    <!-- Mobile Drawer Language Section -->
+  <div class="drawer-lang-section" style="padding: 14px 0; border-top: 1px solid var(--bd2); border-bottom: 1px solid var(--bd2); margin: 6px 0 16px 0;">
+    <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink3); margin-bottom: 8px;">🌐 Language / Idioma</div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <a href="/" data-lang="en" style={`padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; border: 1.5px solid var(--bd2); background: ${currentPath === '/' ? 'var(--gl)' : 'var(--bgl)'}; color: ${currentPath === '/' ? 'var(--gm)' : 'var(--ink)'};`}>🇺🇸 English</a>
+      <a href="/es/" data-lang="es" style={`padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; border: 1.5px solid var(--bd2); background: ${currentPath === '/es' ? 'var(--gl)' : 'var(--bgl)'}; color: ${currentPath === '/es' ? 'var(--gm)' : 'var(--ink)'};`}>🇪🇸 Español</a>
+      <a href="/pt/" data-lang="pt" style={`padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; border: 1.5px solid var(--bd2); background: ${currentPath === '/pt' ? 'var(--gl)' : 'var(--bgl)'}; color: ${currentPath === '/pt' ? 'var(--gm)' : 'var(--ink)'};`}>🇧🇷 Português</a>
+      <button type="button" onclick="openTranslateModal()" style="padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--bd2); background: var(--bgl); color: var(--ink); display: inline-flex; align-items: center; gap: 4px;">🌐 100+ More</button>
+    </div>
+  </div>
   <div class="drawer-promo-card">
     <div class="promo-title">Social Ninja's AI Agency</div>
     <div class="promo-text">We build automated client acquisition systems, custom chatbots, and manage high-converting Meta/Google ad campaigns.</div>
@@ -452,5 +507,94 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 <div class="toast" id="toast"></div>
 <canvas id="exportCanvas"></canvas>
 
+<!-- UNIVERSAL TRANSLATE MODAL (On-Demand, Zero Initial TBT) -->
+<div id="translateModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:var(--surf); border:1.5px solid var(--bd2); border-radius:18px; max-width:440px; width:100%; padding:24px; box-shadow:var(--sh-lg); position:relative; box-sizing:border-box;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; margin:0; color:var(--ink);">🌐 Translate LinkWA</h3>
+      <button type="button" onclick="closeTranslateModal()" style="background:none; border:none; font-size:20px; color:var(--ink3); cursor:pointer; line-height:1;" aria-label="Close modal">✕</button>
+    </div>
+    <p style="font-size:13px; color:var(--ink2); line-height:1.5; margin-bottom:16px;">
+      Select your preferred language. Native fast versions are available for English, Spanish, and Portuguese, or translate instantly to 100+ languages:
+    </p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px;">
+      <a href="/" data-lang="en" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; text-align:center;">🇺🇸 English</a>
+      <a href="/es/" data-lang="es" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; text-align:center;">🇪🇸 Español</a>
+      <a href="/pt/" data-lang="pt" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--bd2); background:var(--bgl); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; text-align:center;">🇧🇷 Português</a>
+      <button type="button" onclick="initGoogleTranslateWidget()" style="padding:10px 12px; border-radius:8px; border:1.5px solid var(--g); background:var(--gl); color:var(--gd); font-size:13px; font-weight:700; cursor:pointer;">🌍 100+ More</button>
+    </div>
+    <div id="google_translate_element" style="min-height:24px; text-align:center;"></div>
+  </div>
+</div>
+
+<script is:inline>
+  function openTranslateModal() {
+    var modal = document.getElementById('translateModal');
+    if (modal) modal.style.display = 'flex';
+  }
+  function closeTranslateModal() {
+    var modal = document.getElementById('translateModal');
+    if (modal) modal.style.display = 'none';
+  }
+  function setExplicitLang(code) {
+    try {
+      localStorage.setItem('linkwa_user_lang', code);
+      sessionStorage.removeItem('linkwa_auto_shifted');
+    } catch (e) {}
+  }
+  function dismissAutoShiftNotice() {
+    try {
+      sessionStorage.removeItem('linkwa_auto_shifted');
+      var notice = document.getElementById('autoShiftNotice');
+      if (notice) notice.style.display = 'none';
+    } catch (e) {}
+  }
+
+  // Bind click handlers for explicit language selection
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-lang]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var lang = this.getAttribute('data-lang');
+        if (lang) setExplicitLang(lang);
+      });
+    });
+
+    // Show auto-shift notice if visitor was automatically shifted
+    try {
+      var shifted = sessionStorage.getItem('linkwa_auto_shifted');
+      var notice = document.getElementById('autoShiftNotice');
+      var noticeText = document.getElementById('autoShiftNoticeText');
+      if (shifted && notice && noticeText) {
+        if (shifted === 'es') {
+          noticeText.innerHTML = '🌐 Mostrando en <strong>Español</strong> según tu navegador · <a href="/" onclick="setExplicitLang(\'en\')" style="color:#25D366; font-weight:700; text-decoration:underline; margin-left:4px;">Cambiar a Inglés</a>';
+          notice.style.display = 'block';
+        } else if (shifted === 'pt') {
+          noticeText.innerHTML = '🌐 Exibindo em <strong>Português</strong> conforme seu navegador · <a href="/" onclick="setExplicitLang(\'en\')" style="color:#25D366; font-weight:700; text-decoration:underline; margin-left:4px;">Mudar para Inglês</a>';
+          notice.style.display = 'block';
+        }
+      }
+    } catch (e) {}
+  });
+
+  // On-demand Google Translate (Loaded ONLY upon user interaction - Zero TBT penalty)
+  var gTranslateLoaded = false;
+  function initGoogleTranslateWidget() {
+    var container = document.getElementById('google_translate_element');
+    if (container) container.innerHTML = '<span style="font-size:12px; color:var(--ink3);">Loading languages...</span>';
+    if (!gTranslateLoaded) {
+      gTranslateLoaded = true;
+      window.googleTranslateElementInit = function() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      };
+      var s = document.createElement('script');
+      s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(s);
+    }
+  }
+</script>
 </body>
 </html>
